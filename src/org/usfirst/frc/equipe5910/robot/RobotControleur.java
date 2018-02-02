@@ -46,9 +46,15 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		//SSystem.out.println("teleopPeriodic()");
-		
-		roue.deplacer(manette.getConduiteGauche(), manette.getConduiteDroite());
-		
+		if(manette.veuxAvancer()){
+			roue.avancer(manette.getAvancer());
+		}
+		else if(manette.veuxReculer()){
+			roue.reculer(manette.getReculer());
+		}
+		else{
+			roue.arreter();
+		}
 	}
 
 		@Override

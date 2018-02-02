@@ -25,9 +25,13 @@ public class Roues extends Subsystem {
 		roueDroite.set(-vitesse);
 	}
 	
-	public void deplacer(double vitesseGauche, double vitesseDroite){
-		roueGauche.set(-vitesseGauche);
-		roueDroite.set(-vitesseDroite);
+	public void reculer(double vitesse){
+		roueGauche.set(-vitesse);
+		roueDroite.set(vitesse);
+	}
+	public void arreter(){
+		roueGauche.set(0);
+		roueDroite.set(0);
 	}
 	
 	public void activerVitesseElevee(){

@@ -16,11 +16,21 @@ public class Manette {
 		selecteurVitesse.whenReleased(new CommandeActeverVitesseBasse());
 	}
 	
-	public double getConduiteGauche(){
-		return manettePrincipale.getRawAxis(1);
+	public double getAvancer(){
+		System.out.println("getAvancer()" + manettePrincipale.getRawAxis(3) );
+		return manettePrincipale.getRawAxis(3);
 	}
-
-	public double getConduiteDroite(){
-		return -manettePrincipale.getRawAxis(5);
+	
+	public double getReculer(){
+		return manettePrincipale.getRawAxis(2);
 	}
+	
+	public boolean veuxAvancer(){
+		return manettePrincipale.getRawAxis(3) > manettePrincipale.getRawAxis(2);
+	}
+	
+	public boolean veuxReculer(){
+		return  manettePrincipale.getRawAxis(2) > manettePrincipale.getRawAxis(3);
+	}
+	
 }
