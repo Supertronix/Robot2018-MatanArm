@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class CommandeActiverVitesseBasse extends Command{
 
-	
 	public CommandeActiverVitesseBasse() {
 		requires(RobotControleur.roue);
 		System.out.println("CommandeActiverVitesseBasse()");

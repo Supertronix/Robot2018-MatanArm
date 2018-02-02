@@ -30,16 +30,15 @@ public class RobotControleur extends IterativeRobot {
 
 	@Override
 	public void autonomousPeriodic() {
-		System.out.println("autonomousPeriodic()");
+		// System.out.println("autonomousPeriodic()");
+		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
+		Scheduler.getInstance().run(); // pour faire marcher les commandes
 		
 		
 	}
 
 	@Override
-	public void teleopInit() {
-		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
-		Scheduler.getInstance().run(); // pour faire marcher les commandes
-		
+	public void teleopInit() {		
 		System.out.println("teleopInit()");
 		roue = new Roues();
 		manette = new Manette();
@@ -48,10 +47,10 @@ public class RobotControleur extends IterativeRobot {
 	
 	@Override
 	public void teleopPeriodic() {
+		// System.out.println("teleopPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
 
-		//SSystem.out.println("teleopPeriodic()");
 		if(manette.veuxAvancer()){
 			roue.avancer(manette.getAvancer());
 		}
@@ -62,16 +61,17 @@ public class RobotControleur extends IterativeRobot {
 			roue.arreter();
 		}
 	}
-
-		@Override
-	public void testPeriodic() {
-		System.out.println("testPeriodic()");
-	}
-	
 	
 	@Override
 	public void testInit() {
 		System.out.println("testInit()");
 	}
 	
+	@Override
+	public void testPeriodic() {
+		// System.out.println("testPeriodic()");
+		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
+		Scheduler.getInstance().run(); // pour faire marcher les commandes
+	}
+
 }
