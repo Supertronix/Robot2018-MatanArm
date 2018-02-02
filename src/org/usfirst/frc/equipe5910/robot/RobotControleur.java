@@ -3,6 +3,7 @@ package org.usfirst.frc.equipe5910.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -27,7 +28,6 @@ public class RobotControleur extends IterativeRobot {
 		
 	}
 
-
 	@Override
 	public void autonomousPeriodic() {
 		System.out.println("autonomousPeriodic()");
@@ -37,6 +37,9 @@ public class RobotControleur extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
+		Scheduler.getInstance().run(); // pour faire marcher les commandes
+		
 		System.out.println("teleopInit()");
 		roue = new Roues();
 		manette = new Manette();
@@ -45,6 +48,9 @@ public class RobotControleur extends IterativeRobot {
 	
 	@Override
 	public void teleopPeriodic() {
+		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
+		Scheduler.getInstance().run(); // pour faire marcher les commandes
+
 		//SSystem.out.println("teleopPeriodic()");
 		if(manette.veuxAvancer()){
 			roue.avancer(manette.getAvancer());

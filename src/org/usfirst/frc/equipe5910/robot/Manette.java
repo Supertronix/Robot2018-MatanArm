@@ -11,9 +11,9 @@ public class Manette {
 	
 	public Manette(){
 		manettePrincipale = new Joystick(0);
-		selecteurVitesse = new JoystickButton(manettePrincipale, 2);
+		selecteurVitesse = new JoystickButton(manettePrincipale, 3);
 		selecteurVitesse.whenPressed(new CommandeActiverVitesseElevee());
-		selecteurVitesse.whenReleased(new CommandeActeverVitesseBasse());
+		selecteurVitesse.whenReleased(new CommandeActiverVitesseBasse());
 	}
 	
 	public double getAvancer(){

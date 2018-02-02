@@ -6,7 +6,7 @@ public class CommandeActiverVitesseElevee extends Command {
 	
 	public CommandeActiverVitesseElevee() {
 		requires(RobotControleur.roue);
-		System.out.println("CommandeActiverVitesseElevee");
+		System.out.println("CommandeActiverVitesseElevee()");
 	}
 	
 	@Override
@@ -17,14 +17,13 @@ public class CommandeActiverVitesseElevee extends Command {
 
 	@Override
 	protected void execute() {
-		RobotControleur.roue.activerVitesseElevee();
+		//RobotControleur.roue.activerVitesseElevee();
 		System.out.println("CommandeActiverVitesseElevee.execute()");
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		
-		return false;
+		return true;
 	}
 
 }
