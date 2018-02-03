@@ -34,14 +34,9 @@ public class Roues extends Subsystem {
 		roueDroite.set(0);
 	}
 	
-	public void tournerGaucheSurPlace(double vitesse){
+	public void tournerSurPlace(double vitesse){
 		roueGauche.set(vitesse);
 		roueDroite.set(vitesse);
-	}
-	
-	public void tournerDroiteSurPlace(double vitesse){
-		roueGauche.set(-vitesse);
-		roueDroite.set(-vitesse);
 	}
 	
 	public void activerVitesseElevee(){

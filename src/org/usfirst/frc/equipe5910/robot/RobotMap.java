@@ -11,8 +11,12 @@ public interface RobotMap {
 
 	public interface Manette
 	{
+		public static final int MANETTE_PRINCIPALE = 0;
+		public static final int BOUTON_A = 1;
+		public static final int BOUTON_X = 3;
+		public static final int GACHETTE_DROITE = 3;
+		public static final int GACHETTE_GAUCHE = 2;
 		// 2 = B
-		// 3 = X
 	}
 
 

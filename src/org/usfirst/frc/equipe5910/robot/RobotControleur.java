@@ -56,7 +56,14 @@ public class RobotControleur extends IterativeRobot {
 			Robot.roues.reculer(manette.getReculer());
 		}
 		else{
-			Robot.roues.arreter();
+			
+			if(manette.veuxTournerSurPlace()){
+				Robot.roues.tournerSurPlace(manette.getTournerSurPlace());
+			}
+			else{
+				Robot.roues.arreter();
+			}
+			
 		}
 	}
 	
