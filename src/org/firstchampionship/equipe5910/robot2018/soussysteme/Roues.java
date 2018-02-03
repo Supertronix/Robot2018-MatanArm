@@ -26,10 +26,10 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		encodeurConduiteGauche = new Encoder(ENCODEUR_CONDUITE_GAUCHE_A, ENCODEUR_CONDUITE_GAUCHE_B,  false, Encoder.EncodingType.k4X);
 		encodeurConduiteDroite = new Encoder(ENCODEUR_CONDUITE_DROITE_A, ENCODEUR_CONDUITE_DROITE_B,  false, Encoder.EncodingType.k4X);
 	
-		encodeurConduiteGauche.setDistancePerPulse(ENCODEUR_DISTANCE_PAR_PULSE);		
+		encodeurConduiteGauche.setDistancePerPulse(ENCODEUR_DISTANCE_PAR_PULSE/ROUE_FRICTION);		
 		//encodeurConduiteGauche.setMaxPeriod(100);
 		//encodeurConduiteGauche.setMinRate(10);
-		encodeurConduiteDroite.setDistancePerPulse(ENCODEUR_DISTANCE_PAR_PULSE);		
+		encodeurConduiteDroite.setDistancePerPulse(ENCODEUR_DISTANCE_PAR_PULSE/ROUE_FRICTION);
 		//encodeurConduiteDroite.setMaxPeriod(1);
 		//encodeurConduiteDroite.setMinRate(30);
 		
