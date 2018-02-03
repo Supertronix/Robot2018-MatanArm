@@ -1,10 +1,7 @@
 package org.usfirst.frc.equipe5910.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class RobotControleur extends IterativeRobot {
@@ -49,6 +46,9 @@ public class RobotControleur extends IterativeRobot {
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
 
+        System.out.println("Distance droite " + Robot.roues.getDistanceDroiteSelonEncodeur());
+        System.out.println("Distance gauche " + Robot.roues.getDistanceGaucheSelonEncodeur());
+        
 		if(manette.veuxAvancer()){
 			Robot.roues.avancer(manette.getAvancer());
 		}

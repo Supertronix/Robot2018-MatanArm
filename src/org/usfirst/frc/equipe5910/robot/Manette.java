@@ -19,7 +19,7 @@ public class Manette implements RobotMap.Manette{
 	}
 	
 	public double getAvancer(){
-		System.out.println("getAvancer()" + manettePrincipale.getRawAxis(GACHETTE_DROITE) );
+		// System.out.println("getAvancer()" + manettePrincipale.getRawAxis(GACHETTE_DROITE) );
 		return manettePrincipale.getRawAxis(GACHETTE_DROITE);
 	}
 	

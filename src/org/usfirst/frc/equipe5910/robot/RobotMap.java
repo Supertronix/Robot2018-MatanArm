@@ -3,12 +3,23 @@ package org.usfirst.frc.equipe5910.robot;
 public interface RobotMap {
 
 	
-	public static final int ROUE_GAUCHE = 17;
-	public static final int ROUE_DROITE = 18;
+	public interface Roues
+	{
+		public static final int ROUE_GAUCHE = 17;
+		public static final int ROUE_DROITE = 18;
+		
+		public static final int VITESSE_BASSE = 0;
+		public static final int VITESSE_ELEVEE = 1;
 	
-	public static final int VITESSE_BASSE = 0;
-	public static final int VITESSE_ELEVEE = 1;
-
+		public static final int ENCODEUR_CONDUITE_GAUCHE_A = 0;
+		public static final int ENCODEUR_CONDUITE_GAUCHE_B = 1; 
+		public static final int ENCODEUR_CONDUITE_DROITE_A = 2;
+		public static final int ENCODEUR_CONDUITE_DROITE_B = 3;
+		
+		public static final int ENCODEUR_COMPTE_PAR_TOUR = 1024; // https://www.vexrobotics.com/217-5049.html
+		public static final float ENCODEUR_DISTANCE_PAR_PULSE = 0.5f;
+	}
+	
 	public interface Manette
 	{
 		public static final int MANETTE_PRINCIPALE = 0;
