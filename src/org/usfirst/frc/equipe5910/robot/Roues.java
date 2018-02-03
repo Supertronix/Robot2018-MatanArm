@@ -44,16 +44,27 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		return encodeurConduiteDroite.getDistance();
 	}
 	
-	
-	public void avancer(double vitesse){
-		roueGauche.set(vitesse);
-		roueDroite.set(-vitesse);
+	public void avancer(double vitesse, double direction){
+		if(direction == 0){
+			roueGauche.set(vitesse);
+			roueDroite.set(-vitesse);
+		}
+		else if(direction < 0){
+			roueGauche.set(vitesse * Math.abs(direction));
+			roueDroite.set(-vitesse);
+		}
+		else{
+			roueGauche.set(vitesse );
+			roueDroite.set(-vitesse * Math.abs(direction));
+		}
+
 	}
 	
 	public void reculer(double vitesse){
 		roueGauche.set(-vitesse);
 		roueDroite.set(vitesse);
 	}
+	
 	public void arreter(){
 		roueGauche.set(0);
 		roueDroite.set(0);

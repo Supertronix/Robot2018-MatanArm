@@ -31,6 +31,10 @@ public class Manette implements RobotMap.Manette{
 		return manettePrincipale.getRawAxis(0);
 	}
 	
+	public double getdirection(){
+		return manettePrincipale.getRawAxis(0);
+	}
+	
 	public boolean veuxAvancer(){
 		return manettePrincipale.getRawAxis(GACHETTE_DROITE) > manettePrincipale.getRawAxis(GACHETTE_GAUCHE);
 	}

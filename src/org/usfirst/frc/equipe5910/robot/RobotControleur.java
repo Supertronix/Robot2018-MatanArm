@@ -50,7 +50,7 @@ public class RobotControleur extends IterativeRobot {
         System.out.println("Distance gauche " + Robot.roues.getDistanceGaucheSelonEncodeur());
         
 		if(manette.veuxAvancer()){
-			Robot.roues.avancer(manette.getAvancer());
+			Robot.roues.avancer(manette.getAvancer(), manette.getdirection());
 		}
 		else if(manette.veuxReculer()){
 			Robot.roues.reculer(manette.getReculer());
