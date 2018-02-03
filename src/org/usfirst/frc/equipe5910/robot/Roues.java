@@ -15,7 +15,7 @@ public class Roues extends Subsystem {
 		roueGauche = new VictorSP(RobotMap.ROUE_GAUCHE);
 		roueDroite = new VictorSP(RobotMap.ROUE_DROITE);
 		
-		selecteurVitesse = new DoubleSolenoid(0, 1);
+		selecteurVitesse = new DoubleSolenoid(RobotMap.VITESSE_BASSE, RobotMap.VITESSE_ELEVEE);
 		
 
 	}
@@ -32,6 +32,16 @@ public class Roues extends Subsystem {
 	public void arreter(){
 		roueGauche.set(0);
 		roueDroite.set(0);
+	}
+	
+	public void tournerGaucheSurPlace(double vitesse){
+		roueGauche.set(vitesse);
+		roueDroite.set(vitesse);
+	}
+	
+	public void tournerDroiteSurPlace(double vitesse){
+		roueGauche.set(-vitesse);
+		roueDroite.set(-vitesse);
 	}
 	
 	public void activerVitesseElevee(){
