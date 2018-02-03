@@ -55,8 +55,8 @@ public class RobotControleur extends IterativeRobot {
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
 
-        System.out.println("Distance droite " + Robot.roues.getDistanceDroiteSelonEncodeur());
-        System.out.println("Distance gauche " + Robot.roues.getDistanceGaucheSelonEncodeur());
+		//System.out.println("Distance droite " + Robot.roues.getDistanceDroiteSelonEncodeur());
+		//System.out.println("Distance gauche " + Robot.roues.getDistanceGaucheSelonEncodeur());
         
         //System.out.println("Pin analogue gauche A " + encodeurGaucheA.get());
         //System.out.println("Pin analogue gauche B " + encodeurGaucheB.get());
