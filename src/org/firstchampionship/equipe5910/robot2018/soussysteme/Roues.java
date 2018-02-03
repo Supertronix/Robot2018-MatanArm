@@ -1,4 +1,6 @@
-package org.usfirst.frc.equipe5910.robot;
+package org.firstchampionship.equipe5910.robot2018.soussysteme;
+
+import org.firstchampionship.equipe5910.robot2018.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;

@@ -1,4 +1,8 @@
-package org.usfirst.frc.equipe5910.robot;
+package org.firstchampionship.equipe5910.robot2018.interaction;
+
+import org.firstchampionship.equipe5910.robot2018.RobotMap;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseBasse;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseElevee;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

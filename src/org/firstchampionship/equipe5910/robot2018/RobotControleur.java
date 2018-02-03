@@ -1,4 +1,6 @@
-package org.usfirst.frc.equipe5910.robot;
+package org.firstchampionship.equipe5910.robot2018;
+
+import org.firstchampionship.equipe5910.robot2018.interaction.Manette;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
