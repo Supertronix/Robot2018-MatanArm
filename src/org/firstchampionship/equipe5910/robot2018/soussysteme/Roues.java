@@ -68,6 +68,12 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		roueGauche.set(-demandeVitesse);
 		roueDroite.set(demandeVitesse);
 	}
+
+	public void avancer(double demandeVitesse){
+		roueGauche.set(demandeVitesse);
+		roueDroite.set(-demandeVitesse);
+	}
+	
 	
 	public void arreter(){
 		roueGauche.set(0);
