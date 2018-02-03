@@ -1,5 +1,6 @@
 package org.firstchampionship.equipe5910.robot2018;
 
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancer;
 import org.firstchampionship.equipe5910.robot2018.interaction.Manette;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -28,8 +29,8 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		System.out.println("autonomousInit()");
-	
-		
+		CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(10);
+		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
 	}
 
 	@Override
