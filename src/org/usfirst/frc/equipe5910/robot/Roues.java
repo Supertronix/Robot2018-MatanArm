@@ -43,28 +43,28 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		return encodeurConduiteDroite.getDistance();
 	}
 	
-	public void avancer(double vitesse, double direction){
+	public void avancer(double demandeVitesse, double direction){
 		if(direction >= -0.2 && direction <= 0.2){
-			roueGauche.set(vitesse);
-			roueDroite.set(-vitesse);
+			roueGauche.set(demandeVitesse);
+			roueDroite.set(-demandeVitesse);
 			//System.out.println("avant"+Math.abs(direction));
 		}
 		else if(direction < 0){
-			roueGauche.set(vitesse * (1 - Math.abs(direction)));
-			roueDroite.set(-vitesse);
+			roueGauche.set(demandeVitesse * (1 - Math.abs(direction)));
+			roueDroite.set(-demandeVitesse);
 			//System.out.println("gauche"+Math.abs(direction));
 		}
 		else{
-			roueGauche.set(vitesse );
-			roueDroite.set(-vitesse  * (1 - Math.abs(direction)));
+			roueGauche.set(demandeVitesse );
+			roueDroite.set(-demandeVitesse  * (1 - Math.abs(direction)));
 			//System.out.println("droite"+Math.abs(direction));
 		}
 
 	}
 	
-	public void reculer(double vitesse){
-		roueGauche.set(-vitesse);
-		roueDroite.set(vitesse);
+	public void reculer(double demandeVitesse){
+		roueGauche.set(-demandeVitesse);
+		roueDroite.set(demandeVitesse);
 	}
 	
 	public void arreter(){
@@ -72,14 +72,14 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		roueDroite.set(0);
 	}
 	
-	public void tournerSurPlace(double vitesse){
-		if(vitesse >= -0.2 && vitesse <= 0.2){
+	public void tournerSurPlace(double demandeVitesse){
+		if(demandeVitesse >= -0.2 && demandeVitesse <= 0.2){
 			roueGauche.set(0);
 			roueDroite.set(0);
 		}
 		else{
-			roueGauche.set(vitesse);
-			roueDroite.set(vitesse);
+			roueGauche.set(demandeVitesse);
+			roueDroite.set(demandeVitesse);
 		}
 		
 	}
