@@ -6,19 +6,19 @@ public class CommandeActiverVitesseElevee extends Command {
 	
 	public CommandeActiverVitesseElevee() {
 		requires(Robot.roues);
-		System.out.println("CommandeActiverVitesseElevee()");
+		//System.out.println("CommandeActiverVitesseElevee()");
 	}
 	
 	@Override
 	protected void initialize() {
 		Robot.roues.activerVitesseElevee();
-		System.out.println("CommandeActiverVitesseElevee.initialize()");
+		//System.out.println("CommandeActiverVitesseElevee.initialize()");
 	}
 
 	@Override
 	protected void execute() {
 		//RobotControleur.roue.activerVitesseElevee();
-		System.out.println("CommandeActiverVitesseElevee.execute()");
+		//System.out.println("CommandeActiverVitesseElevee.execute()");
 	}
 	
 	@Override

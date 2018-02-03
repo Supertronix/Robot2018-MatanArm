@@ -6,19 +6,19 @@ public class CommandeActiverVitesseBasse extends Command{
 
 	public CommandeActiverVitesseBasse() {
 		requires(Robot.roues);
-		System.out.println("CommandeActiverVitesseBasse()");
+		//System.out.println("CommandeActiverVitesseBasse()");
 	}
 	
 	@Override
 	protected void initialize() {
 		Robot.roues.activerVitesseBasse();
-		System.out.println("CommandeActiverVitesseBasse.initialize()");
+		//System.out.println("CommandeActiverVitesseBasse.initialize()");
 	}
 	
 	@Override
 	protected void execute() {
 		//RobotControleur.roue.activerVitesseBasse();
-		System.out.println("CommandeActiverVitesseBasse.execute()");
+		//System.out.println("CommandeActiverVitesseBasse.execute()");
 	}
 	
 	@Override

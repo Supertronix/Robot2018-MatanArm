@@ -44,17 +44,20 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	}
 	
 	public void avancer(double vitesse, double direction){
-		if(direction == 0){
+		if(direction >= -0.2 && direction <= 0.2){
 			roueGauche.set(vitesse);
 			roueDroite.set(-vitesse);
+			//System.out.println("avant"+Math.abs(direction));
 		}
 		else if(direction < 0){
-			roueGauche.set(vitesse * Math.abs(direction));
+			roueGauche.set(vitesse * (1 - Math.abs(direction)));
 			roueDroite.set(-vitesse);
+			//System.out.println("gauche"+Math.abs(direction));
 		}
 		else{
 			roueGauche.set(vitesse );
-			roueDroite.set(-vitesse * Math.abs(direction));
+			roueDroite.set(-vitesse  * (1 - Math.abs(direction)));
+			//System.out.println("droite"+Math.abs(direction));
 		}
 
 	}
@@ -70,8 +73,15 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	}
 	
 	public void tournerSurPlace(double vitesse){
-		roueGauche.set(vitesse);
-		roueDroite.set(vitesse);
+		if(vitesse >= -0.2 && vitesse <= 0.2){
+			roueGauche.set(0);
+			roueDroite.set(0);
+		}
+		else{
+			roueGauche.set(vitesse);
+			roueDroite.set(vitesse);
+		}
+		
 	}
 	
 	public void activerVitesseElevee(){
