@@ -8,15 +8,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class RobotControleur extends IterativeRobot {
-
-	public static Roues roue;
 	
 	Manette manette;
 	
 	@Override
 	public void robotInit() {
 		System.out.println("robotInit()");
-		
+		Robot.construire();
+		manette = new Manette();
 		
 		}
 
@@ -40,8 +39,7 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void teleopInit() {		
 		System.out.println("teleopInit()");
-		roue = new Roues();
-		manette = new Manette();
+
 	}
 
 	
@@ -52,13 +50,13 @@ public class RobotControleur extends IterativeRobot {
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
 
 		if(manette.veuxAvancer()){
-			roue.avancer(manette.getAvancer());
+			Robot.roues.avancer(manette.getAvancer());
 		}
 		else if(manette.veuxReculer()){
-			roue.reculer(manette.getReculer());
+			Robot.roues.reculer(manette.getReculer());
 		}
 		else{
-			roue.arreter();
+			Robot.roues.arreter();
 		}
 	}
 	

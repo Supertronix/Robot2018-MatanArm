@@ -5,13 +5,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class CommandeActiverVitesseBasse extends Command{
 
 	public CommandeActiverVitesseBasse() {
-		requires(RobotControleur.roue);
+		requires(Robot.roues);
 		System.out.println("CommandeActiverVitesseBasse()");
 	}
 	
 	@Override
 	protected void initialize() {
-		RobotControleur.roue.activerVitesseBasse();
+		Robot.roues.activerVitesseBasse();
 		System.out.println("CommandeActiverVitesseBasse.initialize()");
 	}
 	
