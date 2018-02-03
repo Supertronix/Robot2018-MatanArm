@@ -18,7 +18,7 @@ public interface RobotMap {
 		
 		public static final int ENCODEUR_COMPTE_PAR_TOUR = 1024; // https://www.vexrobotics.com/217-5049.html
 		public static final float ROUE_CIRCONFERENCE = (float) ((4*Math.PI)/ 25.4) ; // pouces / 25.4 = millimetres
-		public static final float ENCODEUR_DISTANCE_PAR_PULSE = ROUE_CIRCONFERENCE * ENCODEUR_COMPTE_PAR_TOUR;
+		public static final float ENCODEUR_DISTANCE_PAR_PULSE = ROUE_CIRCONFERENCE / ENCODEUR_COMPTE_PAR_TOUR;
 		public static final float ROUE_FRICTION = 1; // valeur a tuner
 	}
 	
