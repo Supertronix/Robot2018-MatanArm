@@ -11,10 +11,10 @@ public interface RobotMap {
 		public static final int VITESSE_BASSE = 0;
 		public static final int VITESSE_ELEVEE = 1;
 	
-		public static final int ENCODEUR_CONDUITE_GAUCHE_A = 0;
-		public static final int ENCODEUR_CONDUITE_GAUCHE_B = 1; 
-		public static final int ENCODEUR_CONDUITE_DROITE_A = 2;
-		public static final int ENCODEUR_CONDUITE_DROITE_B = 3;
+		public static final int ENCODEUR_CONDUITE_GAUCHE_A = 10;
+		public static final int ENCODEUR_CONDUITE_GAUCHE_B = 11; 
+		public static final int ENCODEUR_CONDUITE_DROITE_A = 12;
+		public static final int ENCODEUR_CONDUITE_DROITE_B = 13;
 		
 		public static final int ENCODEUR_COMPTE_PAR_TOUR = 1024; // https://www.vexrobotics.com/217-5049.html
 		public static final float ENCODEUR_DISTANCE_PAR_PULSE = 0.5f;

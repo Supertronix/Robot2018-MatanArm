@@ -1,5 +1,6 @@
 package org.usfirst.frc.equipe5910.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -7,6 +8,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class RobotControleur extends IterativeRobot {
 	
 	Manette manette;
+	
+	//DigitalInput encodeurGaucheA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_A);
+	//DigitalInput encodeurGaucheB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_B);
+	//DigitalInput encodeurDroitA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_A);
+	//DigitalInput encodeurDroitB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_B);
 	
 	@Override
 	public void robotInit() {
@@ -48,6 +54,11 @@ public class RobotControleur extends IterativeRobot {
 
         System.out.println("Distance droite " + Robot.roues.getDistanceDroiteSelonEncodeur());
         System.out.println("Distance gauche " + Robot.roues.getDistanceGaucheSelonEncodeur());
+        
+        //System.out.println("Pin analogue gauche A " + encodeurGaucheA.get());
+        //System.out.println("Pin analogue gauche B " + encodeurGaucheB.get());
+        //System.out.println("Pin analogue droite A " + encodeurDroitA.get());
+        //System.out.println("Pin analogue droite B " + encodeurDroitB.get());
         
 		if(manette.veuxAvancer()){
 			Robot.roues.avancer(manette.getAvancer(), manette.getdirection());

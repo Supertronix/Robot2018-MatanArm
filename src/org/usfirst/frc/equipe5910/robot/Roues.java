@@ -25,18 +25,17 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		encodeurConduiteDroite = new Encoder(ENCODEUR_CONDUITE_DROITE_A, ENCODEUR_CONDUITE_DROITE_B,  false, Encoder.EncodingType.k4X);
 	
 		encodeurConduiteGauche.setDistancePerPulse(ENCODEUR_DISTANCE_PAR_PULSE);		
-		encodeurConduiteGauche.setReverseDirection(false);
-		encodeurConduiteGauche.setMaxPeriod(100);
-		encodeurConduiteGauche.setMinRate(10);
+		//encodeurConduiteGauche.setMaxPeriod(100);
+		//encodeurConduiteGauche.setMinRate(10);
 		encodeurConduiteDroite.setDistancePerPulse(ENCODEUR_DISTANCE_PAR_PULSE);		
-		encodeurConduiteDroite.setReverseDirection(false);
-		encodeurConduiteDroite.setMaxPeriod(1);
-		encodeurConduiteDroite.setMinRate(30);
+		//encodeurConduiteDroite.setMaxPeriod(1);
+		//encodeurConduiteDroite.setMinRate(30);
 		
 	}
 	
 	
 	public double getDistanceGaucheSelonEncodeur() {
+		System.out.println("raw " + encodeurConduiteGauche.getRaw());
 		return encodeurConduiteGauche.getDistance();
 	}
 
