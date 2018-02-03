@@ -14,8 +14,8 @@ public class Manette implements RobotMap.Manette{
 		manettePrincipale = new Joystick(MANETTE_PRINCIPALE);
 		selecteurVitesseElevee = new JoystickButton(manettePrincipale, BOUTON_A);
 		selecteurVitesseBasse = new JoystickButton(manettePrincipale, BOUTON_X);
-		selecteurVitesseElevee.whenPressed(new CommandeActiverVitesseElevee());
-		selecteurVitesseBasse.whenPressed(new CommandeActiverVitesseBasse());
+		selecteurVitesseElevee.whenPressed(new CommandeRouesActiverVitesseElevee());
+		selecteurVitesseBasse.whenPressed(new CommandeRouesActiverVitesseBasse());
 	}
 	
 	public double getAvancer(){

@@ -2,9 +2,9 @@ package org.usfirst.frc.equipe5910.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CommandeActiverVitesseElevee extends Command {
+public class CommandeRouesActiverVitesseElevee extends Command {
 	
-	public CommandeActiverVitesseElevee() {
+	public CommandeRouesActiverVitesseElevee() {
 		requires(Robot.roues);
 		//System.out.println("CommandeActiverVitesseElevee()");
 	}
