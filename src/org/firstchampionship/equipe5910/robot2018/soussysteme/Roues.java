@@ -23,25 +23,27 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		
 		selecteurVitesse = new DoubleSolenoid(VITESSE_BASSE, VITESSE_ELEVEE);
 		
-		encodeurConduiteGauche = new Encoder(ENCODEUR_CONDUITE_GAUCHE_A, ENCODEUR_CONDUITE_GAUCHE_B,  false, Encoder.EncodingType.k4X);
-		encodeurConduiteDroite = new Encoder(ENCODEUR_CONDUITE_DROITE_A, ENCODEUR_CONDUITE_DROITE_B,  false, Encoder.EncodingType.k4X);
-	
+		// Todo : peut-être faire une classe dérivée de Encoder pour l'initialisation
+		encodeurConduiteGauche = new Encoder(ENCODEUR_CONDUITE_GAUCHE_A, ENCODEUR_CONDUITE_GAUCHE_B,  ENCODEUR_CONDUITE_GAUCHE_INVERSION, Encoder.EncodingType.k4X);
 		encodeurConduiteGauche.setDistancePerPulse(ENCODEUR_DISTANCE_PAR_PULSE/ROUE_FRICTION);		
-		//encodeurConduiteGauche.setMaxPeriod(100);
-		//encodeurConduiteGauche.setMinRate(10);
+		encodeurConduiteGauche.setMaxPeriod(ENCODEUR_PERIODE_MAX_AVANT_ARRET);
+		encodeurConduiteGauche.setMinRate(ENCODEUR_ROTATION_ARRET);
+		encodeurConduiteGauche.setSamplesToAverage(ENCODEUR_NOMBRE_ECHANTILLONS);
+		encodeurConduiteDroite = new Encoder(ENCODEUR_CONDUITE_DROITE_A, ENCODEUR_CONDUITE_DROITE_B,  ENCODEUR_CONDUITE_DROITE_INVERSION, Encoder.EncodingType.k4X);
 		encodeurConduiteDroite.setDistancePerPulse(ENCODEUR_DISTANCE_PAR_PULSE/ROUE_FRICTION);
-		//encodeurConduiteDroite.setMaxPeriod(1);
-		//encodeurConduiteDroite.setMinRate(30);
-		
+		encodeurConduiteDroite.setMaxPeriod(ENCODEUR_PERIODE_MAX_AVANT_ARRET);
+		encodeurConduiteDroite.setMinRate(ENCODEUR_ROTATION_ARRET);
+		encodeurConduiteDroite.setSamplesToAverage(ENCODEUR_NOMBRE_ECHANTILLONS);
 	}
 	
 	
 	public double getDistanceGaucheSelonEncodeur() {
-		System.out.println("raw " + encodeurConduiteGauche.getRaw());
+		System.out.println("raw gauche " + encodeurConduiteGauche.getRaw());
 		return encodeurConduiteGauche.getDistance();
 	}
 
 	public double getDistanceDroiteSelonEncodeur() {
+		System.out.println("raw droite " + encodeurConduiteGauche.getRaw());
 		return encodeurConduiteDroite.getDistance();
 	}
 	
