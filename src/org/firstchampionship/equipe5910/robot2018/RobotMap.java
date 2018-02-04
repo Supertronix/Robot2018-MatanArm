@@ -13,19 +13,21 @@ public interface RobotMap {
 	
 		public static final int ENCODEUR_CONDUITE_GAUCHE_A = 10;
 		public static final int ENCODEUR_CONDUITE_GAUCHE_B = 11; 
-		public static final boolean ENCODEUR_CONDUITE_GAUCHE_INVERSION = false;
+		public static final boolean ENCODEUR_CONDUITE_GAUCHE_INVERSION = true;
 		public static final int ENCODEUR_CONDUITE_DROITE_A = 12;
 		public static final int ENCODEUR_CONDUITE_DROITE_B = 13;
-		public static final boolean ENCODEUR_CONDUITE_DROITE_INVERSION = true;
+		public static final boolean ENCODEUR_CONDUITE_DROITE_INVERSION = false;
 		
 		// https://wpilib.screenstepslive.com/s/currentCS/m/java/l/599717-encoders-measuring-rotation-of-a-wheel-or-other-shaft
+		public static final int ENCODEUR_NOMBRE_ECHANTILLONS = 5; // max 127
 		public static final int ENCODEUR_COMPTE_PAR_TOUR = 1024; // https://www.vexrobotics.com/217-5049.html
-		public static final float ROUE_CIRCONFERENCE = (float) ((4*Math.PI)/ 25.4) ; // pouces / 25.4 = millimetres
-		public static final float ENCODEUR_DISTANCE_PAR_PULSE = ROUE_CIRCONFERENCE / ENCODEUR_COMPTE_PAR_TOUR;
-		public static final float ROUE_FRICTION = 1; // valeur a tuner
-		public static final int ENCODEUR_NOMBRE_ECHANTILLONS = 7; // max 127
+		public static final float ROUE_CIRCONFERENCE = (float) (100*Math.PI) ;
+		public static final float ENCODEUR_DISTANCE_PAR_PULSE = ROUE_CIRCONFERENCE / ENCODEUR_COMPTE_PAR_TOUR; // echantillonage quadruple car k4x
+		public static final float ENCODEUR_GLISSEMENT = 0.945f; // valeur a tuner
 		public static final int ENCODEUR_PERIODE_MAX_AVANT_ARRET = 1;
 		public static final int ENCODEUR_ROTATION_ARRET = 1;
+		
+		public static final float ROUE_FRICTION = 1;
 	}
 	
 	public interface Manette

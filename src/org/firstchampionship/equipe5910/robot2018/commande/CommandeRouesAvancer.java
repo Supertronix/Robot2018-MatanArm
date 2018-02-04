@@ -6,35 +6,41 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class CommandeRouesAvancer extends Command{
 
-	int distanceEnMillimetres;
-	double positionInitiale = 0;
+	protected int distanceVoulue;
+	protected double positionInitiale = 0;
+	protected double vitesse = 0.1; // test primitif
 	
-	public CommandeRouesAvancer(int distanceEnMillimetres)
+	public CommandeRouesAvancer(int distanceVoulue)
 	{
 		requires(Robot.roues);		
-		this.distanceEnMillimetres = distanceEnMillimetres;
+		this.distanceVoulue = distanceVoulue;
 	}
 
 	@Override
 	protected void initialize() {
 		System.out.println("CommandeRouesAvancer.initialize()");
 		this.positionInitiale = Robot.roues.getDistanceDroiteSelonEncodeur();
-		Robot.roues.avancer(0.1); // test primitif
+		System.out.println("Position initiale " + positionInitiale);
+		Robot.roues.avancer(vitesse); 
 	}
 
 	@Override
 	protected void execute() {
-		System.out.println("CommandeRouesAvancer.execute()");
+		//System.out.println("CommandeRouesAvancer.execute()");
+		Robot.roues.avancer(vitesse); 
 	}
-	
 	
 	@Override
 	protected boolean isFinished() {
-		return Robot.roues.getDistanceDroiteSelonEncodeur() > (this.positionInitiale + this.distanceEnMillimetres);
+		boolean estFini = Robot.roues.getDistanceDroiteSelonEncodeur() > (this.positionInitiale + this.distanceVoulue);
+		System.out.println("Distance parcourue " + (Robot.roues.getDistanceDroiteSelonEncodeur() - this.positionInitiale));
+		System.out.println("isFinished() " + estFini);
+		return estFini;
 	}
 	
 	@Override
 	protected void end() {
+		System.out.println("CommandeRouesAvancer.end()");
 		Robot.roues.arreter();
 	}
 	

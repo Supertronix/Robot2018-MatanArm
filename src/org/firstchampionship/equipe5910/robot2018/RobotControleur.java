@@ -29,8 +29,8 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		System.out.println("autonomousInit()");
-		CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(10);
-		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
+		CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(500);
+		commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
 	}
 
 	@Override
