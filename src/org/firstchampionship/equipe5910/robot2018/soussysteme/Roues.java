@@ -4,18 +4,36 @@ import org.firstchampionship.equipe5910.robot2018.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Roues extends Subsystem implements RobotMap.Roues{
 	
-	VictorSP roueGauche;
-	VictorSP roueDroite;
 	
-	DoubleSolenoid selecteurVitesse;
+	// Pour Encodeur et Gyro
+	public class SortiePID implements PIDOutput {
+
+		double distanceSortiePID;
+		
+		@Override
+		public void pidWrite(double sortie) {
+			distanceSortiePID = sortie;
+		}
+		
+		public double getPIDOut() {
+			return distanceSortiePID;
+		}
+	}	
 	
-	Encoder encodeurConduiteDroite;
-	Encoder encodeurConduiteGauche;
+	protected VictorSP roueGauche;
+	protected VictorSP roueDroite;
+	protected DoubleSolenoid selecteurVitesse;
+	protected Encoder encodeurConduiteDroite;
+	protected Encoder encodeurConduiteGauche;
+	protected PIDController pidControleurDistanceDroit;
+	protected SortiePID pidDistanceDroiteSortie;
 	
 	public Roues(){
 		roueGauche = new VictorSP(ROUE_GAUCHE);
@@ -34,8 +52,12 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		//encodeurConduiteDroite.setMaxPeriod(ENCODEUR_PERIODE_MAX_AVANT_ARRET);
 		//encodeurConduiteDroite.setMinRate(ENCODEUR_ROTATION_ARRET);
 		encodeurConduiteDroite.setSamplesToAverage(ENCODEUR_NOMBRE_ECHANTILLONS);
+		
+		//pidDistanceDroiteSortie = new SortiePID();
+		//pidControleurDistanceDroit = new PIDController(DISTANCE_KP, DISTANCE_KI, DISTANCE_KD, encodeurConduiteDroite, pidDistanceDroiteSortie);
+			///pidDistanceDroite.setAbsoluteTolerance(DISTANCE_TOLERANCE);
+		//pidControleurDistanceDroit.enable();
 	}
-	
 	
 	public double getDistanceGaucheSelonEncodeur() {
 		//System.out.println("raw gauche " + encodeurConduiteGauche.getRaw());
@@ -45,6 +67,17 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	public double getDistanceDroiteSelonEncodeur() {
 		//System.out.println("raw droite " + encodeurConduiteGauche.getRaw());
 		return encodeurConduiteDroite.getDistance();
+	}
+	
+	public void informerEncodeurDroitDeLaCible(int cible)
+	{
+		this.pidControleurDistanceDroit.setSetpoint(this.encodeurConduiteDroite.getDistance() + cible);	
+		this.pidControleurDistanceDroit.enable();
+	}
+
+	public double getVitesseSelonEncodeurDroitStabilise() {
+		System.out.println("pid droit " + pidDistanceDroiteSortie.getPIDOut());
+		return pidDistanceDroiteSortie.getPIDOut();
 	}
 	
 	public void avancer(double demandeVitesse, double direction){

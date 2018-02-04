@@ -22,12 +22,15 @@ public class CommandeRouesAvancer extends Command{
 		this.positionInitiale = Robot.roues.getDistanceDroiteSelonEncodeur();
 		System.out.println("Position initiale " + positionInitiale);
 		Robot.roues.avancer(vitesse); 
+		// Robot.roues.informerEncodeurDroitDeLaCible(distanceVoulue);
 	}
 
 	@Override
 	protected void execute() {
 		//System.out.println("CommandeRouesAvancer.execute()");
 		Robot.roues.avancer(vitesse); 
+		//Robot.roues.avancer(Robot.roues.getVitesseSelonEncodeurDroitStabilise()); 
+		// System.out.println("selon pid vitesse = "  + Robot.roues.getVitesseSelonEncodeurDroitStabilise());
 	}
 	
 	@Override

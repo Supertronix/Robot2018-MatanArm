@@ -26,8 +26,13 @@ public interface RobotMap {
 		public static final float ENCODEUR_GLISSEMENT = 0.945f; // valeur a tuner
 		public static final int ENCODEUR_PERIODE_MAX_AVANT_ARRET = 1;
 		public static final int ENCODEUR_ROTATION_ARRET = 1;
-		
 		public static final float ROUE_FRICTION = 1;
+		public static final double DISTANCE_KP = 0.18;
+		public static final double DISTANCE_KI = 0.00045; 
+		public static final double DISTANCE_KD = 0;
+		public static final float DISTANCE_TOLERANCE = 0f;
+		// Kp = Proportional gain // Ki = Integral gain // Kd = Derivative gain
+
 	}
 	
 	public interface Manette
