@@ -25,7 +25,6 @@ public class RobotControleur extends IterativeRobot {
 		
 		}
 
-	
 	@Override
 	public void autonomousInit() {
 		System.out.println("autonomousInit()");

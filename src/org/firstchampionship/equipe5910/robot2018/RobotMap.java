@@ -23,7 +23,7 @@ public interface RobotMap {
 		public static final int ENCODEUR_COMPTE_PAR_TOUR = 1024; // https://www.vexrobotics.com/217-5049.html
 		public static final float ROUE_CIRCONFERENCE = (float) (100*Math.PI) ;
 		public static final float ENCODEUR_DISTANCE_PAR_PULSE = ROUE_CIRCONFERENCE / ENCODEUR_COMPTE_PAR_TOUR; // echantillonage quadruple car k4x
-		public static final float ENCODEUR_GLISSEMENT = 0.945f; // valeur a tuner
+		public static final float ENCODEUR_GLISSEMENT = 1;//0.945f; // valeur a tuner
 		public static final int ENCODEUR_PERIODE_MAX_AVANT_ARRET = 1;
 		public static final int ENCODEUR_ROTATION_ARRET = 1;
 		public static final float ROUE_FRICTION = 1;
