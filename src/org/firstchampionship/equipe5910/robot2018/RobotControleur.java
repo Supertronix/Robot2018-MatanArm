@@ -1,15 +1,17 @@
 package org.firstchampionship.equipe5910.robot2018;
 
+
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancer;
 import org.firstchampionship.equipe5910.robot2018.interaction.Manette;
+import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 
 public class RobotControleur extends IterativeRobot {
 	
+	ManetteOperateur manetteOperateur;
 	Manette manette;
 	
 	//DigitalInput encodeurGaucheA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_A);
@@ -22,6 +24,7 @@ public class RobotControleur extends IterativeRobot {
 		System.out.println("robotInit()");
 		Robot.construire();
 		manette = new Manette();
+		manetteOperateur = new ManetteOperateur();
 		
 		}
 
@@ -66,10 +69,9 @@ public class RobotControleur extends IterativeRobot {
 			Robot.roues.avancer(manette.getAvancer(), manette.getdirection());
 		}
 		else if(manette.veuxReculer()){
-			Robot.roues.reculer(manette.getReculer());
+			Robot.roues.reculer(manette.getReculer(), manette.getdirection());
 		}
 		else{
-			
 			if(manette.veuxTournerSurPlace()){
 				Robot.roues.tournerSurPlace(manette.getTournerSurPlace());
 			}

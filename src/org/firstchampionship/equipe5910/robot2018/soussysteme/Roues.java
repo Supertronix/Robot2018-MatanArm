@@ -81,21 +81,21 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	}
 	
 	public void avancer(double demandeVitesse, double direction){
-		String etatVitesse = "";
+		//String etatVitesse = "";
 		if(Math.abs(demandeVitesse) > 0.5){
 			tournerHauteVitesse(demandeVitesse, direction);
-			etatVitesse = "haute";
+			//etatVitesse = "haute";
 		}
 		else if(Math.abs(demandeVitesse) < 0.3){
 			tournerBasseVitesse(demandeVitesse, direction);
-			etatVitesse = "basse";
+			//etatVitesse = "basse";
 		}
 		else{
 			tournerMoyenneVitesse(demandeVitesse, direction);
-			etatVitesse = "moyenne";
+			//etatVitesse = "moyenne";
 		}
-		
-		System.out.println(etatVitesse + " vitesse roue gauche " + roueGauche.get());
+	
+		//System.out.println(etatVitesse + " vitesse roue gauche " + roueGauche.get());
 	}
 	
 	public void tournerHauteVitesse(double demandeVitesse, double direction){
@@ -181,10 +181,113 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		}
 	}
 	
+	public void tournerHauteVitesseEnReculant(double demandeVitesse, double direction){
+		double coefficientDirection;
+		if(direction >= -0.15 && direction <= 0.15){
+			roueGauche.set(-demandeVitesse);
+			roueDroite.set(demandeVitesse);
+			//System.out.println("avant"+Math.abs(direction));
+		}
+		else if(direction < 0){
+			coefficientDirection = 1 - Math.abs(direction);
+			if(coefficientDirection == 0){
+				coefficientDirection = 0.5;
+			}
+			roueGauche.set(-demandeVitesse * coefficientDirection);
+			roueDroite.set(demandeVitesse);
+			//System.out.println("gauche"+Math.abs(direction));
+		}
+		else{
+			coefficientDirection = 1 - Math.abs(direction);
+			
+			if(coefficientDirection == 0){
+				coefficientDirection = -0.5;
+			}
+			
+			roueGauche.set(-demandeVitesse );
+			roueDroite.set(demandeVitesse  * coefficientDirection);
+			//System.out.println("droite"+Math.abs(direction));
+		}
+	}
+	
+	public void tournerMoyenneVitesseEnReculant(double demandeVitesse, double direction){
+		double coefficientDirection;
+		if(direction >= -0.15 && direction <= 0.15){
+			roueGauche.set(-demandeVitesse);
+			roueDroite.set(demandeVitesse);
+			//System.out.println("avant"+Math.abs(direction));
+		}
+		else if(direction < 0){
+			coefficientDirection = 1 - Math.abs(direction);
+			if(coefficientDirection == 0){
+				coefficientDirection = 0.5;
+			}
+			roueGauche.set(-demandeVitesse * coefficientDirection);
+			roueDroite.set(demandeVitesse * 2);
+			//System.out.println("gauche"+ demandeVitesse * (1 - Math.abs(direction)));
+		}
+		else{
+			coefficientDirection = 1 - Math.abs(direction);
+			if(coefficientDirection == 0){
+				coefficientDirection = -0.5;
+			}
+			roueGauche.set(-demandeVitesse * 2);
+			roueDroite.set(demandeVitesse  * coefficientDirection);
+			//System.out.println("droite"+Math.abs(direction));
+		}
+	}
+	
+	public void tournerBasseVitesseEnReculant(double demandeVitesse, double direction){
+		double coefficientDirection;
+		if(direction >= -0.15 && direction <= 0.15){
+			roueGauche.set(-demandeVitesse);
+			roueDroite.set(demandeVitesse);
+			//System.out.println("avant"+Math.abs(direction));
+		}
+		else if(direction < 0){
+			coefficientDirection = 1 - Math.abs(direction);
+			if(coefficientDirection == 0){
+				coefficientDirection = 0.5;
+			}
+			roueGauche.set(-demandeVitesse * coefficientDirection);
+			roueDroite.set(demandeVitesse * 3);
+			//System.out.println("gauche"+Math.abs(direction));
+		}
+		else{
+			coefficientDirection = 1 - Math.abs(direction);
+			if(coefficientDirection == 0){
+				coefficientDirection = -0.5;
+			}
+			roueGauche.set(-demandeVitesse * 3);
+			roueDroite.set(demandeVitesse  * coefficientDirection);
+			//System.out.println("droite"+Math.abs(direction));
+		}
+	}
+
+	
 	public void reculer(double demandeVitesse){
 		roueGauche.set(-demandeVitesse);
 		roueDroite.set(demandeVitesse);
 	}
+	
+	public void reculer(double demandeVitesse, double direction){
+		//String etatVitesse = "";
+		if(Math.abs(demandeVitesse) > 0.5){
+			tournerHauteVitesseEnReculant(demandeVitesse, direction);
+			//etatVitesse = "haute";
+		}
+		else if(Math.abs(demandeVitesse) < 0.3){
+			tournerBasseVitesseEnReculant(demandeVitesse, direction);
+			//etatVitesse = "basse";
+		}
+		else{
+			tournerMoyenneVitesseEnReculant(demandeVitesse, direction);
+			//etatVitesse = "moyenne";
+		}
+	
+		//System.out.println(etatVitesse + " vitesse roue gauche " + roueGauche.get());
+	}
+
 
 	public void avancer(double demandeVitesse){
 		roueGauche.set(demandeVitesse);

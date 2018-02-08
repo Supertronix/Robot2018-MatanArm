@@ -3,8 +3,8 @@ package org.firstchampionship.equipe5910.robot2018;
 public interface RobotMap {
 
 	
-	public interface Roues
-	{
+	public interface Roues{
+		
 		public static final int ROUE_GAUCHE = 17;
 		public static final int ROUE_DROITE = 18;
 		
@@ -35,14 +35,25 @@ public interface RobotMap {
 
 	}
 	
-	public interface Manette
-	{
+	public interface Manette{
 		public static final int MANETTE_PRINCIPALE = 0;
 		public static final int BOUTON_A = 1;
 		public static final int BOUTON_X = 3;
 		public static final int GACHETTE_DROITE = 3;
 		public static final int GACHETTE_GAUCHE = 2;
 		// 2 = B
+	}
+	
+	public interface ManetteOperateur{
+		public static final int MANETTE_OPERATEUR = 1;
+		public static final int BOUTON_HAUT_AVANT = 1; 
+		public static final int BOUTON_HAUT_ARRIERE = 5;
+		public static final int BOUTON_MILIEU_AVANT = 4;
+		public static final int BOUTON_MILIEU_ARRIERE = 8;
+		public static final int BOUTON_BAS_AVANT= 3;
+		public static final int BOUTON_BAS_ARRIERE= 6;
+		public static final int BOUTON_CENTRE= 7;
+		public static final int BOUTON_OUVRIR= 2;
 	}
 
 
