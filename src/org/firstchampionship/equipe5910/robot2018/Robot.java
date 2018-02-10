@@ -8,11 +8,9 @@ public class Robot {
 	public static Roues roues;
 	public static Chariot chariot;
 	
-	
 	public static void construire()
 	{
 		roues = new Roues();
 		chariot = new Chariot();
 	}
-
 }

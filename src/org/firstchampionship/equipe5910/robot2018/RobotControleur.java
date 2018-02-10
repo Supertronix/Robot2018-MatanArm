@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class RobotControleur extends IterativeRobot {
 	
-	ManetteOperateur manetteOperateur;
-	Manette manette;
+	protected ManetteOperateur manetteOperateur;
+	protected Manette manette;
 	
 	//DigitalInput encodeurGaucheA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_A);
 	//DigitalInput encodeurGaucheB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_B);
