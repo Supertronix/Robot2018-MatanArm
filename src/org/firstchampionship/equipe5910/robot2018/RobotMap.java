@@ -36,7 +36,8 @@ public interface RobotMap
 		// Kp = Proportional gain // Ki = Integral gain // Kd = Derivative gain
 	}
 	
-	public interface Manette{
+	public interface ManetteConducteur
+	{
 		public static final int MANETTE_PRINCIPALE = 0;
 		public static final int BOUTON_A = 1;
 		public static final int BOUTON_B = 2;
@@ -53,7 +54,8 @@ public interface RobotMap
 		public static final boolean INVERSION_CONDUITE_Y_DROITE = true;		
 	}
 	
-	public interface ManetteOperateur{
+	public interface ManetteOperateur
+	{
 		public static final int MANETTE_OPERATEUR = 1;
 		public static final int BOUTON_HAUT_AVANT = 1; 
 		public static final int BOUTON_HAUT_ARRIERE = 5;
@@ -64,7 +66,4 @@ public interface RobotMap
 		public static final int BOUTON_CENTRE= 7;
 		public static final int BOUTON_OUVRIR= 2;
 	}
-
-
-
 }

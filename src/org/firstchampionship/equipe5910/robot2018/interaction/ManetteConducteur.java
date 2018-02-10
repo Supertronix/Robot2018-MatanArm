@@ -7,14 +7,14 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverV
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-public class Manette implements RobotMap.Manette{
+public class ManetteConducteur implements RobotMap.ManetteConducteur{
 	
 	Joystick manettePrincipale;
 	
 	JoystickButton selecteurVitesseElevee;
 	JoystickButton selecteurVitesseBasse;
 	
-	public Manette(){
+	public ManetteConducteur(){
 		manettePrincipale = new Joystick(MANETTE_PRINCIPALE);
 		selecteurVitesseElevee = new JoystickButton(manettePrincipale, BOUTON_A);
 		selecteurVitesseBasse = new JoystickButton(manettePrincipale, BOUTON_X);

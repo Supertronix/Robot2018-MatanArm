@@ -2,7 +2,7 @@ package org.firstchampionship.equipe5910.robot2018;
 
 
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancer;
-import org.firstchampionship.equipe5910.robot2018.interaction.Manette;
+import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class RobotControleur extends IterativeRobot {
 	
 	protected ManetteOperateur manetteOperateur;
-	protected Manette manette;
+	protected ManetteConducteur manetteConducteur;
 	
 	//DigitalInput encodeurGaucheA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_A);
 	//DigitalInput encodeurGaucheB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_B);
@@ -23,7 +23,7 @@ public class RobotControleur extends IterativeRobot {
 	public void robotInit() {
 		System.out.println("robotInit()");
 		Robot.construire();
-		manette = new Manette();
+		manetteConducteur = new ManetteConducteur();
 		manetteOperateur = new ManetteOperateur();
 		
 		}
@@ -65,15 +65,15 @@ public class RobotControleur extends IterativeRobot {
         //System.out.println("Pin analogue droite A " + encodeurDroitA.get());
         //System.out.println("Pin analogue droite B " + encodeurDroitB.get());
         
-		if(manette.veuxAvancer()){
-			Robot.roues.avancer(manette.getAvancer(), manette.getdirection());
+		if(manetteConducteur.veuxAvancer()){
+			Robot.roues.avancer(manetteConducteur.getAvancer(), manetteConducteur.getdirection());
 		}
-		else if(manette.veuxReculer()){
-			Robot.roues.reculer(manette.getReculer(), manette.getdirection());
+		else if(manetteConducteur.veuxReculer()){
+			Robot.roues.reculer(manetteConducteur.getReculer(), manetteConducteur.getdirection());
 		}
 		else{
-			if(manette.veuxTournerSurPlace()){
-				Robot.roues.tournerSurPlace(manette.getTournerSurPlace());
+			if(manetteConducteur.veuxTournerSurPlace()){
+				Robot.roues.tournerSurPlace(manetteConducteur.getTournerSurPlace());
 			}
 			else{
 				Robot.roues.arreter();
