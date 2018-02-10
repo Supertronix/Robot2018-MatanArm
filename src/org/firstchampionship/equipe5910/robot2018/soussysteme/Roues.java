@@ -16,7 +16,7 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	}
 	
 	// Pour Encodeur et Gyro
-	public class SortiePID implements PIDOutput {
+	private class CustomPIDOutput implements PIDOutput {
 
 		double distanceSortiePID;
 		
@@ -35,8 +35,11 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	protected DoubleSolenoid selecteurVitesse;
 	protected Encoder encodeurConduiteDroite;
 	protected Encoder encodeurConduiteGauche;
-	protected PIDController pidControleurDistanceDroit;
-	protected SortiePID pidDistanceDroiteSortie;
+	//protected PIDController pidControleurDistanceDroit;
+	//protected CustomPIDOutput pidDistanceDroiteSortie;
+	protected PIDController pidControleurDistance;
+	protected CustomPIDOutput pidSortieDistance;
+	
 	
 	public Roues(){
 		roueGauche = new VictorSP(ROUE_GAUCHE);
@@ -56,10 +59,12 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		//encodeurConduiteDroite.setMinRate(ENCODEUR_ROTATION_ARRET);
 		encodeurConduiteDroite.setSamplesToAverage(ENCODEUR_NOMBRE_ECHANTILLONS);
 		
-		//pidDistanceDroiteSortie = new SortiePID();
-		//pidControleurDistanceDroit = new PIDController(DISTANCE_KP, DISTANCE_KI, DISTANCE_KD, encodeurConduiteDroite, pidDistanceDroiteSortie);
-			///pidDistanceDroite.setAbsoluteTolerance(DISTANCE_TOLERANCE);
-		//pidControleurDistanceDroit.enable();
+		pidSortieDistance = new CustomPIDOutput();
+		pidControleurDistance = new PIDController(DISTANCE_KP, DISTANCE_KI, DISTANCE_KD, encodeurConduiteGauche, pidSortieDistance);
+		pidControleurDistance.setSetpoint(0);
+		pidControleurDistance.setOutputRange(-0.35, 0.35);
+		pidControleurDistance.setAbsoluteTolerance(DISTANCE_TOLERANCE);
+		pidControleurDistance.enable();	
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////
@@ -310,14 +315,43 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		selecteurVitesse.set(DoubleSolenoid.Value.kForward);
 	}
 	
+	public void changerVitesse()
+	{
+	/*	if (driveTrainSolenoid.get() == DoubleSolenoid.Value.kReverse)
+			driveTrainSolenoid.set(DoubleSolenoid.Value.kForward);
+		else
+			driveTrainSolenoid.set(DoubleSolenoid.Value.kReverse);*/
+	}
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////// DISTANCE ///////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////	
 	
+	public void setDistanceSenseursZero() {
+		encodeurConduiteGauche.reset();
+		encodeurConduiteDroite.reset();
+		amorcerPid();
+	}
+	public void amorcerPid() {
+		pidControleurDistance.reset();
+		pidControleurDistance.enable();
+	}
+	public void setDistancePid(double p, double i)
+	{
+		pidControleurDistance.setPID(p, i, 0);
+	}
+	public void setDistancePid(double p, double i, double d)
+	{
+		pidControleurDistance.setPID(p, i, d);
+	}
 	public void setDistanceConsigne(int cible)
 	{
-		this.pidControleurDistanceDroit.setSetpoint(cible);	
+		pidControleurDistance.setSetpoint(cible);	
 		//this.pidControleurDistanceDroit.enable();
+	}
+	public void setDistanceFeedForward(double f)
+	{
+		pidControleurDistance.setF(f);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -333,8 +367,8 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	}
 	
 	public double getDistanceCommande() {
-		System.out.println("pid droit " + pidDistanceDroiteSortie.getPIDOut());
-		return pidDistanceDroiteSortie.getPIDOut();
+		System.out.println("pid commande " + pidSortieDistance.getPIDOut());
+		return pidSortieDistance.getPIDOut();	
 	}
 	
 }
