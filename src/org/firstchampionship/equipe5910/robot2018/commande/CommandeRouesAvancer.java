@@ -19,7 +19,7 @@ public class CommandeRouesAvancer extends Command{
 	@Override
 	protected void initialize() {
 		System.out.println("CommandeRouesAvancer.initialize()");
-		this.positionInitiale = Robot.roues.getDistanceDroiteSelonEncodeur();
+		this.positionInitiale = Robot.roues.getDistanceDroite();
 		System.out.println("Position initiale " + positionInitiale);
 		Robot.roues.avancer(vitesse); 
 		// Robot.roues.informerEncodeurDroitDeLaCible(distanceVoulue);
@@ -35,8 +35,8 @@ public class CommandeRouesAvancer extends Command{
 	
 	@Override
 	protected boolean isFinished() {
-		boolean estFini = Robot.roues.getDistanceDroiteSelonEncodeur() > (this.positionInitiale + this.distanceVoulue);
-		System.out.println("Distance parcourue " + (Robot.roues.getDistanceDroiteSelonEncodeur() - this.positionInitiale));
+		boolean estFini = Robot.roues.getDistanceDroite() > (this.positionInitiale + this.distanceVoulue);
+		System.out.println("Distance parcourue " + (Robot.roues.getDistanceDroite() - this.positionInitiale));
 		System.out.println("isFinished() " + estFini);
 		return estFini;
 	}

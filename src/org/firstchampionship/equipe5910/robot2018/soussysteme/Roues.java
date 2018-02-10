@@ -10,7 +10,10 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Roues extends Subsystem implements RobotMap.Roues{
-	
+
+	@Override
+	protected void initDefaultCommand() {
+	}
 	
 	// Pour Encodeur et Gyro
 	public class SortiePID implements PIDOutput {
@@ -59,26 +62,9 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		//pidControleurDistanceDroit.enable();
 	}
 	
-	public double getDistanceGaucheSelonEncodeur() {
-		//System.out.println("raw gauche " + encodeurConduiteGauche.getRaw());
-		return encodeurConduiteGauche.getDistance();
-	}
-
-	public double getDistanceDroiteSelonEncodeur() {
-		//System.out.println("raw droite " + encodeurConduiteGauche.getRaw());
-		return encodeurConduiteDroite.getDistance();
-	}
-	
-	public void informerEncodeurDroitDeLaCible(int cible)
-	{
-		this.pidControleurDistanceDroit.setSetpoint(this.encodeurConduiteDroite.getDistance() + cible);	
-		this.pidControleurDistanceDroit.enable();
-	}
-
-	public double getVitesseSelonEncodeurDroitStabilise() {
-		System.out.println("pid droit " + pidDistanceDroiteSortie.getPIDOut());
-		return pidDistanceDroiteSortie.getPIDOut();
-	}
+	//////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////  CONDUITE  /////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////	
 	
 	public void avancer(double demandeVitesse, double direction){
 		//String etatVitesse = "";
@@ -94,9 +80,44 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 			tournerMoyenneVitesse(demandeVitesse, direction);
 			//etatVitesse = "moyenne";
 		}
-	
 		//System.out.println(etatVitesse + " vitesse roue gauche " + roueGauche.get());
 	}
+	
+	public void avancer(double demandeVitesse){
+		roueGauche.set(demandeVitesse);
+		roueDroite.set(-demandeVitesse);
+	}
+	
+	public void reculer(double demandeVitesse){
+		roueGauche.set(-demandeVitesse);
+		roueDroite.set(demandeVitesse);
+	}
+	
+	public void reculer(double demandeVitesse, double direction){
+		//String etatVitesse = "";
+		if(Math.abs(demandeVitesse) > 0.5){
+			tournerHauteVitesseEnReculant(demandeVitesse, direction);
+			//etatVitesse = "haute";
+		}
+		else if(Math.abs(demandeVitesse) < 0.3){
+			tournerBasseVitesseEnReculant(demandeVitesse, direction);
+			//etatVitesse = "basse";
+		}
+		else{
+			tournerMoyenneVitesseEnReculant(demandeVitesse, direction);
+			//etatVitesse = "moyenne";
+		}
+		//System.out.println(etatVitesse + " vitesse roue gauche " + roueGauche.get());
+	}
+	
+	public void arreter(){
+		roueGauche.set(0);
+		roueDroite.set(0);
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////  ROTATION  /////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
 	
 	public void tournerHauteVitesse(double demandeVitesse, double direction){
 		double coefficientDirection;
@@ -263,58 +284,23 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 			//System.out.println("droite"+Math.abs(direction));
 		}
 	}
-
-	
-	public void reculer(double demandeVitesse){
-		roueGauche.set(-demandeVitesse);
-		roueDroite.set(demandeVitesse);
-	}
-	
-	public void reculer(double demandeVitesse, double direction){
-		//String etatVitesse = "";
-		if(Math.abs(demandeVitesse) > 0.5){
-			tournerHauteVitesseEnReculant(demandeVitesse, direction);
-			//etatVitesse = "haute";
-		}
-		else if(Math.abs(demandeVitesse) < 0.3){
-			tournerBasseVitesseEnReculant(demandeVitesse, direction);
-			//etatVitesse = "basse";
-		}
-		else{
-			tournerMoyenneVitesseEnReculant(demandeVitesse, direction);
-			//etatVitesse = "moyenne";
-		}
-	
-		//System.out.println(etatVitesse + " vitesse roue gauche " + roueGauche.get());
-	}
-
-
-	public void avancer(double demandeVitesse){
-		roueGauche.set(demandeVitesse);
-		roueDroite.set(-demandeVitesse);
-	}
-	
-	
-	public void arreter(){
-		roueGauche.set(0);
-		roueDroite.set(0);
-	}
 	
 	public void tournerSurPlace(double demandeVitesse){
 		if(demandeVitesse >= -0.15 && demandeVitesse <= 0.15){
 			roueGauche.set(0);
 			roueDroite.set(0);
 			//System.out.println("arret"+Math.abs(demandeVitesse));
-
 		}
 		else{
 			roueGauche.set(demandeVitesse);
 			roueDroite.set(demandeVitesse);
 			//System.out.println("tourne"+Math.abs(demandeVitesse));
-
-		}
-		
+		}	
 	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////  VITESSE  /////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////	
 	
 	public void activerVitesseElevee(){
 		selecteurVitesse.set(DoubleSolenoid.Value.kReverse);
@@ -323,9 +309,32 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	public void activerVitesseBasse(){
 		selecteurVitesse.set(DoubleSolenoid.Value.kForward);
 	}
-
-	@Override
-	protected void initDefaultCommand() {
-		
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////// DISTANCE ///////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////	
+	
+	public void setDistanceConsigne(int cible)
+	{
+		this.pidControleurDistanceDroit.setSetpoint(cible);	
+		//this.pidControleurDistanceDroit.enable();
 	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+		
+	public double getDistanceGauche() {
+		//System.out.println("raw gauche " + encodeurConduiteGauche.getRaw());
+		return encodeurConduiteGauche.getDistance();
+	}
+
+	public double getDistanceDroite() {
+		//System.out.println("raw droite " + encodeurConduiteGauche.getRaw());
+		return encodeurConduiteDroite.getDistance();
+	}
+	
+	public double getDistanceCommande() {
+		System.out.println("pid droit " + pidDistanceDroiteSortie.getPIDOut());
+		return pidDistanceDroiteSortie.getPIDOut();
+	}
+	
 }
