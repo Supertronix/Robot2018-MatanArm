@@ -1,8 +1,5 @@
 package org.firstchampionship.equipe5910.robot2018;
 
-
-import java.util.concurrent.TimeUnit;
-
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancer;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
@@ -13,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class RobotControleur extends IterativeRobot {
 	
-	protected ManetteOperateur manetteOperateur;
+	//protected ManetteOperateur manetteOperateur;
 	protected ManetteConducteur manetteConducteur;
 	
 	//DigitalInput encodeurGaucheA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_A);
@@ -26,7 +23,7 @@ public class RobotControleur extends IterativeRobot {
 		System.out.println("robotInit()");
 		Robot.construire();
 		manetteConducteur = new ManetteConducteur();
-		manetteOperateur = new ManetteOperateur();
+		//manetteOperateur = new ManetteOperateur();
 		//TimeUnit.SECONDS.sleep(10);		
 	}
 

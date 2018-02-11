@@ -39,7 +39,7 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 		this.selecteurBrasAllonge = new JoystickButton(this.manettePrincipale, BOUTON_A);
 		this.selecteurBrasAllonge.whenPressed(new CommandeBrasAllonger());
 		this.selecteurBrasRetreci = new JoystickButton(this.manettePrincipale, BOUTON_B);
-		this.selecteurBrasAllonge.whenPressed(new CommandeBrasRetrecir());
+		this.selecteurBrasRetreci.whenPressed(new CommandeBrasRetrecir());
 	}
 	
 	public double getAvancer(){

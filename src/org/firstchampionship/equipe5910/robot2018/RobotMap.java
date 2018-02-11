@@ -56,11 +56,13 @@ public interface RobotMap
 	{
 		public static final int MANETTE_CONDUCTEUR = 0;
 		public static final int BOUTON_A = 1;
-		public static final int BOUTON_X = 3;
-		
-		// pour les tests
-		public static final int BOUTON_Y = 4;
 		public static final int BOUTON_B = 2;
+		public static final int BOUTON_X = 3;		
+		public static final int BOUTON_Y = 4;
+		public static final int BOUTON_GAUCHE = 5;
+		public static final int BOUTON_DROIT = 6;
+		public static final int BOUTON_RETOUR = 7;
+		public static final int BOUTON_DEMARRER = 8;
 		
 		public static final int GACHETTE_DROITE = 3;
 		public static final int GACHETTE_GAUCHE = 2;
