@@ -13,7 +13,7 @@ public class CommandePinceFermer extends Command{
 	
 	@Override
 	protected void initialize() {
-		System.out.println("CommandePinceOuvrir");
+		System.out.println("CommandePinceFermer");
 		Robot.pince.fermer();
 	}
 	

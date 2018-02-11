@@ -14,7 +14,7 @@ public class Bras extends Subsystem implements RobotMap.Bras
 	
 	public Bras()
 	{
-		this.selecteurExtension = new DoubleSolenoid(BRAS_EXTENSION_MIN, BRAS_EXTENSION_MAX);
+		this.selecteurExtension = new DoubleSolenoid(BRAS_RETRECI, BRAS_ALLONGE);
 	}
 	
 	public void allonger()

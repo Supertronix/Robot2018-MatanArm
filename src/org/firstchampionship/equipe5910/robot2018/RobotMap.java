@@ -14,8 +14,8 @@ public interface RobotMap
 	
 	public interface Bras
 	{
-		public static final int BRAS_EXTENSION_MIN = 4;
-		public static final int BRAS_EXTENSION_MAX = 5;
+		public static final int BRAS_ALLONGE = 4;
+		public static final int BRAS_RETRECI = 5;
 	}
 	
 	public interface Roues
@@ -56,8 +56,12 @@ public interface RobotMap
 	{
 		public static final int MANETTE_CONDUCTEUR = 0;
 		public static final int BOUTON_A = 1;
-		public static final int BOUTON_B = 2;
 		public static final int BOUTON_X = 3;
+		
+		// pour les tests
+		public static final int BOUTON_Y = 4;
+		public static final int BOUTON_B = 2;
+		
 		public static final int GACHETTE_DROITE = 3;
 		public static final int GACHETTE_GAUCHE = 2;
 		

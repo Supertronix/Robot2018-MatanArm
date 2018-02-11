@@ -1,6 +1,8 @@
 package org.firstchampionship.equipe5910.robot2018;
 
 
+import java.util.concurrent.TimeUnit;
+
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancer;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
@@ -25,14 +27,14 @@ public class RobotControleur extends IterativeRobot {
 		Robot.construire();
 		manetteConducteur = new ManetteConducteur();
 		manetteOperateur = new ManetteOperateur();
-		
-		}
+		//TimeUnit.SECONDS.sleep(10);		
+	}
 
 	@Override
 	public void autonomousInit() {
 		System.out.println("autonomousInit()");
-		CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(500);
-		commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
+		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(500);
+		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
 	}
 
 	@Override
@@ -47,12 +49,11 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void teleopInit() {		
 		System.out.println("teleopInit()");
-
 	}
 
 	
 	@Override
-	public void teleopPeriodic() {
+	public void teleopPeriodic() {		
 		// System.out.println("teleopPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes

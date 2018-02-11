@@ -13,7 +13,7 @@ public class SelecteurModeAutonomeViaDashBoard extends SelecteurModeAutonome{
 		// http://wpilib.screenstepslive.com/s/3120/m/7932/l/81109-choosing-an-autonomous-program-from-smartdashboard
 		selecteur = new SendableChooser();
 		//selecteur.addDefault("No move", new CommandeImmobile());
-		//SmartDashboard.putData("Autonomous mode chooser", selecteur);    	
+		SmartDashboard.putData("Choix de mode autonome", selecteur);    	
     }
     
     public Command lireChoix()

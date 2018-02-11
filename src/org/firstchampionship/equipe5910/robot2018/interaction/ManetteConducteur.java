@@ -1,6 +1,10 @@
 package org.firstchampionship.equipe5910.robot2018.interaction;
 
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasAllonger;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasRetrecir;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceOuvrir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseBasse;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseElevee;
 
@@ -13,13 +17,29 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 	
 	protected JoystickButton selecteurVitesseElevee;
 	protected JoystickButton selecteurVitesseBasse;
+
+	// test
+	protected JoystickButton selecteurPinceOuverte;
+	protected JoystickButton selecteurPinceFermee;
+	protected JoystickButton selecteurBrasAllonge;
+	protected JoystickButton selecteurBrasRetreci;
 	
 	public ManetteConducteur(){
-		manettePrincipale = new Joystick(MANETTE_CONDUCTEUR);
-		selecteurVitesseElevee = new JoystickButton(manettePrincipale, BOUTON_A);
-		selecteurVitesseBasse = new JoystickButton(manettePrincipale, BOUTON_X);
-		selecteurVitesseElevee.whenPressed(new CommandeRouesActiverVitesseElevee());
-		selecteurVitesseBasse.whenPressed(new CommandeRouesActiverVitesseBasse());
+		this.manettePrincipale = new Joystick(MANETTE_CONDUCTEUR);
+		/*
+		this.selecteurVitesseElevee = new JoystickButton(manettePrincipale, BOUTON_A);
+		this.selecteurVitesseElevee.whenPressed(new CommandeRouesActiverVitesseElevee());
+		this.selecteurVitesseBasse = new JoystickButton(manettePrincipale, BOUTON_X);
+		this.selecteurVitesseBasse.whenPressed(new CommandeRouesActiverVitesseBasse());
+		*/
+		this.selecteurPinceOuverte = new JoystickButton(this.manettePrincipale, BOUTON_X);
+		this.selecteurPinceOuverte.whenPressed(new CommandePinceOuvrir());
+		this.selecteurPinceFermee = new JoystickButton(this.manettePrincipale, BOUTON_Y);
+		this.selecteurPinceFermee.whenPressed(new CommandePinceFermer());
+		this.selecteurBrasAllonge = new JoystickButton(this.manettePrincipale, BOUTON_A);
+		this.selecteurBrasAllonge.whenPressed(new CommandeBrasAllonger());
+		this.selecteurBrasRetreci = new JoystickButton(this.manettePrincipale, BOUTON_B);
+		this.selecteurBrasAllonge.whenPressed(new CommandeBrasRetrecir());
 	}
 	
 	public double getAvancer(){

@@ -13,7 +13,7 @@ public class CommandeBrasAllonger extends Command {
 	
 	@Override
 	protected void initialize() {
-		System.out.println("CommandePinceOuvrir");
+		System.out.println("CommandeBrasAllonger");
 		Robot.bras.allonger();
 	}
 	
