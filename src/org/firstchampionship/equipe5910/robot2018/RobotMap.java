@@ -3,8 +3,12 @@ package org.firstchampionship.equipe5910.robot2018;
 public interface RobotMap 
 {
 	
-	public static final int PINCE_OUVERTE = 2;
-	public static final int PINCE_FERMEE = 3;
+	public interface Pince
+	{
+		public static final int PINCE_OUVERTE = 2;
+		public static final int PINCE_FERMEE = 3;
+	}
+	
 	public static final int BRAS_EXTENSION_MIN = 4;
 	public static final int BRAS_EXTENSION_MAX  = 5;	
 	
