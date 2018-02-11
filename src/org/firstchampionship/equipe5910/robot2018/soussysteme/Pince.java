@@ -3,9 +3,13 @@ package org.firstchampionship.equipe5910.robot2018.soussysteme;
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Pince implements RobotMap.Pince
+public class Pince extends Subsystem implements RobotMap.Pince
 {	
+	@Override
+	protected void initDefaultCommand() { }
+
 	protected DoubleSolenoid selecteurOuverture;
 
 	public Pince()
@@ -15,11 +19,12 @@ public class Pince implements RobotMap.Pince
 	
 	public void ouvrir()
 	{
-		this.selecteurOuverture.set(DoubleSolenoid.Value.kForward);		
+		this.selecteurOuverture.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void fermer()
 	{
-		this.selecteurOuverture.set(DoubleSolenoid.Value.kReverse);
+		this.selecteurOuverture.set(DoubleSolenoid.Value.kForward);
 	}
+
 }
