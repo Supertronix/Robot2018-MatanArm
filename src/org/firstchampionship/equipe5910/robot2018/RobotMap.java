@@ -2,7 +2,9 @@ package org.firstchampionship.equipe5910.robot2018;
 
 public interface RobotMap 
 {
-	
+	public interface Chariot
+	{
+	}
 	
 	public interface Pince
 	{

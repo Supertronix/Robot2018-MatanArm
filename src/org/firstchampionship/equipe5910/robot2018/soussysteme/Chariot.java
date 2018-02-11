@@ -1,8 +1,10 @@
 package org.firstchampionship.equipe5910.robot2018.soussysteme;
 
+import org.firstchampionship.equipe5910.robot2018.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Chariot extends Subsystem
+public class Chariot extends Subsystem implements RobotMap.Chariot
 {
 
 	public Chariot(){
