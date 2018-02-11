@@ -14,16 +14,17 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class ManetteOperateur implements RobotMap.ManetteOperateur{
 	
-	Joystick manetteOperateur;
+	protected Joystick manetteOperateur;
 	
-	JoystickButton hautAvant;
-	JoystickButton hautArriere;
-	JoystickButton milieuAvant;
-	JoystickButton milieuArriere;
-	JoystickButton basAvant;
-	JoystickButton basArriere;
-	JoystickButton centre;
-	JoystickButton ouvrir;
+	protected JoystickButton hautAvant;
+	protected JoystickButton hautArriere;
+	protected JoystickButton milieuAvant;
+	protected JoystickButton milieuArriere;
+	protected JoystickButton basAvant;
+	protected JoystickButton basArriere;
+	protected JoystickButton centre;
+	protected JoystickButton ouvrir;
+	
 	
 	public ManetteOperateur(){
 		manetteOperateur = new Joystick(MANETTE_OPERATEUR);

@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class ManetteConducteur implements RobotMap.ManetteConducteur{
 	
-	Joystick manettePrincipale;
+	protected Joystick manettePrincipale;
 	
-	JoystickButton selecteurVitesseElevee;
-	JoystickButton selecteurVitesseBasse;
+	protected JoystickButton selecteurVitesseElevee;
+	protected JoystickButton selecteurVitesseBasse;
 	
 	public ManetteConducteur(){
 		manettePrincipale = new Joystick(MANETTE_CONDUCTEUR);
