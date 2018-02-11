@@ -2,6 +2,12 @@ package org.firstchampionship.equipe5910.robot2018;
 
 public interface RobotMap 
 {
+	
+	public static final int PINCE_OUVERTE = 2;
+	public static final int PINCE_FERMEE = 3;
+	public static final int BRAS_EXTENSION_MIN = 4;
+	public static final int BRAS_EXTENSION_MAX  = 5;	
+	
 	public interface Roues
 	{	
 		public static final int ROUE_GAUCHE = 17;
@@ -38,7 +44,7 @@ public interface RobotMap
 	
 	public interface ManetteConducteur
 	{
-		public static final int MANETTE_PRINCIPALE = 0;
+		public static final int MANETTE_CONDUCTEUR = 0;
 		public static final int BOUTON_A = 1;
 		public static final int BOUTON_B = 2;
 		public static final int BOUTON_X = 3;
