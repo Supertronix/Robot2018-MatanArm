@@ -26,20 +26,22 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 	
 	public ManetteConducteur(){
 		this.manettePrincipale = new Joystick(MANETTE_CONDUCTEUR);
-		/*
+		
 		this.selecteurVitesseElevee = new JoystickButton(manettePrincipale, BOUTON_A);
 		this.selecteurVitesseElevee.whenPressed(new CommandeRouesActiverVitesseElevee());
 		this.selecteurVitesseBasse = new JoystickButton(manettePrincipale, BOUTON_X);
 		this.selecteurVitesseBasse.whenPressed(new CommandeRouesActiverVitesseBasse());
-		*/
-		this.selecteurPinceOuverte = new JoystickButton(this.manettePrincipale, BOUTON_X);
-		this.selecteurPinceOuverte.whenPressed(new CommandePinceOuvrir());
-		this.selecteurPinceFermee = new JoystickButton(this.manettePrincipale, BOUTON_Y);
-		this.selecteurPinceFermee.whenPressed(new CommandePinceFermer());
-		this.selecteurBrasAllonge = new JoystickButton(this.manettePrincipale, BOUTON_A);
+		
+		// boutons temporaires pour test
+		this.selecteurBrasAllonge = new JoystickButton(this.manettePrincipale, BOUTON_Y);
 		this.selecteurBrasAllonge.whenPressed(new CommandeBrasAllonger());
 		this.selecteurBrasRetreci = new JoystickButton(this.manettePrincipale, BOUTON_B);
 		this.selecteurBrasRetreci.whenPressed(new CommandeBrasRetrecir());
+		this.selecteurPinceOuverte = new JoystickButton(this.manettePrincipale, BOUTON_DEMARRER);
+		this.selecteurPinceOuverte.whenPressed(new CommandePinceOuvrir());
+		this.selecteurPinceFermee = new JoystickButton(this.manettePrincipale, BOUTON_RETOUR);
+		this.selecteurPinceFermee.whenPressed(new CommandePinceFermer());
+		
 	}
 	
 	public double getAvancer(){

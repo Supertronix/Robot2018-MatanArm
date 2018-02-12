@@ -19,12 +19,12 @@ public class Pince extends Subsystem implements RobotMap.Pince
 	
 	public void ouvrir()
 	{
-		this.selecteurOuverture.set(DoubleSolenoid.Value.kReverse);
+		this.selecteurOuverture.set(DoubleSolenoid.Value.kForward);	
 	}
 	
 	public void fermer()
 	{
-		this.selecteurOuverture.set(DoubleSolenoid.Value.kForward);
+		this.selecteurOuverture.set(DoubleSolenoid.Value.kReverse);
 	}
 
 }
