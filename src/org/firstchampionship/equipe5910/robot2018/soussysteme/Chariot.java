@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Chariot extends Subsystem implements RobotMap.Chariot
 {
-	public static final int CHARIOT_MOTEUR_PRINCIPAL = 3;
-	public static final int CHARIOT_MOTEUR_ESCLAVE = 0;
-	TalonSRX chariotMoteurPrincipal = new TalonSRX(CHARIOT_MOTEUR_PRINCIPAL);
-	TalonSRX chariotMoteurEsclave = new TalonSRX(CHARIOT_MOTEUR_ESCLAVE);
+	//public static final int CHARIOT_MOTEUR_PRINCIPAL = 3;
+	//public static final int CHARIOT_MOTEUR_ESCLAVE = 0;
+	//TalonSRX chariotMoteurPrincipal = new TalonSRX(CHARIOT_MOTEUR_PRINCIPAL);
+	//TalonSRX chariotMoteurEsclave = new TalonSRX(CHARIOT_MOTEUR_ESCLAVE);
 
 	public Chariot(){
 		// TODO  chariotMoteurEsclave.changeControlMode(CANTalon.TalonControlMode.Follower); chariotMoteurEsclave.set(chariotMoteurPrincipal.getDeviceID());		
