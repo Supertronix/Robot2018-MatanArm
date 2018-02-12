@@ -79,6 +79,7 @@
 		<fileset file="lib/opencv.jar"/>
 		<fileset file="lib/cscore.jar"/>
 		<fileset file="lib/ntcore.jar"/>
+		<fileset file="lib/ctre.jar"/>
 		<fileset dir="${userLibs}" erroronmissingdir="false"/>
 	</path>
 
