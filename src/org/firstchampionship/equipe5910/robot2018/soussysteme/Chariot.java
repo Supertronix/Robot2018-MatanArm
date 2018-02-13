@@ -19,6 +19,9 @@ public class Chariot extends Subsystem implements RobotMap.Chariot
 		chariotMoteurPrincipal.setInverted(RobotMap.Chariot.CHARIOT_MOTEUR_PRINCIPAL_INVERSION);
 		//chariotMoteurPrincipal.set(ControlMode., arg1);
 		
+		//Configure Talon to clear sensor position on Forward Limit
+		//chariotMoteurPrincipal.configSetParameter(ParamEnum.eClearPositionOnLimitF, 1, 0, 0, 10);
+		
 		chariotMoteurEsclave.setNeutralMode(NeutralMode.Brake);
 		chariotMoteurEsclave.set(ControlMode.Follower, chariotMoteurPrincipal.getDeviceID());
 		chariotMoteurEsclave.setInverted(RobotMap.Chariot.CHARIOT_MOTEUR_ESCLAVE_INVERSION);

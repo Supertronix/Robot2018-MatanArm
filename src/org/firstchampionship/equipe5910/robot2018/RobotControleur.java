@@ -63,7 +63,7 @@ public class RobotControleur extends IterativeRobot {
         //System.out.println("Pin analogue droite A " + encodeurDroitA.get());
         //System.out.println("Pin analogue droite B " + encodeurDroitB.get());
         
-		if(manetteConducteur.veuxAvancer()){
+		/*if(manetteConducteur.veuxAvancer()){
 			Robot.roues.avancer(manetteConducteur.getAvancer(), manetteConducteur.getdirection());
 		}
 		else if(manetteConducteur.veuxReculer()){
@@ -77,10 +77,10 @@ public class RobotControleur extends IterativeRobot {
 				Robot.roues.arreter();
 			}
 			
-		}
+		}*/
 		
-		Robot.bras.manualControl(-manetteOperateur.getY2());
-		Robot.chariot.manualControl(-manetteOperateur.getY1());
+		//Robot.bras.manualControl(-manetteOperateur.getY2());
+		//Robot.chariot.manualControl(-manetteOperateur.getY1());
 	}
 	
 	@Override

@@ -2,6 +2,10 @@ package org.firstchampionship.equipe5910.robot2018;
 
 public interface RobotMap 
 {
+	public interface Constants
+	{
+		public static final int kTimeoutMs = 10;
+	}
 	public interface Chariot
 	{
 		public static final int CHARIOT_MOTEUR_PRINCIPAL = 3;
@@ -21,13 +25,27 @@ public interface RobotMap
 		public static final int BRAS_ALLONGE = 4;
 		public static final int BRAS_RETRECI = 5;
 		public static final int BRAS_MOTEUR_PRINCIPAL = 2;
-		public static final boolean BRAS_MOTEUR_PRINCIPAL_INVERSION = true;
+		public static final boolean BRAS_MOTEUR_PRINCIPAL_INVERSION = false;
 		public static final int BRAS_MOTEUR_ESCLAVE = 5;
-		public static final boolean BRAS_MOTEUR_ESCLAVE_INVERSION = false;
+		public static final boolean BRAS_MOTEUR_ESCLAVE_INVERSION = true;
 		public static final boolean BRAS_SENSOR_POTENTIOMETRE_INVERSION = false;
 		
-		public static final int BRAS_LIMITE_AVANT = -200;
-		public static final int BRAS_LIMITE_ARRIERE = -750;
+		public static final int BRAS_LIMITE_AVANT = 873;
+		public static final int BRAS_LIMITE_ARRIERE = 222;
+		
+		public static final double BRAS_PID_KP = 4;
+		public static final double BRAS_PID_KI = 0.00015;
+		
+		public static final int BRAS_POSITION_ARRIERE = 222;
+		public static final int BRAS_POSITION_MILIEU = 527;
+		public static final int BRAS_POSITION_AVANT = 873;
+		
+		public enum POSITION {
+	        ARRIERE,
+			MILIEU,
+	        AVANT, 
+	    }
+
 	}
 	
 	public interface Roues

@@ -1,6 +1,7 @@
 package org.firstchampionship.equipe5910.robot2018.soussysteme;
 
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
+import org.firstchampionship.equipe5910.robot2018.RobotMap.Constants;
 import org.firstchampionship.equipe5910.robot2018.outil.Calculateur;
 
 import com.ctre.phoenix.ParamEnum;
@@ -30,13 +31,18 @@ public class Bras extends Subsystem implements RobotMap.Bras
 				
 		brasMoteurPrincipal.setNeutralMode(NeutralMode.Brake);
 		brasMoteurPrincipal.setInverted(RobotMap.Bras.BRAS_MOTEUR_PRINCIPAL_INVERSION);
-		brasMoteurPrincipal.configSelectedFeedbackSensor(FeedbackDevice.Analog, 0, 10);
-		brasMoteurPrincipal.configAllowableClosedloopError(0, 0, 10);
+		brasMoteurPrincipal.configSelectedFeedbackSensor(FeedbackDevice.Analog, 0, Constants.kTimeoutMs);
+		brasMoteurPrincipal.configAllowableClosedloopError(0, 0, Constants.kTimeoutMs);
+
+		brasMoteurPrincipal.config_kP(0, BRAS_PID_KP, Constants.kTimeoutMs); //config_kP(int slotIdx, double value, int timeoutMs) 
+		brasMoteurPrincipal.config_kI(0, BRAS_PID_KI, Constants.kTimeoutMs);
 		
-		brasMoteurPrincipal.configSetParameter(ParamEnum.eAnalogPosition, 10, 0x00, 0x00, 0x00);
 		brasMoteurPrincipal.setSensorPhase(RobotMap.Bras.BRAS_SENSOR_POTENTIOMETRE_INVERSION);
-		brasMoteurPrincipal.configForwardSoftLimitEnable(true, BRAS_LIMITE_AVANT);
-		brasMoteurPrincipal.configReverseSoftLimitEnable(true, BRAS_LIMITE_ARRIERE);
+		
+		brasMoteurPrincipal.configForwardSoftLimitEnable(true, Constants.kTimeoutMs);
+		brasMoteurPrincipal.configReverseSoftLimitEnable(true, Constants.kTimeoutMs);
+		brasMoteurPrincipal.configForwardSoftLimitThreshold(BRAS_LIMITE_AVANT, Constants.kTimeoutMs);
+		brasMoteurPrincipal.configReverseSoftLimitThreshold(BRAS_LIMITE_ARRIERE, Constants.kTimeoutMs);
 		
 		brasMoteurEsclave.setNeutralMode(NeutralMode.Brake);
 		brasMoteurEsclave.set(ControlMode.Follower, brasMoteurPrincipal.getDeviceID());
@@ -44,6 +50,7 @@ public class Bras extends Subsystem implements RobotMap.Bras
 		
 		this.selecteurExtension = new DoubleSolenoid(BRAS_RETRECI, BRAS_ALLONGE);
 		this.retrecir();
+		aller_position(RobotMap.Bras.POSITION.MILIEU);
 	}
 	
 	public void allonger()
@@ -55,12 +62,28 @@ public class Bras extends Subsystem implements RobotMap.Bras
 	{
 		this.selecteurExtension.set(DoubleSolenoid.Value.kReverse);		
 	}
+	public void aller_position(RobotMap.Bras.POSITION pos)
+	{
+		
+		 switch (pos) {
+		 case AVANT:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_AVANT);
+			 break;
+		 case MILIEU:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_MILIEU);
+			 break; 
+		 case ARRIERE:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_ARRIERE);
+			 break; 
+		default:
+			break;
+	 }
+		 
+	}
 	
 	public void manualControl(double value)
 	{
 		double clampedValue = Calculateur.clamp(value, -1, 1);
 		brasMoteurPrincipal.set(ControlMode.PercentOutput, clampedValue);
-		SmartDashboard.putNumber("POTENTIOMETRE", brasMoteurPrincipal.getSensorCollection().getAnalogIn());
-		//brasMoteurPrincipal.set(ControlMode.Position, SmartDashboard.getNumber("Bras_SP", 0));
 	}
 }
