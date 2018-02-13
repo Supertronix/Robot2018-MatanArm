@@ -3,10 +3,9 @@ package org.firstchampionship.equipe5910.robot2018.soussysteme;
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
 import org.firstchampionship.equipe5910.robot2018.outil.Calculateur;
 
-import com.ctre.CANTalon;
+import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -27,17 +26,18 @@ public class Bras extends Subsystem implements RobotMap.Bras
 	
 	public Bras()
 	{
+		SmartDashboard.putNumber("Bras_SP", 0);
+				
 		brasMoteurPrincipal.setNeutralMode(NeutralMode.Brake);
 		brasMoteurPrincipal.setInverted(RobotMap.Bras.BRAS_MOTEUR_PRINCIPAL_INVERSION);
-		//200 et 870
+		brasMoteurPrincipal.configSelectedFeedbackSensor(FeedbackDevice.Analog, 0, 10);
+		brasMoteurPrincipal.configAllowableClosedloopError(0, 0, 10);
+		
+		brasMoteurPrincipal.configSetParameter(ParamEnum.eAnalogPosition, 10, 0x00, 0x00, 0x00);
 		brasMoteurPrincipal.setSensorPhase(RobotMap.Bras.BRAS_SENSOR_POTENTIOMETRE_INVERSION);
+		brasMoteurPrincipal.configForwardSoftLimitEnable(true, BRAS_LIMITE_AVANT);
+		brasMoteurPrincipal.configReverseSoftLimitEnable(true, BRAS_LIMITE_ARRIERE);
 		
-		brasMoteurPrincipal.configForwardSoftLimitEnable(false, 0);
-		//brasMoteurPrincipal.configReverseSoftLimitEnable(true, 200);
-		brasMoteurPrincipal.configReverseSoftLimitEnable(false,0);
-		
-		
-		//brasMoteurPrincipal.configSelectedFeedbackSensor(FeedbackDevice.Analog, );
 		brasMoteurEsclave.setNeutralMode(NeutralMode.Brake);
 		brasMoteurEsclave.set(ControlMode.Follower, brasMoteurPrincipal.getDeviceID());
 		brasMoteurEsclave.setInverted(RobotMap.Bras.BRAS_MOTEUR_ESCLAVE_INVERSION);
@@ -61,5 +61,6 @@ public class Bras extends Subsystem implements RobotMap.Bras
 		double clampedValue = Calculateur.clamp(value, -1, 1);
 		brasMoteurPrincipal.set(ControlMode.PercentOutput, clampedValue);
 		SmartDashboard.putNumber("POTENTIOMETRE", brasMoteurPrincipal.getSensorCollection().getAnalogIn());
+		//brasMoteurPrincipal.set(ControlMode.Position, SmartDashboard.getNumber("Bras_SP", 0));
 	}
 }

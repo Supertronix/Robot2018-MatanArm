@@ -24,7 +24,10 @@ public interface RobotMap
 		public static final boolean BRAS_MOTEUR_PRINCIPAL_INVERSION = true;
 		public static final int BRAS_MOTEUR_ESCLAVE = 5;
 		public static final boolean BRAS_MOTEUR_ESCLAVE_INVERSION = false;
-		public static final boolean BRAS_SENSOR_POTENTIOMETRE_INVERSION = true;
+		public static final boolean BRAS_SENSOR_POTENTIOMETRE_INVERSION = false;
+		
+		public static final int BRAS_LIMITE_AVANT = -200;
+		public static final int BRAS_LIMITE_ARRIERE = -750;
 	}
 	
 	public interface Roues
