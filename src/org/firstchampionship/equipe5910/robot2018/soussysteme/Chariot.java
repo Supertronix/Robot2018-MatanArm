@@ -1,20 +1,27 @@
 package org.firstchampionship.equipe5910.robot2018.soussysteme;
 
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
+import org.firstchampionship.equipe5910.robot2018.outil.Calculateur;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Chariot extends Subsystem implements RobotMap.Chariot
 {
-	//public static final int CHARIOT_MOTEUR_PRINCIPAL = 3;
-	//public static final int CHARIOT_MOTEUR_ESCLAVE = 0;
-	//TalonSRX chariotMoteurPrincipal = new TalonSRX(CHARIOT_MOTEUR_PRINCIPAL);
-	//TalonSRX chariotMoteurEsclave = new TalonSRX(CHARIOT_MOTEUR_ESCLAVE);
+	TalonSRX chariotMoteurPrincipal = new TalonSRX(CHARIOT_MOTEUR_PRINCIPAL);
+	TalonSRX chariotMoteurEsclave = new TalonSRX(CHARIOT_MOTEUR_ESCLAVE);
 
 	public Chariot(){
-		// TODO  chariotMoteurEsclave.changeControlMode(CANTalon.TalonControlMode.Follower); chariotMoteurEsclave.set(chariotMoteurPrincipal.getDeviceID());		
+		chariotMoteurPrincipal.setNeutralMode(NeutralMode.Brake);
+		chariotMoteurPrincipal.setInverted(RobotMap.Chariot.CHARIOT_MOTEUR_PRINCIPAL_INVERSION);
+		//chariotMoteurPrincipal.set(ControlMode., arg1);
+		
+		chariotMoteurEsclave.setNeutralMode(NeutralMode.Brake);
+		chariotMoteurEsclave.set(ControlMode.Follower, chariotMoteurPrincipal.getDeviceID());
+		chariotMoteurEsclave.setInverted(RobotMap.Chariot.CHARIOT_MOTEUR_ESCLAVE_INVERSION);
 	}
 	
 	public void positionnerHautAvant(){
@@ -47,6 +54,12 @@ public class Chariot extends Subsystem implements RobotMap.Chariot
 	
 	public void Ouvrir(){
 		System.out.println("Chariot => Ouvrir");
+	}
+	
+	public void manualControl(double value)
+	{
+		double clampedValue = Calculateur.clamp(value, -1, 1);
+		chariotMoteurPrincipal.set(ControlMode.PercentOutput, clampedValue);
 	}
 	
 	@Override

@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class RobotControleur extends IterativeRobot {
 	
-	//protected ManetteOperateur manetteOperateur;
+	protected ManetteOperateur manetteOperateur;
 	protected ManetteConducteur manetteConducteur;
 	
 	//DigitalInput encodeurGaucheA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_A);
@@ -23,7 +23,7 @@ public class RobotControleur extends IterativeRobot {
 		System.out.println("robotInit()");
 		Robot.construire();
 		manetteConducteur = new ManetteConducteur();
-		//manetteOperateur = new ManetteOperateur();
+		manetteOperateur = new ManetteOperateur();
 		//TimeUnit.SECONDS.sleep(10);		
 	}
 
@@ -78,6 +78,9 @@ public class RobotControleur extends IterativeRobot {
 			}
 			
 		}
+		
+		Robot.bras.manualControl(-manetteOperateur.getY2());
+		Robot.chariot.manualControl(-manetteOperateur.getY1());
 	}
 	
 	@Override

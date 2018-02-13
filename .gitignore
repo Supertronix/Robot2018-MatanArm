@@ -1,0 +1,4 @@
+build/
+bin/
+sysProps.xml
+*.class

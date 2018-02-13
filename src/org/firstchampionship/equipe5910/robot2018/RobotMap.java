@@ -4,6 +4,10 @@ public interface RobotMap
 {
 	public interface Chariot
 	{
+		public static final int CHARIOT_MOTEUR_PRINCIPAL = 3;
+		public static final boolean CHARIOT_MOTEUR_PRINCIPAL_INVERSION = true;
+		public static final int CHARIOT_MOTEUR_ESCLAVE = 4;
+		public static final boolean CHARIOT_MOTEUR_ESCLAVE_INVERSION = false;
 	}
 	
 	public interface Pince
@@ -16,6 +20,11 @@ public interface RobotMap
 	{
 		public static final int BRAS_ALLONGE = 4;
 		public static final int BRAS_RETRECI = 5;
+		public static final int BRAS_MOTEUR_PRINCIPAL = 2;
+		public static final boolean BRAS_MOTEUR_PRINCIPAL_INVERSION = true;
+		public static final int BRAS_MOTEUR_ESCLAVE = 5;
+		public static final boolean BRAS_MOTEUR_ESCLAVE_INVERSION = false;
+		public static final boolean BRAS_SENSOR_POTENTIOMETRE_INVERSION = true;
 	}
 	
 	public interface Roues

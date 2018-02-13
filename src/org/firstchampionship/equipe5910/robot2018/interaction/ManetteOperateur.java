@@ -47,4 +47,12 @@ public class ManetteOperateur implements RobotMap.ManetteOperateur{
 		ouvrir.whenPressed(new CommandeChariotOuvrir());
 		
 	}
+	
+	public double getY1(){
+		return manetteOperateur.getRawAxis(1);
+	}
+	public double getY2(){
+		return manetteOperateur.getRawAxis(5);
+	}
+	
 }

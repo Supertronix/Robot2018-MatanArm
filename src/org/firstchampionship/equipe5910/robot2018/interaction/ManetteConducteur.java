@@ -73,4 +73,11 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 		return manettePrincipale.getRawAxis(0) != 0;
 	}
 	
+	public double getY1(){
+		return manettePrincipale.getRawAxis(1);
+	}
+	public double getY2(){
+		return manettePrincipale.getRawAxis(5);
+	}
+	
 }
