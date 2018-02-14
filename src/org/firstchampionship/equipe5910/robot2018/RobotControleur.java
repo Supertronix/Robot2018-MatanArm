@@ -79,8 +79,12 @@ public class RobotControleur extends IterativeRobot {
 			
 		}*/
 		
-		//Robot.bras.manualControl(-manetteOperateur.getY2());
-		//Robot.chariot.manualControl(-manetteOperateur.getY1());
+		if (Math.abs(manetteConducteur.getY2()) >= 0.025)
+		{
+			Robot.bras.manualControl(-manetteConducteur.getY2());
+		}
+		
+		//Robot.chariot.manualControl(-manetteConducteur.getY2());
 	}
 	
 	@Override

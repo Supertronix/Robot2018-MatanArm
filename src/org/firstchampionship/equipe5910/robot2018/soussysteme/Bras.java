@@ -26,9 +26,7 @@ public class Bras extends Subsystem implements RobotMap.Bras
 	protected DoubleSolenoid selecteurExtension;
 	
 	public Bras()
-	{
-		SmartDashboard.putNumber("Bras_SP", 0);
-				
+	{		
 		brasMoteurPrincipal.setNeutralMode(NeutralMode.Brake);
 		brasMoteurPrincipal.setInverted(RobotMap.Bras.BRAS_MOTEUR_PRINCIPAL_INVERSION);
 		brasMoteurPrincipal.configSelectedFeedbackSensor(FeedbackDevice.Analog, 0, Constants.kTimeoutMs);
@@ -75,6 +73,12 @@ public class Bras extends Subsystem implements RobotMap.Bras
 		 case ARRIERE:
 			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_ARRIERE);
 			 break; 
+		 case AVANT_ANGLE:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_AVANT_ANGLE);
+			 break; 
+		 case ARRIERE_ANGLE:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_ARRIERE_ANGLE);
+			 break; 
 		default:
 			break;
 	 }
@@ -85,5 +89,6 @@ public class Bras extends Subsystem implements RobotMap.Bras
 	{
 		double clampedValue = Calculateur.clamp(value, -1, 1);
 		brasMoteurPrincipal.set(ControlMode.PercentOutput, clampedValue);
+		SmartDashboard.putNumber("POTENTIOMETRE", brasMoteurPrincipal.getSensorCollection().getAnalogIn());
 	}
 }

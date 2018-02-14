@@ -14,12 +14,12 @@ public class CommandePinceOuvrir extends Command{
 	@Override
 	protected void initialize() {
 		System.out.println("CommandePinceOuvrir");
-		Robot.pince.ouvrir();
+		
 	}
 	
 	@Override
 	protected void execute() {
-		
+		Robot.pince.ouvrir();
 	}
 	
 	@Override

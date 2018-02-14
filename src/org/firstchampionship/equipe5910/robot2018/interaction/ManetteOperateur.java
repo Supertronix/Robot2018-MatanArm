@@ -9,6 +9,9 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActive
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotOuvrir;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceOuvrir;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -44,7 +47,8 @@ public class ManetteOperateur implements RobotMap.ManetteOperateur{
 		basAvant.whenPressed(new CommandeChariotActiverBasAvant());
 		basArriere.whenPressed(new CommandeChariotActiverBasArriere());
 		centre.whenPressed(new CommandeChariotActiverCentre());
-		ouvrir.whenPressed(new CommandeChariotOuvrir());
+		ouvrir.whenPressed(new CommandePinceOuvrir());
+		ouvrir.whenReleased(new CommandePinceFermer());
 		
 	}
 	

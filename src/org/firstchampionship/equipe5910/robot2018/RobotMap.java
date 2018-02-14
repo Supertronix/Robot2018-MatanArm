@@ -12,6 +12,19 @@ public interface RobotMap
 		public static final boolean CHARIOT_MOTEUR_PRINCIPAL_INVERSION = true;
 		public static final int CHARIOT_MOTEUR_ESCLAVE = 4;
 		public static final boolean CHARIOT_MOTEUR_ESCLAVE_INVERSION = false;
+		public static final boolean CHARIOT_SENSOR_ENCODEUR_INVERSION = true;
+		
+		public static final double CHARIOT_PID_KP = 1;
+		public static final int CHARIOT_POSITION_BAS= 1000;
+		public static final int CHARIOT_POSITION_MILIEU = 18000;
+		public static final int CHARIOT_POSITION_HAUT = 36000;
+		
+		public enum POSITION {
+	        BAS,
+			MILIEU,
+	        HAUT, 
+	    }
+		
 	}
 	
 	public interface Pince
@@ -39,11 +52,15 @@ public interface RobotMap
 		public static final int BRAS_POSITION_ARRIERE = 222;
 		public static final int BRAS_POSITION_MILIEU = 527;
 		public static final int BRAS_POSITION_AVANT = 873;
+		public static final int BRAS_POSITION_AVANT_ANGLE = 700;
+		public static final int BRAS_POSITION_ARRIERE_ANGLE = 375;
 		
 		public enum POSITION {
 	        ARRIERE,
 			MILIEU,
-	        AVANT, 
+	        AVANT,
+	        AVANT_ANGLE,
+	        ARRIERE_ANGLE,
 	    }
 
 	}

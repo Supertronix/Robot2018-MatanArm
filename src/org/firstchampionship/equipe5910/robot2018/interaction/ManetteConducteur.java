@@ -37,10 +37,10 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 		this.selecteurBrasAllonge.whenPressed(new CommandeBrasAllonger());
 		this.selecteurBrasRetreci = new JoystickButton(this.manettePrincipale, BOUTON_B);
 		this.selecteurBrasRetreci.whenPressed(new CommandeBrasRetrecir());
-		this.selecteurPinceOuverte = new JoystickButton(this.manettePrincipale, BOUTON_DEMARRER);
-		this.selecteurPinceOuverte.whenPressed(new CommandePinceOuvrir());
-		this.selecteurPinceFermee = new JoystickButton(this.manettePrincipale, BOUTON_RETOUR);
-		this.selecteurPinceFermee.whenPressed(new CommandePinceFermer());
+		//this.selecteurPinceOuverte = new JoystickButton(this.manettePrincipale, BOUTON_DEMARRER);
+		//this.selecteurPinceOuverte.whenPressed(new CommandePinceOuvrir());
+		//this.selecteurPinceFermee = new JoystickButton(this.manettePrincipale, BOUTON_RETOUR);
+		//this.selecteurPinceFermee.whenPressed(new CommandePinceFermer());
 		
 	}
 	
