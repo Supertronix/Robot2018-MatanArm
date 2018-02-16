@@ -1,4 +1,4 @@
-package org.firstchampionship.equipe5910.robot2018.commande.tour;
+package org.firstchampionship.equipe5910.robot2018.commande;
 
 import org.firstchampionship.equipe5910.robot2018.Robot;
 import org.firstchampionship.equipe5910.robot2018.RobotMap.Bras;
@@ -6,27 +6,30 @@ import org.firstchampionship.equipe5910.robot2018.RobotMap.Chariot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CommandeChariotActiverBasAvant extends Command{
+public class CommandeChariotActiverCentre extends Command{
 	
-	public CommandeChariotActiverBasAvant(){
+	boolean estFini = false;
+	
+	public CommandeChariotActiverCentre(){
 		requires(Robot.chariot);
 	}
 	
 	@Override
 	protected void initialize() {
-		System.out.println("CommandeChariotActiverBasAvant");
-		//Robot.chariot.positionnerBasAvant();
+		
 	}
 	
 	@Override
 	protected void execute() {
-		Robot.bras.aller_position(Bras.POSITION.AVANT);
-		Robot.chariot.aller_position(Chariot.POSITION.BAS);
+		System.out.println("CommandeChariotActiverCentre");
+		Robot.chariot.aller_position(Chariot.POSITION.MILIEU);
+		Robot.bras.aller_position(Bras.POSITION.MILIEU);
+		estFini = true;
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return estFini;
 	}
 	
 	

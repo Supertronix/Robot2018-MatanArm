@@ -1,20 +1,20 @@
-package org.firstchampionship.equipe5910.robot2018.commande.tour;
+package org.firstchampionship.equipe5910.robot2018.commande;
 
 import org.firstchampionship.equipe5910.robot2018.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CommandeBrasAllonger extends Command {
+public class CommandeBrasRetrecir extends Command{
 
-	public CommandeBrasAllonger()
+	public CommandeBrasRetrecir()
 	{
 		requires(Robot.bras);
 	}
 	
 	@Override
 	protected void initialize() {
-		System.out.println("CommandeBrasAllonger");
-		Robot.bras.allonger();
+		System.out.println("CommandeBrasRetrecir");
+		Robot.bras.retrecir();
 	}
 	
 	@Override
@@ -26,5 +26,4 @@ public class CommandeBrasAllonger extends Command {
 	protected boolean isFinished() {
 		return true;
 	}
-
 }

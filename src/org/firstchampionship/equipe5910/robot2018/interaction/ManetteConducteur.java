@@ -1,12 +1,12 @@
 package org.firstchampionship.equipe5910.robot2018.interaction;
 
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
-import org.firstchampionship.equipe5910.robot2018.commande.roues.CommandeRouesActiverVitesseBasse;
-import org.firstchampionship.equipe5910.robot2018.commande.roues.CommandeRouesActiverVitesseElevee;
-import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandeBrasAllonger;
-import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandeBrasRetrecir;
-import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandePinceFermer;
-import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandePinceOuvrir;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasAllonger;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasRetrecir;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceOuvrir;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseBasse;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseElevee;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
