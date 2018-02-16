@@ -79,12 +79,34 @@ public class RobotControleur extends IterativeRobot {
 			
 		}*/
 		
-		if (Math.abs(manetteConducteur.getY2()) >= 0.025)
+		Robot.roues.conduite(-manetteConducteur.getY1(), -manetteConducteur.getY2());
+		//Robot.bras.manualOffsetPID(-manetteConducteur.getY2());
+		
+		/*if (Math.abs(manetteConducteur.getY2()) >= 0.025)
 		{
 			Robot.bras.manualControl(-manetteConducteur.getY2());
 		}
+		else
+		{
+			
+		}*/
+		if (Math.abs(manetteConducteur.getAxeMonte()) >= 0.1)
+		{
+			Robot.bras.manualOffsetPID(manetteConducteur.getAxeMonte());
+		}
+		else if (Math.abs(manetteConducteur.getAxeDescend()) >= 0.1)
+		{
+			Robot.bras.manualOffsetPID(-manetteConducteur.getAxeDescend());
+		}
 		
-		//Robot.chariot.manualControl(-manetteConducteur.getY2());
+		Robot.chariot.manualOffsetPID(manetteOperateur.getY1());
+		
+		if (Math.abs(manetteOperateur.getX1()) >= 0.1)
+		{
+			Robot.bras.manualOffsetPID(manetteOperateur.getX1());
+		}
+		
+		
 	}
 	
 	@Override

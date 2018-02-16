@@ -51,12 +51,14 @@ public class ManetteOperateur implements RobotMap.ManetteOperateur{
 		ouvrir.whenReleased(new CommandePinceFermer());
 		
 	}
-	
+	// Offset bras
+	public double getX1(){
+		return manetteOperateur.getRawAxis(0);
+	}
+	// Offset chariot
 	public double getY1(){
 		return manetteOperateur.getRawAxis(1);
 	}
-	public double getY2(){
-		return manetteOperateur.getRawAxis(5);
-	}
+	
 	
 }

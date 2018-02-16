@@ -21,14 +21,14 @@ public class CommandeRouesAvancer extends Command{
 		System.out.println("CommandeRouesAvancer.initialize()");
 		this.positionInitiale = Robot.roues.getDistanceDroite();
 		System.out.println("Position initiale " + positionInitiale);
-		Robot.roues.avancer(vitesse); 
+		//Robot.roues.avancer(vitesse); 
 		// Robot.roues.informerEncodeurDroitDeLaCible(distanceVoulue);
 	}
 
 	@Override
 	protected void execute() {
 		//System.out.println("CommandeRouesAvancer.execute()");
-		Robot.roues.avancer(vitesse); 
+		//Robot.roues.avancer(vitesse); 
 		//Robot.roues.avancer(Robot.roues.getVitesseSelonEncodeurDroitStabilise()); 
 		// System.out.println("selon pid vitesse = "  + Robot.roues.getVitesseSelonEncodeurDroitStabilise());
 	}
@@ -44,7 +44,7 @@ public class CommandeRouesAvancer extends Command{
 	@Override
 	protected void end() {
 		System.out.println("CommandeRouesAvancer.end()");
-		Robot.roues.arreter();
+		//Robot.roues.arreter();
 	}
 	
 

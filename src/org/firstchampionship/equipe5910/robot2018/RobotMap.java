@@ -16,7 +16,7 @@ public interface RobotMap
 		
 		public static final double CHARIOT_PID_KP = 1;
 		public static final int CHARIOT_POSITION_BAS= 1000;
-		public static final int CHARIOT_POSITION_MILIEU = 18000;
+		public static final int CHARIOT_POSITION_MILIEU = 21000; //18000 = milieu
 		public static final int CHARIOT_POSITION_HAUT = 36000;
 		
 		public enum POSITION {
@@ -46,7 +46,7 @@ public interface RobotMap
 		public static final int BRAS_LIMITE_AVANT = 873;
 		public static final int BRAS_LIMITE_ARRIERE = 222;
 		
-		public static final double BRAS_PID_KP = 4;
+		public static final double BRAS_PID_KP = 8;
 		public static final double BRAS_PID_KI = 0.00015;
 		
 		public static final int BRAS_POSITION_ARRIERE = 222;

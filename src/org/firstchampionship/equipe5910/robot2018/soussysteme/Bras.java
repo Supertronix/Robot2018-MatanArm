@@ -49,6 +49,8 @@ public class Bras extends Subsystem implements RobotMap.Bras
 		this.selecteurExtension = new DoubleSolenoid(BRAS_RETRECI, BRAS_ALLONGE);
 		this.retrecir();
 		aller_position(RobotMap.Bras.POSITION.MILIEU);
+		SmartDashboard.putNumber("BrasKP", BRAS_PID_KP);
+		SmartDashboard.putNumber("BrasKI", BRAS_PID_KI);
 	}
 	
 	public void allonger()
@@ -91,4 +93,15 @@ public class Bras extends Subsystem implements RobotMap.Bras
 		brasMoteurPrincipal.set(ControlMode.PercentOutput, clampedValue);
 		SmartDashboard.putNumber("POTENTIOMETRE", brasMoteurPrincipal.getSensorCollection().getAnalogIn());
 	}
+	
+	public void manualOffsetPID(double value)
+	{	
+		value = Calculateur.clamp(brasMoteurPrincipal.getClosedLoopTarget(0) + value *4, RobotMap.Bras.BRAS_LIMITE_ARRIERE, RobotMap.Bras.BRAS_LIMITE_AVANT);
+		brasMoteurPrincipal.set(ControlMode.Position, value);
+		
+		brasMoteurPrincipal.config_kP(0, SmartDashboard.getNumber("BrasKP", BRAS_PID_KP), Constants.kTimeoutMs); //config_kP(int slotIdx, double value, int timeoutMs) 
+		brasMoteurPrincipal.config_kI(0, SmartDashboard.getNumber("BrasKI", BRAS_PID_KP), Constants.kTimeoutMs);
+		
+	}
+	
 }
