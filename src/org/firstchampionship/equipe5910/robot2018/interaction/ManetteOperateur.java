@@ -8,7 +8,6 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActive
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuAvant;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotOuvrir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceOuvrir;
 

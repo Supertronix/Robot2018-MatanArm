@@ -4,7 +4,6 @@ import org.firstchampionship.equipe5910.robot2018.RobotMap;
 import org.firstchampionship.equipe5910.robot2018.RobotMap.Constants;
 import org.firstchampionship.equipe5910.robot2018.outil.Calculateur;
 
-import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;

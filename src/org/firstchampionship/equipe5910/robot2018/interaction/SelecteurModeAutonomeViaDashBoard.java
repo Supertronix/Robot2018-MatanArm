@@ -6,9 +6,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SelecteurModeAutonomeViaDashBoard extends SelecteurModeAutonome{
 
-    protected SendableChooser selecteur;
+    @SuppressWarnings("rawtypes")
+	protected SendableChooser selecteur;
     
-    public SelecteurModeAutonomeViaDashBoard()
+    @SuppressWarnings("rawtypes")
+	public SelecteurModeAutonomeViaDashBoard()
     {
 		// http://wpilib.screenstepslive.com/s/3120/m/7932/l/81109-choosing-an-autonomous-program-from-smartdashboard
 		selecteur = new SendableChooser();

@@ -3,8 +3,6 @@ package org.firstchampionship.equipe5910.robot2018.interaction;
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasAllonger;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasRetrecir;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceOuvrir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseBasse;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseElevee;
 
