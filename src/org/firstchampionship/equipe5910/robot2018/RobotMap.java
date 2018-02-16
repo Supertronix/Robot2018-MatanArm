@@ -46,7 +46,7 @@ public interface RobotMap
 		public static final int BRAS_LIMITE_AVANT = 873;
 		public static final int BRAS_LIMITE_ARRIERE = 222;
 		
-		public static final double BRAS_PID_KP = 4;
+		public static final double BRAS_PID_KP = 8;
 		public static final double BRAS_PID_KI = 0.00015;
 		
 		public static final int BRAS_POSITION_ARRIERE = 222;
