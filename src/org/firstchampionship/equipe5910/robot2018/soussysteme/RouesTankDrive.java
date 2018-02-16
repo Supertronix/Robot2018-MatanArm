@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RouesTankDrive extends Subsystem implements RobotMap.Roues{
 
@@ -40,14 +41,14 @@ public class RouesTankDrive extends Subsystem implements RobotMap.Roues{
 	//protected CustomPIDOutput pidDistanceDroiteSortie;
 	protected PIDController pidControleurDistance;
 	protected CustomPIDOutput pidSortieDistance;
-	private DifferentialDrive tankDrive;
-	
+	protected DifferentialDrive tankDrive;
+	protected double last_left_encoder_value;
+	protected long dernier_changement_vitesse;
 	
 	public RouesTankDrive(){
 		roueGauche = new VictorSP(ROUE_GAUCHE);
 		roueDroite = new VictorSP(ROUE_DROITE);
 		tankDrive = new DifferentialDrive(roueGauche, roueDroite);
-		
 		selecteurVitesse = new DoubleSolenoid(VITESSE_BASSE, VITESSE_ELEVEE);
 		
 		// Todo : peut-etre faire une classe derivee de Encoder pour l'initialisation
@@ -68,6 +69,10 @@ public class RouesTankDrive extends Subsystem implements RobotMap.Roues{
 		pidControleurDistance.setOutputRange(-0.35, 0.35);
 		pidControleurDistance.setAbsoluteTolerance(DISTANCE_TOLERANCE);
 		pidControleurDistance.enable();	
+		/*SmartDashboard.putNumber("encodeurChangementVitesse", 1500);
+		SmartDashboard.putNumber("tempsChangementVitesse", 250);
+		
+		dernier_changement_vitesse = System.currentTimeMillis();*/
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////
@@ -77,6 +82,19 @@ public class RouesTankDrive extends Subsystem implements RobotMap.Roues{
 	public void conduite(double Y1, double Y2)
 	{
 		tankDrive.tankDrive(Y1, Y2);
+		/*SmartDashboard.putNumber("encodeurActualRate", encodeurConduiteGauche.getRate());
+		if ( System.currentTimeMillis() - dernier_changement_vitesse >= SmartDashboard.getNumber("tempsChangementVitesse", 250))
+		{
+			if (encodeurConduiteGauche.getRate() > SmartDashboard.getNumber("encodeurChangementVitesse", 1500))
+			{
+				activerVitesseElevee();
+			}
+			else
+			{
+				activerVitesseBasse();
+			}
+			dernier_changement_vitesse = System.currentTimeMillis();
+		}*/
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////

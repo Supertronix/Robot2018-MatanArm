@@ -100,6 +100,13 @@ public class RobotControleur extends IterativeRobot {
 		}
 		
 		Robot.chariot.manualOffsetPID(manetteOperateur.getY1());
+		
+		if (Math.abs(manetteOperateur.getX1()) >= 0.1)
+		{
+			Robot.bras.manualOffsetPID(manetteOperateur.getX1());
+		}
+		
+		
 	}
 	
 	@Override
