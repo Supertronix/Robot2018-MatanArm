@@ -79,7 +79,7 @@ public class RobotControleur extends IterativeRobot {
 			
 		}*/
 		
-		Robot.roues.conduite(-manetteConducteur.getY1(), -manetteConducteur.getY2());
+		Robot.roues.conduire(-manetteConducteur.getY1(), -manetteConducteur.getY2());
 		//Robot.bras.manualOffsetPID(-manetteConducteur.getY2());
 		
 		/*if (Math.abs(manetteConducteur.getY2()) >= 0.025)
