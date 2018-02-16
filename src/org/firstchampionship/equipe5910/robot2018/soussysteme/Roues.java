@@ -115,9 +115,7 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	}	
 	
 	@Override
-	protected void initDefaultCommand() {
-		
-	}
+	protected void initDefaultCommand() {}
 	
 	// Pour Encodeur et Gyro
 	protected class CustomPIDOutput implements PIDOutput {

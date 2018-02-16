@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Chariot extends Subsystem implements RobotMap.Chariot
 {
-	TalonSRX chariotMoteurPrincipal = new TalonSRX(CHARIOT_MOTEUR_PRINCIPAL);
-	TalonSRX chariotMoteurEsclave = new TalonSRX(CHARIOT_MOTEUR_ESCLAVE);
+	protected TalonSRX chariotMoteurPrincipal = new TalonSRX(CHARIOT_MOTEUR_PRINCIPAL);
+	protected TalonSRX chariotMoteurEsclave = new TalonSRX(CHARIOT_MOTEUR_ESCLAVE);
 
 	public Chariot()
 	{
@@ -87,7 +87,7 @@ public class Chariot extends Subsystem implements RobotMap.Chariot
 	}
 		 
 	
-	public void manualControl(double value)
+	public void positionner(double value)
 	{
 		double clampedValue = Calculateur.clamp(value, -1, 1);
 		chariotMoteurPrincipal.set(ControlMode.PercentOutput, clampedValue);
@@ -95,26 +95,23 @@ public class Chariot extends Subsystem implements RobotMap.Chariot
 		//chariotMoteurPrincipal.set(ControlMode.Position, SmartDashboard.getNumber("Chariot_SP", 0));
 	}
 	
-	public void PIDoffsetPlus()
+	public void incrementerPID()
 	{	
 		double value = Calculateur.clamp(chariotMoteurPrincipal.getClosedLoopTarget(0) + 100, RobotMap.Chariot.CHARIOT_POSITION_BAS, RobotMap.Chariot.CHARIOT_POSITION_HAUT);
 		chariotMoteurPrincipal.set(ControlMode.Position, value);
 	}
-	public void PIDoffsetMoins()
+	public void decrementerPID()
 	{	
 		double value = Calculateur.clamp(chariotMoteurPrincipal.getClosedLoopTarget(0) - 100, RobotMap.Chariot.CHARIOT_POSITION_BAS, RobotMap.Chariot.CHARIOT_POSITION_HAUT);
 		chariotMoteurPrincipal.set(ControlMode.Position, value);
 	}
 	
-	public void manualOffsetPID(double value)
+	public void ajusterPID(double value)
 	{	
 		value = Calculateur.clamp(chariotMoteurPrincipal.getClosedLoopTarget(0) + value *500, RobotMap.Chariot.CHARIOT_POSITION_BAS, RobotMap.Chariot.CHARIOT_POSITION_HAUT);
 		chariotMoteurPrincipal.set(ControlMode.Position, value);
 	}
 	
 	@Override
-	protected void initDefaultCommand() {
-
-	}
-
+	protected void initDefaultCommand() { }
 }

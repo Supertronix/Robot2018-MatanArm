@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Pince extends Subsystem implements RobotMap.Pince
 {	
-	@Override
-	protected void initDefaultCommand() { }
-
 	protected DoubleSolenoid selecteurOuverture;
 
 	public Pince()
@@ -26,5 +23,8 @@ public class Pince extends Subsystem implements RobotMap.Pince
 	{
 		this.selecteurOuverture.set(DoubleSolenoid.Value.kReverse);
 	}
+
+	@Override
+	protected void initDefaultCommand() { }
 
 }

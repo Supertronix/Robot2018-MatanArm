@@ -16,12 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Bras extends Subsystem implements RobotMap.Bras
 {	
 	
-	TalonSRX brasMoteurPrincipal = new TalonSRX(BRAS_MOTEUR_PRINCIPAL);
-	TalonSRX brasMoteurEsclave = new TalonSRX(BRAS_MOTEUR_ESCLAVE);
-	
-	@Override
-	protected void initDefaultCommand() { }
-	
+	protected TalonSRX brasMoteurPrincipal = new TalonSRX(BRAS_MOTEUR_PRINCIPAL);
+	protected TalonSRX brasMoteurEsclave = new TalonSRX(BRAS_MOTEUR_ESCLAVE);
+		
 	protected DoubleSolenoid selecteurExtension;
 	
 	public Bras()
@@ -86,21 +83,24 @@ public class Bras extends Subsystem implements RobotMap.Bras
 		 
 	}
 	
-	public void manualControl(double value)
+	public void positionner(double value)
 	{
 		double clampedValue = Calculateur.clamp(value, -1, 1);
 		brasMoteurPrincipal.set(ControlMode.PercentOutput, clampedValue);
 		SmartDashboard.putNumber("POTENTIOMETRE", brasMoteurPrincipal.getSensorCollection().getAnalogIn());
 	}
 	
-	public void manualOffsetPID(double value)
+	public void ajusterPID(double value)
 	{	
 		value = Calculateur.clamp(brasMoteurPrincipal.getClosedLoopTarget(0) + value *4, RobotMap.Bras.BRAS_LIMITE_ARRIERE, RobotMap.Bras.BRAS_LIMITE_AVANT);
 		brasMoteurPrincipal.set(ControlMode.Position, value);
 		
 		brasMoteurPrincipal.config_kP(0, SmartDashboard.getNumber("BrasKP", BRAS_PID_KP), Constants.kTimeoutMs); //config_kP(int slotIdx, double value, int timeoutMs) 
-		brasMoteurPrincipal.config_kI(0, SmartDashboard.getNumber("BrasKI", BRAS_PID_KP), Constants.kTimeoutMs);
-		
+		brasMoteurPrincipal.config_kI(0, SmartDashboard.getNumber("BrasKI", BRAS_PID_KP), Constants.kTimeoutMs);		
 	}
+	
+	@Override
+	protected void initDefaultCommand() { }
+	
 	
 }
