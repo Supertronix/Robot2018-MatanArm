@@ -13,12 +13,12 @@ public class CommandeRouesActiverVitesseBasse extends Command{
 	
 	@Override
 	protected void initialize() {
-		Robot.roues.activerVitesseBasse();
 		//System.out.println("CommandeActiverVitesseBasse.initialize()");
 	}
 	
 	@Override
 	protected void execute() {
+		Robot.roues.activerVitesseBasse();
 		//RobotControleur.roue.activerVitesseBasse();
 		//System.out.println("CommandeActiverVitesseBasse.execute()");
 	}

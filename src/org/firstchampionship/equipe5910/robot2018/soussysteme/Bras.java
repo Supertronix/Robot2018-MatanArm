@@ -47,7 +47,7 @@ public class Bras extends Subsystem implements RobotMap.Bras
 		
 		this.selecteurExtension = new DoubleSolenoid(BRAS_RETRECI, BRAS_ALLONGE);
 		this.retrecir();
-		aller_position(RobotMap.Bras.POSITION.MILIEU);
+		allerPosition(RobotMap.Bras.POSITION.MILIEU);
 		SmartDashboard.putNumber("BrasKP", BRAS_PID_KP);
 		SmartDashboard.putNumber("BrasKI", BRAS_PID_KI);
 	}
@@ -61,7 +61,7 @@ public class Bras extends Subsystem implements RobotMap.Bras
 	{
 		this.selecteurExtension.set(DoubleSolenoid.Value.kReverse);		
 	}
-	public void aller_position(RobotMap.Bras.POSITION pos)
+	public void allerPosition(RobotMap.Bras.POSITION pos)
 	{
 		
 		 switch (pos) {

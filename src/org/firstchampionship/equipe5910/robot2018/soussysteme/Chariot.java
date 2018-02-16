@@ -68,7 +68,7 @@ public class Chariot extends Subsystem implements RobotMap.Chariot
 		System.out.println("Chariot => Ouvrir");
 	}
 	
-	public void aller_position(RobotMap.Chariot.POSITION pos)
+	public void allerPosition(RobotMap.Chariot.POSITION pos)
 	{
 		
 		 switch (pos) {

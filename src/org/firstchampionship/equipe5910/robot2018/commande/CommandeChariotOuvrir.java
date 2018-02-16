@@ -13,12 +13,11 @@ public class CommandeChariotOuvrir extends Command{
 	@Override
 	protected void initialize() {
 		System.out.println("CommandeChariotOuvrir");
-		Robot.chariot.Ouvrir();
 	}
 	
 	@Override
 	protected void execute() {
-		
+		Robot.chariot.Ouvrir();		
 	}
 
 	@Override

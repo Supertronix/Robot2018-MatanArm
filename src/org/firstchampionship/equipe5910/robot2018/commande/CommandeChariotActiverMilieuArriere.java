@@ -15,13 +15,13 @@ public class CommandeChariotActiverMilieuArriere extends Command{
 	@Override
 	protected void initialize() {
 		System.out.println("CommandeChariotActiverMilieuArriere");
-		//Robot.chariot.positionnerMilieuArriere();
 	}
 	
 	@Override
 	protected void execute() {
-		Robot.bras.aller_position(Bras.POSITION.ARRIERE);
-		Robot.chariot.aller_position(Chariot.POSITION.MILIEU);
+		//Robot.chariot.positionnerMilieuArriere();
+		Robot.bras.allerPosition(Bras.POSITION.ARRIERE);
+		Robot.chariot.allerPosition(Chariot.POSITION.MILIEU);
 	}
 
 	@Override

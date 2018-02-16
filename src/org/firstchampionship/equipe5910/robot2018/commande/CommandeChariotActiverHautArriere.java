@@ -15,13 +15,13 @@ public class CommandeChariotActiverHautArriere extends Command{
 	@Override
 	protected void initialize() {
 		System.out.println("CommandeChariotActiverHautArriere");
-		//Robot.chariot.positionnerHautArriere();
 	}
 	
 	@Override
 	protected void execute() {
-		Robot.bras.aller_position(Bras.POSITION.ARRIERE_ANGLE);
-		Robot.chariot.aller_position(Chariot.POSITION.HAUT);
+		//Robot.chariot.positionnerHautArriere();
+		Robot.bras.allerPosition(Bras.POSITION.ARRIERE_ANGLE);
+		Robot.chariot.allerPosition(Chariot.POSITION.HAUT);
 	}
 
 	@Override
