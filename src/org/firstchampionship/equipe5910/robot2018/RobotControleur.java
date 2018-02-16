@@ -6,7 +6,6 @@ import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
-
 public class RobotControleur extends IterativeRobot {
 	
 	protected ManetteOperateur manetteOperateur;
