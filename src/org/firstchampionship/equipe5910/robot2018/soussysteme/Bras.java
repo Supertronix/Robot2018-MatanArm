@@ -91,4 +91,11 @@ public class Bras extends Subsystem implements RobotMap.Bras
 		brasMoteurPrincipal.set(ControlMode.PercentOutput, clampedValue);
 		SmartDashboard.putNumber("POTENTIOMETRE", brasMoteurPrincipal.getSensorCollection().getAnalogIn());
 	}
+	
+	public void manualOffsetPID(double value)
+	{	
+		value = Calculateur.clamp(brasMoteurPrincipal.getClosedLoopTarget(0) + value *2, RobotMap.Bras.BRAS_LIMITE_ARRIERE, RobotMap.Bras.BRAS_LIMITE_AVANT);
+		brasMoteurPrincipal.set(ControlMode.Position, value);
+	}
+	
 }

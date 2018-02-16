@@ -27,15 +27,15 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 	public ManetteConducteur(){
 		this.manettePrincipale = new Joystick(MANETTE_CONDUCTEUR);
 		
-		this.selecteurVitesseElevee = new JoystickButton(manettePrincipale, BOUTON_A);
+		this.selecteurVitesseElevee = new JoystickButton(manettePrincipale, BOUTON_HAUTE_VITESSE);
 		this.selecteurVitesseElevee.whenPressed(new CommandeRouesActiverVitesseElevee());
-		this.selecteurVitesseBasse = new JoystickButton(manettePrincipale, BOUTON_X);
+		this.selecteurVitesseBasse = new JoystickButton(manettePrincipale, BOUTON_BASSE_VITESSE);
 		this.selecteurVitesseBasse.whenPressed(new CommandeRouesActiverVitesseBasse());
 		
 		// boutons temporaires pour test
 		this.selecteurBrasAllonge = new JoystickButton(this.manettePrincipale, BOUTON_Y);
 		this.selecteurBrasAllonge.whenPressed(new CommandeBrasAllonger());
-		this.selecteurBrasRetreci = new JoystickButton(this.manettePrincipale, BOUTON_B);
+		this.selecteurBrasRetreci = new JoystickButton(this.manettePrincipale, BOUTON_A);
 		this.selecteurBrasRetreci.whenPressed(new CommandeBrasRetrecir());
 		//this.selecteurPinceOuverte = new JoystickButton(this.manettePrincipale, BOUTON_DEMARRER);
 		//this.selecteurPinceOuverte.whenPressed(new CommandePinceOuvrir());
@@ -79,5 +79,14 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 	public double getY2(){
 		return manettePrincipale.getRawAxis(5);
 	}
+	
+	public double getAxeDescend(){
+		return manettePrincipale.getRawAxis(2);
+	}
+	public double getAxeMonte(){
+		return manettePrincipale.getRawAxis(3);
+	}
+	
+	
 	
 }

@@ -95,6 +95,23 @@ public class Chariot extends Subsystem implements RobotMap.Chariot
 		//chariotMoteurPrincipal.set(ControlMode.Position, SmartDashboard.getNumber("Chariot_SP", 0));
 	}
 	
+	public void PIDoffsetPlus()
+	{	
+		double value = Calculateur.clamp(chariotMoteurPrincipal.getClosedLoopTarget(0) + 100, RobotMap.Chariot.CHARIOT_POSITION_BAS, RobotMap.Chariot.CHARIOT_POSITION_HAUT);
+		chariotMoteurPrincipal.set(ControlMode.Position, value);
+	}
+	public void PIDoffsetMoins()
+	{	
+		double value = Calculateur.clamp(chariotMoteurPrincipal.getClosedLoopTarget(0) - 100, RobotMap.Chariot.CHARIOT_POSITION_BAS, RobotMap.Chariot.CHARIOT_POSITION_HAUT);
+		chariotMoteurPrincipal.set(ControlMode.Position, value);
+	}
+	
+	public void manualOffsetPID(double value)
+	{	
+		value = Calculateur.clamp(chariotMoteurPrincipal.getClosedLoopTarget(0) + value *500, RobotMap.Chariot.CHARIOT_POSITION_BAS, RobotMap.Chariot.CHARIOT_POSITION_HAUT);
+		chariotMoteurPrincipal.set(ControlMode.Position, value);
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
 

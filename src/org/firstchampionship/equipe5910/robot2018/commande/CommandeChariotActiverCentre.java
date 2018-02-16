@@ -22,7 +22,7 @@ public class CommandeChariotActiverCentre extends Command{
 	@Override
 	protected void execute() {
 		System.out.println("CommandeChariotActiverCentre");
-		Robot.chariot.aller_position(Chariot.POSITION.MILIEU);
+		Robot.chariot.aller_position(Chariot.POSITION.BAS);
 		Robot.bras.aller_position(Bras.POSITION.MILIEU);
 		estFini = true;
 	}
