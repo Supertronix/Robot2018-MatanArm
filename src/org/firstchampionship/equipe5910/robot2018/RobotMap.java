@@ -135,4 +135,12 @@ public interface RobotMap
 		public static final int BOUTON_CENTRE= 7;
 		public static final int BOUTON_OUVRIR= 2;
 	}
+	
+	public interface SelecteurModeAutonome
+	{
+		public static final int INTERRUPTEUR_DIGITAL_0 = 2;
+		public static final int INTERRUPTEUR_DIGITAL_1 = 3;
+		public static final int INTERRUPTEUR_DIGITAL_2 = 4;
+		public static final int INTERRUPTEUR_DIGITAL_3 = 5;
+	}
 }
