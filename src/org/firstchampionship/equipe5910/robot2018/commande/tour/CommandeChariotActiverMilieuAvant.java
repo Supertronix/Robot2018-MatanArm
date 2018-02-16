@@ -1,4 +1,4 @@
-package org.firstchampionship.equipe5910.robot2018.commande;
+package org.firstchampionship.equipe5910.robot2018.commande.tour;
 
 import org.firstchampionship.equipe5910.robot2018.Robot;
 import org.firstchampionship.equipe5910.robot2018.RobotMap.Bras;

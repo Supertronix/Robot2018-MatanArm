@@ -1,4 +1,4 @@
-package org.firstchampionship.equipe5910.robot2018.commande;
+package org.firstchampionship.equipe5910.robot2018.commande.roues;
 
 import org.firstchampionship.equipe5910.robot2018.Robot;
 

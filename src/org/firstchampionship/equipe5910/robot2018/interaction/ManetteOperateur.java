@@ -1,16 +1,15 @@
 package org.firstchampionship.equipe5910.robot2018.interaction;
 
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverBasArriere;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverBasAvant;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverCentre;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautArriere;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautAvant;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuArriere;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuAvant;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotOuvrir;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceOuvrir;
+import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandeChariotActiverBasArriere;
+import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandeChariotActiverBasAvant;
+import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandeChariotActiverCentre;
+import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandeChariotActiverHautArriere;
+import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandeChariotActiverHautAvant;
+import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandeChariotActiverMilieuArriere;
+import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandeChariotActiverMilieuAvant;
+import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandePinceFermer;
+import org.firstchampionship.equipe5910.robot2018.commande.tour.CommandePinceOuvrir;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
