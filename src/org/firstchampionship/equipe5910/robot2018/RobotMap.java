@@ -87,16 +87,27 @@ public interface RobotMap
 		public static final int ENCODEUR_COMPTE_PAR_TOUR = 1024; // https://www.vexrobotics.com/217-5049.html
 		public static final float ROUE_CIRCONFERENCE = (float) (100*Math.PI) ;
 		public static final float ENCODEUR_DISTANCE_PAR_PULSE = ROUE_CIRCONFERENCE / ENCODEUR_COMPTE_PAR_TOUR; // echantillonage quadruple car k4x
-		public static final float ENCODEUR_GLISSEMENT = 0.945f; // valeur a tuner
+		public static final float ENCODEUR_GLISSEMENT = 0.99f; // valeur a tuner
 		public static final int ENCODEUR_PERIODE_MAX_AVANT_ARRET = 1;
 		public static final int ENCODEUR_ROTATION_ARRET = 1;
 		public static final float ROUE_FRICTION = 1;
 		
-		public static final double DISTANCE_KP = 0.0012;
+		public static final double DISTANCE_KP = 0.0015;
 		public static final double DISTANCE_KI = 0.00001; 
 		public static final double DISTANCE_KD = 0;
 		public static final float DISTANCE_TOLERANCE = 0f;
 		// Kp = Proportional gain // Ki = Integral gain // Kd = Derivative gain
+		
+		// DRIVE AUTO PID
+		public static final double GYRO_KP_AVANCER_ANGLE = 0.005; //0.03
+		public static final double GYRO_KP_AVANCER = 0.005; //0.03
+		public static final double GYRO_KI = 0.0;
+		public static final double GYRO_KI_AVANCER = 0.0;
+		public static final double GYRO_KI_AVANCER_ANGLE = 0.0;
+		
+		public static final double GYRO_KP_ROTATEONLY = 0.0075; // + haut = plus aggressif
+		public static final double GYRO_KI_ROTATEONLY = 0.00055; // + bas = plus aggressif
+		
 	}
 	
 	public interface ManetteConducteur
