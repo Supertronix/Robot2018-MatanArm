@@ -1,5 +1,6 @@
 package org.firstchampionship.equipe5910.robot2018;
 
+import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
 
@@ -15,6 +16,7 @@ public class RobotControleur extends IterativeRobot {
 	//DigitalInput encodeurGaucheB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_B);
 	//DigitalInput encodeurDroitA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_A);
 	//DigitalInput encodeurDroitB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_B);
+	LecteurAttributionsAutonomes lecteurAttributionsAutonomes;	
 	
 	@Override
 	public void robotInit() {
@@ -23,6 +25,8 @@ public class RobotControleur extends IterativeRobot {
 		manetteConducteur = new ManetteConducteur();
 		manetteOperateur = new ManetteOperateur();
 		//TimeUnit.SECONDS.sleep(10);		
+		this.lecteurAttributionsAutonomes = new LecteurAttributionsAutonomes();
+		//this.lecteurAttributionsAutonomes.vider();
 	}
 
 	@Override
@@ -30,15 +34,18 @@ public class RobotControleur extends IterativeRobot {
 		System.out.println("autonomousInit()");
 		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(500);
 		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
+		this.lecteurAttributionsAutonomes.lire();
+		
+		
 	}
 
 	@Override
 	public void autonomousPeriodic() {
+		Robot.roues.conduire(0, 0);
 		// System.out.println("autonomousPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
-		
-		
+		//this.lecteurAttributionsAutonomes.lire();
 	}
 
 	@Override
