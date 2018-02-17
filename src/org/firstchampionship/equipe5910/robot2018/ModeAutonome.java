@@ -23,19 +23,16 @@ public class ModeAutonome {
 		this.grille[POSITION_DEPART_1][COTE_DROIT][COTE_DROIT][COTE_GAUCHE] = new CommandGroup();
 		this.grille[POSITION_DEPART_1][COTE_DROIT][COTE_GAUCHE][COTE_DROIT] = new CommandGroup();
 		this.grille[POSITION_DEPART_1][COTE_DROIT][COTE_GAUCHE][COTE_GAUCHE] = new CommandGroup();
-		this.grille[POSITION_DEPART_1][COTE_GAUCHE][COTE_GAUCHE][COTE_GAUCHE] = new CommandGroup();
 		
 		this.grille[POSITION_DEPART_2][COTE_DROIT][COTE_DROIT][COTE_DROIT] = new CommandGroup();
 		this.grille[POSITION_DEPART_2][COTE_DROIT][COTE_DROIT][COTE_GAUCHE] = new CommandGroup();
 		this.grille[POSITION_DEPART_2][COTE_DROIT][COTE_GAUCHE][COTE_DROIT] = new CommandGroup();
 		this.grille[POSITION_DEPART_2][COTE_DROIT][COTE_GAUCHE][COTE_GAUCHE] = new CommandGroup();
-		this.grille[POSITION_DEPART_2][COTE_GAUCHE][COTE_GAUCHE][COTE_GAUCHE] = new CommandGroup();
 		
 		this.grille[POSITION_DEPART_3][COTE_DROIT][COTE_DROIT][COTE_DROIT] = new CommandGroup();
 		this.grille[POSITION_DEPART_3][COTE_DROIT][COTE_DROIT][COTE_GAUCHE] = new CommandGroup();
 		this.grille[POSITION_DEPART_3][COTE_DROIT][COTE_GAUCHE][COTE_DROIT] = new CommandGroup();
 		this.grille[POSITION_DEPART_3][COTE_DROIT][COTE_GAUCHE][COTE_GAUCHE] = new CommandGroup();
-		this.grille[POSITION_DEPART_3][COTE_GAUCHE][COTE_GAUCHE][COTE_GAUCHE] = new CommandGroup();
 		
 	}
 	
