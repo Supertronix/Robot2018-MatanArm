@@ -1,6 +1,7 @@
 package org.firstchampionship.equipe5910.robot2018;
 
 import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
+import org.firstchampionship.equipe5910.robot2018.trajet.Trajet1DDD;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -19,7 +20,7 @@ public class ModeAutonome {
 	
 	public ModeAutonome()
 	{
-		this.grille[POSITION_DEPART_1][COTE_DROIT][COTE_DROIT][COTE_DROIT] = new CommandGroup();
+		this.grille[POSITION_DEPART_1][COTE_DROIT][COTE_DROIT][COTE_DROIT] = new Trajet1DDD();
 		this.grille[POSITION_DEPART_1][COTE_DROIT][COTE_DROIT][COTE_GAUCHE] = new CommandGroup();
 		this.grille[POSITION_DEPART_1][COTE_DROIT][COTE_GAUCHE][COTE_DROIT] = new CommandGroup();
 		this.grille[POSITION_DEPART_1][COTE_DROIT][COTE_GAUCHE][COTE_GAUCHE] = new CommandGroup();

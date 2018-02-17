@@ -24,10 +24,11 @@ public class LecteurAttributionsAutonomes {
 		return null;
 	}
 	
+	Attribution attribution = new Attribution();
+
 	public Attribution lire()
 	{
-		Attribution attribution = new Attribution();
-
+		
 		String message = DriverStation.getInstance().getGameSpecificMessage();
 		//System.out.println("Message : " + message);
 		SmartDashboard.putString("Attribution de plates : ", message);

@@ -53,15 +53,15 @@ public class RobotControleur extends IterativeRobot {
 		/*CommandeRouesTourner commandeTourner = new CommandeRouesTourner(-90);
 		commandeTourner.start();*/
 		
-		CommandeAutoTest commandeAuto = new CommandeAutoTest();
-		commandeAuto.start();
+		//CommandeAutoTest commandeAuto = new CommandeAutoTest();
+		//commandeAuto.start();
 		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(1000);
 		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
 		SelecteurModeAutonomeViaInterrupteur selecteurPosition = new SelecteurModeAutonomeViaInterrupteur();
 		LecteurAttributionsAutonomes.Attribution attribution = this.lecteurAttributionsAutonomes.lire();
 		ModeAutonome controleurTrajet = new ModeAutonome();
 		CommandGroup trajet = controleurTrajet.obtenirTrajet(0, attribution);
-		//trajet.start();
+		trajet.start();
 		
 	}
 
