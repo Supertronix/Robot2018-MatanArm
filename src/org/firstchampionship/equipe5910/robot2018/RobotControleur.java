@@ -3,8 +3,10 @@ package org.firstchampionship.equipe5910.robot2018;
 import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
+import org.firstchampionship.equipe5910.robot2018.interaction.SelecteurModeAutonomeViaInterrupteur;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class RobotControleur extends IterativeRobot {
@@ -34,7 +36,12 @@ public class RobotControleur extends IterativeRobot {
 		System.out.println("autonomousInit()");
 		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(500);
 		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
+		SelecteurModeAutonomeViaInterrupteur selecteurPosition = new SelecteurModeAutonomeViaInterrupteur();
 		LecteurAttributionsAutonomes.Attribution attribution = this.lecteurAttributionsAutonomes.lire();
+		ModeAutonome controleurTrajet = new ModeAutonome();
+		CommandGroup trajet = controleurTrajet.obtenirTrajet(0, attribution);
+		//trajet.start();
+		
 	}
 
 	@Override
@@ -43,7 +50,6 @@ public class RobotControleur extends IterativeRobot {
 		// System.out.println("autonomousPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
-		//this.lecteurAttributionsAutonomes.lire();
 	}
 
 	@Override
