@@ -29,7 +29,6 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	PIDController pidGyro;
 	CustomPIDOutput pidSortieGyro;
 
-	
 	public Roues()
 	{
 		roueGauche = new VictorSP(ROUE_GAUCHE);
@@ -37,12 +36,13 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		
 		selecteurVitesse = new DoubleSolenoid(VITESSE_BASSE, VITESSE_ELEVEE);
 		
-		encodeurConduiteGauche = new Encoder(ENCODEUR_CONDUITE_GAUCHE_A, ENCODEUR_CONDUITE_GAUCHE_B,  ENCODEUR_CONDUITE_GAUCHE_INVERSION, Encoder.EncodingType.k4X);
+		encodeurConduiteGauche = new Encoder(ENCODEUR_CONDUITE_GAUCHE_A, ENCODEUR_CONDUITE_GAUCHE_B,  ENCODEUR_CONDUITE_GAUCHE_INVERSION, Encoder.EncodingType.k2X);
 		encodeurConduiteGauche.setDistancePerPulse(ENCODEUR_DISTANCE_PAR_PULSE/ENCODEUR_GLISSEMENT);
 		encodeurConduiteGauche.setSamplesToAverage(ENCODEUR_NOMBRE_ECHANTILLONS);
-		encodeurConduiteDroite = new Encoder(ENCODEUR_CONDUITE_DROITE_A, ENCODEUR_CONDUITE_DROITE_B,  ENCODEUR_CONDUITE_DROITE_INVERSION, Encoder.EncodingType.k4X);
+		encodeurConduiteDroite = new Encoder(ENCODEUR_CONDUITE_DROITE_A, ENCODEUR_CONDUITE_DROITE_B,  ENCODEUR_CONDUITE_DROITE_INVERSION, Encoder.EncodingType.k2X);
 		encodeurConduiteDroite.setDistancePerPulse(ENCODEUR_DISTANCE_PAR_PULSE/ENCODEUR_GLISSEMENT);
 		encodeurConduiteDroite.setSamplesToAverage(ENCODEUR_NOMBRE_ECHANTILLONS);		
+		
 		
 		pidSortieDistance = new CustomPIDOutput();
 		pidControleurDistance = new PIDController(DISTANCE_KP, DISTANCE_KI, DISTANCE_KD, encodeurConduiteGauche, pidSortieDistance);
@@ -54,7 +54,7 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 		gyro = new GyroADXRS450Supertronix();
 		gyro.setPIDSourceType(PIDSourceType.kDisplacement);
 		pidSortieGyro = new CustomPIDOutput();
-		pidGyro = new PIDController(-GYRO_KP, GYRO_KI, 0, gyro, pidSortieGyro);
+		pidGyro = new PIDController(-GYRO_KP_AVANCER_ANGLE, GYRO_KI, 0, gyro, pidSortieGyro);
 		pidGyro.setSetpoint(0.0f);
 		pidGyro.setAbsoluteTolerance(3);
 		pidGyro.enable();
@@ -186,7 +186,6 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	{
 		pidGyro.setPID(p, i, 0);
 	}
-	
 	
 	@Override
 	protected void initDefaultCommand() {}

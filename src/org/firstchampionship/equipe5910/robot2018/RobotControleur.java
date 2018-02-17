@@ -1,5 +1,8 @@
 package org.firstchampionship.equipe5910.robot2018;
 
+import org.firstchampionship.equipe5910.robot2018.auto.CommandeAutoTest;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancerAngle;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesTourner;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
 
@@ -30,17 +33,18 @@ public class RobotControleur extends IterativeRobot {
 		System.out.println("autonomousInit()");
 		Robot.roues.activerVitesseBasse();
 		Robot.roues.zeroSensors();
-		SmartDashboard.putNumber("Dist_Kp", RobotMap.Roues.DISTANCE_KP);
-		SmartDashboard.putNumber("Dist_Ki", RobotMap.Roues.DISTANCE_KI);
-		SmartDashboard.putNumber("DistanceSP", 0.0);
+		SmartDashboard.putNumber("Gyro_Kp_TOURNER", RobotMap.Roues.GYRO_KP_ROTATEONLY);
+		SmartDashboard.putNumber("Gyro_Ki_TOURNER", RobotMap.Roues.GYRO_KI_ROTATEONLY);
+		SmartDashboard.putNumber("GyroSP", 0.0);
 		
 		Robot.roues.setGyroConsigne(0.0);
-		SmartDashboard.putNumber("Gyro_Kp", RobotMap.Roues.GYRO_KP);
-		SmartDashboard.putNumber("Gyro_Ki", RobotMap.Roues.GYRO_KI);
-		SmartDashboard.putBoolean("resetSensors", false);
-		SmartDashboard.putBoolean("enablePIDs", true);
 		
-		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(500);
+		/*CommandeRouesTourner commandeTourner = new CommandeRouesTourner(-90);
+		commandeTourner.start();*/
+		
+		CommandeAutoTest commandeAuto = new CommandeAutoTest();
+		commandeAuto.start();
+		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(1000);
 		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
 	}
 
@@ -49,15 +53,16 @@ public class RobotControleur extends IterativeRobot {
 		// System.out.println("autonomousPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
-		Robot.roues.setDistancePid(SmartDashboard.getNumber("Dist_Kp", RobotMap.Roues.DISTANCE_KP), SmartDashboard.getNumber("Dist_Ki", RobotMap.Roues.DISTANCE_KI));
-		Robot.roues.setDistanceConsigne(SmartDashboard.getNumber("DistanceSP", 0.0));
-		Robot.roues.setGyroPid(SmartDashboard.getNumber("Gyro_Kp", RobotMap.Roues.GYRO_KP), SmartDashboard.getNumber("Gyro_Ki",  RobotMap.Roues.GYRO_KI));
-		Robot.roues.conduireDroit();
 		
-		SmartDashboard.putNumber("EncodeurG", Robot.roues.getDistanceGauche());
-		SmartDashboard.putNumber("EncodeurD", Robot.roues.getDistanceDroite());
-		SmartDashboard.putNumber("GyroV", Robot.roues.getGyroAngle());
+		//Robot.roues.setDistancePid(SmartDashboard.getNumber("Dist_Kp", RobotMap.Roues.DISTANCE_KP), SmartDashboard.getNumber("Dist_Ki", RobotMap.Roues.DISTANCE_KI));
+		//Robot.roues.setDistanceConsigne(SmartDashboard.getNumber("DistanceSP", 0.0));
+		//Robot.roues.setGyroPid(SmartDashboard.getNumber("Gyro_Kp", RobotMap.Roues.GYRO_KP_AVANCER_ANGLE), SmartDashboard.getNumber("Gyro_Ki",  RobotMap.Roues.GYRO_KI));
+		/*Robot.roues.conduireDroit();*/
 		
+		//SmartDashboard.putNumber("GyroV", Robot.roues.getGyroAngle());
+		//Robot.roues.setGyroConsigne(SmartDashboard.getNumber("GyroSP", 0));
+		//Robot.roues.setGyroPid(SmartDashboard.getNumber("Gyro_Kp_TOURNER", RobotMap.Roues.GYRO_KP_ROTATEONLY), SmartDashboard.getNumber("Gyro_Ki_TOURNER",  RobotMap.Roues.GYRO_KI_ROTATEONLY));
+		//Robot.roues.rotateWithGyro();
 		if (SmartDashboard.getBoolean("resetSensors", false))
 		{
 			Robot.roues.zeroSensors();
@@ -65,6 +70,7 @@ public class RobotControleur extends IterativeRobot {
 			Robot.roues.setGyroConsigne(0.0);
 			Robot.roues.setDistanceConsigne(0.0);
 		}
+		
 	}
 
 	@Override
