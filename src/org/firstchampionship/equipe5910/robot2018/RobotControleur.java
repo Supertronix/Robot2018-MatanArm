@@ -5,17 +5,17 @@ import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotControleur extends IterativeRobot {
 	
 	protected ManetteOperateur manetteOperateur;
 	protected ManetteConducteur manetteConducteur;
 	
-	//DigitalInput encodeurGaucheA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_A);
-	//DigitalInput encodeurGaucheB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_B);
-	//DigitalInput encodeurDroitA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_A);
-	//DigitalInput encodeurDroitB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_B);
-	
+	 public void zeroAllSensors() {
+       Robot.roues.zeroSensors();
+	 }
+	 
 	@Override
 	public void robotInit() {
 		System.out.println("robotInit()");
@@ -28,6 +28,18 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		System.out.println("autonomousInit()");
+		Robot.roues.activerVitesseBasse();
+		Robot.roues.zeroSensors();
+		SmartDashboard.putNumber("Dist_Kp", RobotMap.Roues.DISTANCE_KP);
+		SmartDashboard.putNumber("Dist_Ki", RobotMap.Roues.DISTANCE_KI);
+		SmartDashboard.putNumber("DistanceSP", 0.0);
+		
+		Robot.roues.setGyroConsigne(0.0);
+		SmartDashboard.putNumber("Gyro_Kp", RobotMap.Roues.GYRO_KP);
+		SmartDashboard.putNumber("Gyro_Ki", RobotMap.Roues.GYRO_KI);
+		SmartDashboard.putBoolean("resetSensors", false);
+		SmartDashboard.putBoolean("enablePIDs", true);
+		
 		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(500);
 		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
 	}
@@ -37,8 +49,22 @@ public class RobotControleur extends IterativeRobot {
 		// System.out.println("autonomousPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
+		Robot.roues.setDistancePid(SmartDashboard.getNumber("Dist_Kp", RobotMap.Roues.DISTANCE_KP), SmartDashboard.getNumber("Dist_Ki", RobotMap.Roues.DISTANCE_KI));
+		Robot.roues.setDistanceConsigne(SmartDashboard.getNumber("DistanceSP", 0.0));
+		Robot.roues.setGyroPid(SmartDashboard.getNumber("Gyro_Kp", RobotMap.Roues.GYRO_KP), SmartDashboard.getNumber("Gyro_Ki",  RobotMap.Roues.GYRO_KI));
+		Robot.roues.conduireDroit();
 		
+		SmartDashboard.putNumber("EncodeurG", Robot.roues.getDistanceGauche());
+		SmartDashboard.putNumber("EncodeurD", Robot.roues.getDistanceDroite());
+		SmartDashboard.putNumber("GyroV", Robot.roues.getGyroAngle());
 		
+		if (SmartDashboard.getBoolean("resetSensors", false))
+		{
+			Robot.roues.zeroSensors();
+			SmartDashboard.putNumber("DistanceSP", 0.0);
+			Robot.roues.setGyroConsigne(0.0);
+			Robot.roues.setDistanceConsigne(0.0);
+		}
 	}
 
 	@Override
@@ -49,45 +75,10 @@ public class RobotControleur extends IterativeRobot {
 	
 	@Override
 	public void teleopPeriodic() {		
-		// System.out.println("teleopPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
-
-		//System.out.println("Distance droite " + Robot.roues.getDistanceDroiteSelonEncodeur());
-		//System.out.println("Distance gauche " + Robot.roues.getDistanceGaucheSelonEncodeur());
-        
-        //System.out.println("Pin analogue gauche A " + encodeurGaucheA.get());
-        //System.out.println("Pin analogue gauche B " + encodeurGaucheB.get());
-        //System.out.println("Pin analogue droite A " + encodeurDroitA.get());
-        //System.out.println("Pin analogue droite B " + encodeurDroitB.get());
-        
-		/*if(manetteConducteur.veuxAvancer()){
-			Robot.roues.avancer(manetteConducteur.getAvancer(), manetteConducteur.getdirection());
-		}
-		else if(manetteConducteur.veuxReculer()){
-			Robot.roues.reculer(manetteConducteur.getReculer(), manetteConducteur.getdirection());
-		}
-		else{
-			if(manetteConducteur.veuxTournerSurPlace()){
-				Robot.roues.tournerSurPlace(manetteConducteur.getTournerSurPlace());
-			}
-			else{
-				Robot.roues.arreter();
-			}
-			
-		}*/
 		
 		Robot.roues.conduire(-manetteConducteur.getY1(), -manetteConducteur.getY2());
-		//Robot.bras.manualOffsetPID(-manetteConducteur.getY2());
-		
-		/*if (Math.abs(manetteConducteur.getY2()) >= 0.025)
-		{
-			Robot.bras.manualControl(-manetteConducteur.getY2());
-		}
-		else
-		{
-			
-		}*/
 		if (Math.abs(manetteConducteur.getAxeMonte()) >= 0.1)
 		{
 			Robot.bras.ajusterPID(manetteConducteur.getAxeMonte());
@@ -96,20 +87,20 @@ public class RobotControleur extends IterativeRobot {
 		{
 			Robot.bras.ajusterPID(-manetteConducteur.getAxeDescend());
 		}
-		
-		Robot.chariot.ajusterPID(manetteOperateur.getY1());
+		if (Math.abs(manetteOperateur.getY1()) >= 0.1)
+		{
+			Robot.chariot.ajusterPID(manetteOperateur.getY1());
+		}
 		
 		if (Math.abs(manetteOperateur.getX1()) >= 0.1)
 		{
 			Robot.bras.ajusterPID(manetteOperateur.getX1());
 		}
 		
-		
 	}
 	
 	@Override
 	public void testInit() {
-		System.out.println("testInit()");
 	}
 	
 	@Override

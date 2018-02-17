@@ -24,22 +24,13 @@ public class RouesTankDrive extends Roues{
 	public void conduire(double Y1, double Y2)
 	{
 		tankDrive.tankDrive(Y1, Y2);
-		/*SmartDashboard.putNumber("encodeur gauche (rate)", encodeurConduiteGauche.getRate());
-		if ( System.currentTimeMillis() - dernier_changement_vitesse >= SmartDashboard.getNumber("tempsChangementVitesse", 250))
-		{
-			if (encodeurConduiteGauche.getRate() > SmartDashboard.getNumber("encodeurChangementVitesse", 1500))
-			{
-				activerVitesseElevee();
-			}
-			else
-			{
-				activerVitesseBasse();
-			}
-			delaiDepuisChangementVitesse = System.currentTimeMillis();
-		}*/
 	}
 	
-	
-		
+	public void conduireDroit() 
+	{
+		//Verifier si on se rapproche de la cible on change le profil PID de 0 a 1
+		tankDrive.tankDrive(pidSortieDistance.getPIDOut() + pidSortieGyro.getPIDOut(), pidSortieDistance.getPIDOut() - pidSortieGyro.getPIDOut());
+	}
+			
 	
 }

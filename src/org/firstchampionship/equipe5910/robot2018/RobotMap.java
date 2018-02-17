@@ -97,6 +97,14 @@ public interface RobotMap
 		public static final double DISTANCE_KD = 0;
 		public static final float DISTANCE_TOLERANCE = 0f;
 		// Kp = Proportional gain // Ki = Integral gain // Kd = Derivative gain
+		
+		// DRIVE AUTO PID
+		public static final double GYRO_KP = 0.03; //0.03
+		public static final double GYRO_KI = 0.0;
+		
+		public static final double GYRO_KP_ROTATEONLY = 0.0075; // + haut = plus aggressif
+		public static final double GYRO_KI_ROTATEONLY = 0.00055; // + bas = plus aggressif
+		
 	}
 	
 	public interface ManetteConducteur
