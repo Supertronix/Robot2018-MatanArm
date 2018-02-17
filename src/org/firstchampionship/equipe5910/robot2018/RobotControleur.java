@@ -3,10 +3,13 @@ package org.firstchampionship.equipe5910.robot2018;
 import org.firstchampionship.equipe5910.robot2018.auto.CommandeAutoTest;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancerAngle;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesTourner;
+import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
+import org.firstchampionship.equipe5910.robot2018.interaction.SelecteurModeAutonomeViaInterrupteur;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,6 +22,12 @@ public class RobotControleur extends IterativeRobot {
        Robot.roues.zeroSensors();
 	 }
 	 
+	//DigitalInput encodeurGaucheA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_A);
+	//DigitalInput encodeurGaucheB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_B);
+	//DigitalInput encodeurDroitA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_A);
+	//DigitalInput encodeurDroitB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_B);
+	LecteurAttributionsAutonomes lecteurAttributionsAutonomes;	
+	
 	@Override
 	public void robotInit() {
 		System.out.println("robotInit()");
@@ -26,6 +35,8 @@ public class RobotControleur extends IterativeRobot {
 		manetteConducteur = new ManetteConducteur();
 		manetteOperateur = new ManetteOperateur();
 		//TimeUnit.SECONDS.sleep(10);		
+		this.lecteurAttributionsAutonomes = new LecteurAttributionsAutonomes();
+		//this.lecteurAttributionsAutonomes.vider();
 	}
 
 	@Override
@@ -46,10 +57,17 @@ public class RobotControleur extends IterativeRobot {
 		commandeAuto.start();
 		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(1000);
 		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
+		SelecteurModeAutonomeViaInterrupteur selecteurPosition = new SelecteurModeAutonomeViaInterrupteur();
+		LecteurAttributionsAutonomes.Attribution attribution = this.lecteurAttributionsAutonomes.lire();
+		ModeAutonome controleurTrajet = new ModeAutonome();
+		CommandGroup trajet = controleurTrajet.obtenirTrajet(0, attribution);
+		//trajet.start();
+		
 	}
 
 	@Override
 	public void autonomousPeriodic() {
+		Robot.roues.conduire(0, 0);
 		// System.out.println("autonomousPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes

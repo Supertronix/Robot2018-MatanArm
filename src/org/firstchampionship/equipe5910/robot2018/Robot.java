@@ -8,7 +8,6 @@ import org.firstchampionship.equipe5910.robot2018.soussysteme.RouesTankDrive;
 
 public class Robot {
 	
-	//public static Roues roues;
 	public static RouesTankDrive roues;
 	public static Chariot chariot;
 	public static Pince pince;
