@@ -59,17 +59,17 @@ public class RobotControleur extends IterativeRobot {
 		//Robot.roues.setGyroPid(SmartDashboard.getNumber("Gyro_Kp", RobotMap.Roues.GYRO_KP_AVANCER_ANGLE), SmartDashboard.getNumber("Gyro_Ki",  RobotMap.Roues.GYRO_KI));
 		/*Robot.roues.conduireDroit();*/
 		
-		//SmartDashboard.putNumber("GyroV", Robot.roues.getGyroAngle());
+		SmartDashboard.putNumber("GyroV", Robot.roues.getGyroAngle());
 		//Robot.roues.setGyroConsigne(SmartDashboard.getNumber("GyroSP", 0));
 		//Robot.roues.setGyroPid(SmartDashboard.getNumber("Gyro_Kp_TOURNER", RobotMap.Roues.GYRO_KP_ROTATEONLY), SmartDashboard.getNumber("Gyro_Ki_TOURNER",  RobotMap.Roues.GYRO_KI_ROTATEONLY));
 		//Robot.roues.rotateWithGyro();
-		if (SmartDashboard.getBoolean("resetSensors", false))
+		/*if (SmartDashboard.getBoolean("resetSensors", false))
 		{
 			Robot.roues.zeroSensors();
 			SmartDashboard.putNumber("DistanceSP", 0.0);
 			Robot.roues.setGyroConsigne(0.0);
 			Robot.roues.setDistanceConsigne(0.0);
-		}
+		}*/
 		
 	}
 
@@ -102,7 +102,7 @@ public class RobotControleur extends IterativeRobot {
 		{
 			Robot.bras.ajusterPID(manetteOperateur.getX1());
 		}
-		
+		SmartDashboard.putNumber("Angle_bras", Robot.bras.getPosition());
 	}
 	
 	@Override

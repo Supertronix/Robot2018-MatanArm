@@ -43,6 +43,7 @@ public class RouesTankDrive extends Roues{
 	public void rotateWithGyro()
 	{
 		tankDrive.tankDrive(pidSortieGyro.getPIDOut(),-pidSortieGyro.getPIDOut());
+		System.out.println("TOURNER_AVECGYRO_PID");
 	}
 	
 }

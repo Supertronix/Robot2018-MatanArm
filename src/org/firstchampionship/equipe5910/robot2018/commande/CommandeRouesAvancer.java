@@ -9,7 +9,6 @@ public class CommandeRouesAvancer extends Command{
 
 	protected double distanceVoulue;
 	protected double positionInitiale = 0;
-	protected double vitesse = 0.1; // test primitif
 	protected boolean PIDFirstLoop = true;
 	public CommandeRouesAvancer(double distanceVoulue)
 	{
@@ -19,7 +18,11 @@ public class CommandeRouesAvancer extends Command{
 
 	@Override
 	protected void initialize() {
-		Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_AVANCER, RobotMap.Roues.GYRO_KP_AVANCER);
+		if (distanceVoulue < 500)
+			Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_AVANCER * 25, RobotMap.Roues.GYRO_KI_AVANCER);
+		else
+			Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_AVANCER, RobotMap.Roues.GYRO_KI_AVANCER);
+		
 		Robot.roues.zeroSensors();
 		Robot.roues.setGyroConsigne(0);
 		System.out.println("CommandeRouesAvancer.initialize()");
