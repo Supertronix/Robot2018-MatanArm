@@ -6,7 +6,7 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesTourner;
 import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
-import org.firstchampionship.equipe5910.robot2018.interaction.SelecteurModeAutonomeViaInterrupteur;
+import org.firstchampionship.equipe5910.robot2018.interaction.SelecteurPositionAutonome;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -57,7 +57,7 @@ public class RobotControleur extends IterativeRobot {
 		//commandeAuto.start();
 		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(1000);
 		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
-		SelecteurModeAutonomeViaInterrupteur selecteurPosition = new SelecteurModeAutonomeViaInterrupteur();
+		SelecteurPositionAutonome selecteurPosition = new SelecteurPositionAutonome();
 		LecteurAttributionsAutonomes.Attribution attribution = this.lecteurAttributionsAutonomes.lire();
 		ModeAutonome controleurTrajet = new ModeAutonome();
 		CommandGroup trajet = controleurTrajet.obtenirTrajet(0, attribution);
