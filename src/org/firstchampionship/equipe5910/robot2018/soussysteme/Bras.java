@@ -58,6 +58,11 @@ public class Bras extends Subsystem implements RobotMap.Bras
 	{
 		this.selecteurExtension.set(DoubleSolenoid.Value.kReverse);		
 	}
+	
+	public double getPosition()
+	{
+		return brasMoteurPrincipal.getSensorCollection().getAnalogIn();
+	}
 	public void allerPosition(RobotMap.Bras.POSITION pos)
 	{
 		

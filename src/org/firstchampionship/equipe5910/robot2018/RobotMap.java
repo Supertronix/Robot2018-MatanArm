@@ -51,8 +51,8 @@ public interface RobotMap
 		public static final int BRAS_POSITION_ARRIERE = 222;
 		public static final int BRAS_POSITION_MILIEU = 527;
 		public static final int BRAS_POSITION_AVANT = 873;
-		public static final int BRAS_POSITION_AVANT_ANGLE = 700;
-		public static final int BRAS_POSITION_ARRIERE_ANGLE = 375;
+		public static final int BRAS_POSITION_AVANT_ANGLE = 647;
+		public static final int BRAS_POSITION_ARRIERE_ANGLE = 407;
 		
 		public enum POSITION {
 	        ARRIERE,
@@ -104,9 +104,9 @@ public interface RobotMap
 		public static final double GYRO_KI_AVANCER = 0.0;
 		public static final double GYRO_KI_AVANCER_ANGLE = 0.0;
 		
-		public static final double GYRO_KP_ROTATEONLY = 0.0075; // + haut = plus aggressif
-		public static final double GYRO_KI_ROTATEONLY = 0.00055; // + bas = plus aggressif
-		
+		public static final double GYRO_KP_ROTATEONLY = 0.02; // + haut = plus aggressif
+		public static final double GYRO_KI_ROTATEONLY = 0.02; // + bas = plus aggressif //0.0015
+		public static final double GYRO_KI_ROTATEONLY_ANGLE_ELEVE = 0.01;
 	}
 	
 	public interface ManetteConducteur

@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class CommandeRouesTourner extends Command{
 
 	protected double angleVoulue;
+	protected boolean PIDFirstLoop = true;
+	
 	protected double angleInitiale = 0;
 	protected boolean negativeAngle = false;
 	
@@ -19,29 +21,43 @@ public class CommandeRouesTourner extends Command{
 	}
 
 	@Override
-	protected void initialize() {
-		Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_ROTATEONLY, RobotMap.Roues.GYRO_KI_ROTATEONLY);
+	protected void initialize()  {
+		if (Math.abs(angleVoulue) > 45)
+		{
+			Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_ROTATEONLY, RobotMap.Roues.GYRO_KI_ROTATEONLY_ANGLE_ELEVE);
+		}
+		else
+		{
+			Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_ROTATEONLY, RobotMap.Roues.GYRO_KI_ROTATEONLY);
+		}
+	
 		Robot.roues.zeroSensors();
 		Robot.roues.setGyroConsigne(angleVoulue);
-		
-		
-		System.out.println("CommandeRouesAvancer.initialize()");
-		//this.positionInitiale = Robot.roues.getDistanceGauche();
-
-		// Robot.roues.avancer(vitesse); 
-		// Robot.roues.informerEncodeurDroitDeLaCible(distanceVoulue);
 	}
 
 	@Override
 	protected void execute() {
-		//Robot.roues.rotateWithGyro();
-		if (angleVoulue > 0)
+		
+		if (Math.abs(angleVoulue - Robot.roues.getGyroAngle()) <= 15)
 		{
-			Robot.roues.conduire(0.65, -0.65);
+			if (PIDFirstLoop)
+			{
+				Robot.roues.resetPIDS();
+				PIDFirstLoop = false;
+			}
+			Robot.roues.setGyroConsigne(angleVoulue);
+			Robot.roues.rotateWithGyro();
 		}
 		else
 		{
-			Robot.roues.conduire(-0.65, 0.65);
+			if (angleVoulue > 0)
+			{
+				Robot.roues.conduire(0.65, -0.65);
+			}
+			else
+			{
+				Robot.roues.conduire(-0.65, 0.65);
+			}
 		}
 		
 	}
@@ -49,6 +65,7 @@ public class CommandeRouesTourner extends Command{
 	@Override
 	protected boolean isFinished() {
 		boolean estFini = false;
+		
 		if (negativeAngle)
 		{
 			estFini = Robot.roues.getGyroAngle() <= (this.angleVoulue);
@@ -59,6 +76,7 @@ public class CommandeRouesTourner extends Command{
 		}
 			
 		if (estFini) Robot.roues.conduire(0,0);
+		
 		System.out.println("Angle parcourue " + (Robot.roues.getGyroAngle() - this.angleInitiale));
 		System.out.println("isFinished() " + estFini);
 		return estFini;

@@ -185,6 +185,7 @@ public class Roues extends Subsystem implements RobotMap.Roues{
 	public void setGyroPid(double p, double i)
 	{
 		pidGyro.setPID(p, i, 0);
+		System.out.println("PID GYRO : " + pidGyro.getI());
 	}
 	
 	@Override

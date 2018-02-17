@@ -32,7 +32,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class GyroADXRS450Supertronix extends GyroBase implements Gyro, PIDSource {
   private static final double kSamplePeriod = 0.001;
   private static final double kCalibrationSampleTime = 5.0;
-  private static final double kDegreePerSecondPerLSB = 0.0132; //Default 0.0125 //Best: 0.01317
+  private static final double kDegreePerSecondPerLSB = 0.0132; //Default 0.0125 //Best: 0.0132
 
 private static final int kRateRegister = 0x00;
   private static final int kTemRegister = 0x02;
