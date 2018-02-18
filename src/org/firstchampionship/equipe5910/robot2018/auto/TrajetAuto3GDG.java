@@ -11,8 +11,8 @@ public class TrajetAuto3GDG extends CommandGroup{
 	}
 	
 	protected void initialize(){
-		System.out.println("Trajet1DDD");
-		SmartDashboard.putString("Trajet", "1GGG");
+		System.out.println("Trajet3GDG");
+		SmartDashboard.putString("Trajet", "3GDG");
 	}
 		
 }
