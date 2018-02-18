@@ -2,6 +2,7 @@ package org.firstchampionship.equipe5910.robot2018;
 
 import org.firstchampionship.equipe5910.robot2018.RobotMap.Bras.POSITION;
 import org.firstchampionship.equipe5910.robot2018.auto.CommandeAutoTest;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancerAngle;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesTourner;
 import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
@@ -54,15 +55,20 @@ public class RobotControleur extends IterativeRobot {
 		/*CommandeRouesTourner commandeTourner = new CommandeRouesTourner(-90);
 		commandeTourner.start();*/
 		
-		CommandeAutoTest commandeAuto = new CommandeAutoTest();
-		commandeAuto.start();
+		CommandeRouesAvancer commandeAvancer = new CommandeRouesAvancer(500);
+		commandeAvancer.start();
+		
+		//CommandeAutoTest commandeAuto = new CommandeAutoTest();
+		//commandeAuto.start();
+		
 		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(1000);
 		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
 		
 		/*SelecteurPositionAutonome selecteurPosition = new SelecteurPositionAutonome();
-		LecteurAttributionsAutonomes.Attribution attribution = this.lecteurAttributionsAutonomes.lire();
+		LecteurAttributionsAutonomes.Attribution attributionCotes = this.lecteurAttributionsAutonomes.lire();
+		int positionDepart = selecteurPosition.lireChoix();
 		ModeAutonome controleurTrajet = new ModeAutonome();
-		CommandGroup trajet = controleurTrajet.obtenirTrajet(0, attribution);
+		CommandGroup trajet = controleurTrajet.obtenirTrajet(positionDepart, attributionCotes);
 		trajet.start();*/
 		
 	}

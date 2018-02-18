@@ -1,7 +1,6 @@
 package org.firstchampionship.equipe5910.robot2018.outil;
 
-import java.util.concurrent.SynchronousQueue;
-
+import java.util.ArrayDeque;
 import org.firstchampionship.equipe5910.robot2018.Robot;
 
 public class InterpreteurMouvement {
@@ -12,15 +11,17 @@ public class InterpreteurMouvement {
 	protected double pauseToleree = PAUSE_TOLEREE; // en millisecondes
 	protected int iterationsImmobile = 1;
 	// protected Timer horloge = null;// TODO version avec timer
-	protected SynchronousQueue<Double> dernieresPositions = new SynchronousQueue<Double>();
+	protected ArrayDeque<Double> dernieresPositions;
 
 	public InterpreteurMouvement()
 	{
+		this.dernieresPositions = new ArrayDeque<Double>();
 		this.calculerIterationsImmobiles();
 	}
 	
 	public void setPauseToleree(double pauseToleree)
 	{
+		System.out.println("InterpreteurMouvement.setPauseToleree()");
 		this.pauseToleree = pauseToleree;
 		this.calculerIterationsImmobiles();
 	}
@@ -30,31 +31,24 @@ public class InterpreteurMouvement {
 		this.iterationsImmobile = (int) (pauseToleree * 50 / 1000);
 		for(int position = 0; position < this.iterationsImmobile; position++)
 		{
-			try {
-				this.dernieresPositions.put(new Double(0));
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			this.dernieresPositions.push(new Double(-1000000));
 		}		
+		System.out.println("Taille buffer des positions " + this.dernieresPositions.size());
 	}
 	
 	protected double distanceActuelle;
 	protected double distanceAncienne;
 	public void mesurer()
 	{
-		try {
 			//double temps = this.horloge.get();
 			distanceActuelle = Robot.roues.getDistanceGauche();
-			this.dernieresPositions.put(new Double(distanceActuelle));
-			distanceAncienne = this.dernieresPositions.remove();
-			
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+			this.dernieresPositions.addLast(new Double(distanceActuelle));
+			distanceAncienne = this.dernieresPositions.removeFirst();
+			System.out.println("mesurer() - distanceActuelle " + distanceActuelle + " distanceAncienne " + distanceAncienne);			
 	}
 	
 	public boolean estImmobile()
 	{
-		return ((distanceActuelle - distanceAncienne) < this.DISTANCE_NULLE);
+		return ((distanceActuelle - distanceAncienne) < DISTANCE_NULLE);
 	}
 }
