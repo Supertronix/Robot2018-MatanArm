@@ -148,7 +148,7 @@ public interface RobotMap
 	
 	public interface SelecteurPositionAutonome
 	{
-		public static final int INTERRUPTEUR_DIGITAL_0 = 2;
-		public static final int INTERRUPTEUR_DIGITAL_1 = 3;
+		public static final int INTERRUPTEUR_GAUCHE = 4;
+		public static final int INTERRUPTEUR_DROIT = 5;
 	}
 }

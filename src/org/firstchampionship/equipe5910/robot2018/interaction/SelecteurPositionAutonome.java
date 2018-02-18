@@ -9,19 +9,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SelecteurPositionAutonome implements RobotMap.SelecteurPositionAutonome{
 
-    protected DigitalInput interrupteur0 = new DigitalInput(INTERRUPTEUR_DIGITAL_0);
-    protected DigitalInput interrupteur1 = new DigitalInput(INTERRUPTEUR_DIGITAL_1);
+    protected DigitalInput interrupteurGauche = new DigitalInput(INTERRUPTEUR_GAUCHE);
+    protected DigitalInput interrupteurDroit = new DigitalInput(INTERRUPTEUR_DROIT);
 
     protected int position = 0;
     
     public int lireChoix()
     {
-    	if(this.interrupteur0.get() && this.interrupteur1.get()) position = 1;
-    	if(this.interrupteur0.get() && !this.interrupteur1.get()) position = 2;
-    	if(!this.interrupteur0.get() && this.interrupteur1.get()) position = 3;
+    	if(this.interrupteurGauche.get() && this.interrupteurDroit.get()) position = 2;
+    	else if(this.interrupteurGauche.get()) position = 1;
+    	else if(this.interrupteurDroit.get()) position = 3;
 		return position;
     }
-    
     
 	public void afficherChoix() 
 	{
