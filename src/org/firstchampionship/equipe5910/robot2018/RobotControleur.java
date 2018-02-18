@@ -1,5 +1,6 @@
 package org.firstchampionship.equipe5910.robot2018;
 
+import org.firstchampionship.equipe5910.robot2018.RobotMap.Bras.POSITION;
 import org.firstchampionship.equipe5910.robot2018.auto.CommandeAutoTest;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancerAngle;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesTourner;
@@ -53,21 +54,21 @@ public class RobotControleur extends IterativeRobot {
 		/*CommandeRouesTourner commandeTourner = new CommandeRouesTourner(-90);
 		commandeTourner.start();*/
 		
-		//CommandeAutoTest commandeAuto = new CommandeAutoTest();
-		//commandeAuto.start();
+		CommandeAutoTest commandeAuto = new CommandeAutoTest();
+		commandeAuto.start();
 		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(1000);
 		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
-		SelecteurPositionAutonome selecteurPosition = new SelecteurPositionAutonome();
+		
+		/*SelecteurPositionAutonome selecteurPosition = new SelecteurPositionAutonome();
 		LecteurAttributionsAutonomes.Attribution attribution = this.lecteurAttributionsAutonomes.lire();
 		ModeAutonome controleurTrajet = new ModeAutonome();
 		CommandGroup trajet = controleurTrajet.obtenirTrajet(0, attribution);
-		trajet.start();
+		trajet.start();*/
 		
 	}
 
 	@Override
 	public void autonomousPeriodic() {
-		Robot.roues.conduire(0, 0);
 		// System.out.println("autonomousPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
@@ -94,6 +95,8 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void teleopInit() {		
 		System.out.println("teleopInit()");
+		//Robot.bras.allerPosition(POSITION.MILIEU);
+		Robot.pince.fermer();
 	}
 
 	

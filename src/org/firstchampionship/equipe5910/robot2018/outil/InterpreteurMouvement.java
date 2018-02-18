@@ -7,7 +7,7 @@ import org.firstchampionship.equipe5910.robot2018.Robot;
 public class InterpreteurMouvement {
 
 	public static int PAUSE_TOLEREE = 1000;
-	public static double DISTANCE_NULLE = 50; // TODO peut-être un ratio sur la distance desiree !
+	public static double DISTANCE_NULLE = 50; // TODO peut-etre un ratio sur la distance desiree !
 	public static int ITERATIONS_PAR_MILLISECONDE = 50/1000;
 	protected double pauseToleree = PAUSE_TOLEREE; // en millisecondes
 	protected int iterationsImmobile = 1;

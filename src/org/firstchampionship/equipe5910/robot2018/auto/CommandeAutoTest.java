@@ -1,8 +1,11 @@
 package org.firstchampionship.equipe5910.robot2018.auto;
 
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasAllonger;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasRetrecir;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverBasArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverCentre;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautAvant;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePause;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
@@ -49,7 +52,7 @@ public CommandeAutoTest() {
 	addSequential(new CommandeChariotActiverCentre());
 	*/
 	
-	/* DROITE VERS SCALE DROITE
+	/* DROITE VERS SCALE DROITE */
 	addSequential(new CommandeRouesAvancer(5000));
 	addParallel(new CommandeChariotActiverHautAvant());
 	addParallel(new CommandeBrasAllonger());
@@ -58,9 +61,18 @@ public CommandeAutoTest() {
 	addSequential(new CommandePinceOuvrir());
 	addSequential(new CommandePause(0.450));
 	addSequential(new CommandePinceFermer());
-	*/
+	addParallel(new CommandeBrasRetrecir());
+	addParallel(new CommandeChariotActiverCentre());
+	addSequential(new CommandeRouesTourner(16.5));
+	addSequential(new CommandeChariotActiverBasArriere());
+	addSequential(new CommandePinceOuvrir());
+	addSequential(new CommandeRouesAvancer(-1400));
+	addSequential(new CommandePinceFermer());
+	//addSequential(new CommandeChariotActiverMilieuArriere());
 	
-	/* GAUCHE VERS SCALE GAUCHE */
+	/**/
+	
+	/* GAUCHE VERS SCALE GAUCHE
 	addSequential(new CommandeRouesAvancer(5000));
 	//addParallel(new CommandeChariotActiverHautAvant());
 	//addParallel(new CommandeBrasAllonger());
@@ -69,7 +81,7 @@ public CommandeAutoTest() {
 	//addSequential(new CommandePinceOuvrir());
 	//addSequential(new CommandePause(0.450));
 	//addSequential(new CommandePinceFermer());
-	/**/
+	*/
 
 	// public CommandeConduiteDistance(double distance, double driveP, double driveI)
 	// public CommandeConduiteTourner(double angle, double P, double I)
