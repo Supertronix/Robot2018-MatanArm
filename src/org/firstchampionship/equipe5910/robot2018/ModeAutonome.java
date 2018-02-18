@@ -4,6 +4,10 @@ import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto1DDD;
 import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto1DGD;
 import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto1GDG;
 import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto1GGG;
+import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto2DDD;
+import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto2DGD;
+import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto2GDG;
+import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto2GGG;
 import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -21,6 +25,7 @@ public class ModeAutonome {
 	
 	protected CommandGroup[][][][] grille = new CommandGroup[3][2][2][2];
 	
+	
 	public ModeAutonome()
 	{
 		this.grille[POSITION_DEPART_1][DROIT][DROIT][DROIT] = new TrajetAuto1DDD();
@@ -28,10 +33,11 @@ public class ModeAutonome {
 		this.grille[POSITION_DEPART_1][GAUCHE][DROIT][GAUCHE] = new TrajetAuto1GDG();
 		this.grille[POSITION_DEPART_1][GAUCHE][GAUCHE][GAUCHE] = new TrajetAuto1GGG();
 
-		this.grille[POSITION_DEPART_2][DROIT][DROIT][DROIT] = new CommandGroup();
-		this.grille[POSITION_DEPART_2][DROIT][GAUCHE][DROIT] = new CommandGroup();
-		this.grille[POSITION_DEPART_2][GAUCHE][DROIT][GAUCHE] = new CommandGroup();
-		this.grille[POSITION_DEPART_2][GAUCHE][GAUCHE][GAUCHE] = new CommandGroup();
+		this.grille[POSITION_DEPART_2][DROIT][DROIT][DROIT] = new TrajetAuto2DDD();
+		this.grille[POSITION_DEPART_2][DROIT][GAUCHE][DROIT] = new TrajetAuto2DGD();
+		this.grille[POSITION_DEPART_2][GAUCHE][DROIT][GAUCHE] = new TrajetAuto2GDG();
+		this.grille[POSITION_DEPART_2][GAUCHE][GAUCHE][GAUCHE] = new TrajetAuto2GGG();
+		
 		
 		this.grille[POSITION_DEPART_3][DROIT][DROIT][DROIT] = new CommandGroup();
 		this.grille[POSITION_DEPART_3][DROIT][GAUCHE][DROIT] = new CommandGroup();
