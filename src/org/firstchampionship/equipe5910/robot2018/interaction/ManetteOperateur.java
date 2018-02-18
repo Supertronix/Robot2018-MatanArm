@@ -28,6 +28,7 @@ public class ManetteOperateur implements RobotMap.ManetteOperateur{
 	protected JoystickButton ouvrir;
 	
 	
+	
 	public ManetteOperateur(){
 		manetteOperateur = new Joystick(MANETTE_OPERATEUR);
 		hautAvant = new JoystickButton(manetteOperateur, BOUTON_HAUT_AVANT);
