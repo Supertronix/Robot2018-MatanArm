@@ -16,9 +16,16 @@ public class SelecteurPositionAutonome implements RobotMap.SelecteurPositionAuto
     
     public int lireChoix()
     {
+    	System.out.println("Interrupteur GAUCHE " + this.interrupteurGauche.get());
+    	System.out.println("Interrupteur DROIT " + this.interrupteurDroit.get());
+    	SmartDashboard.putBoolean("Switch GAUCHE", this.interrupteurGauche.get());
+    	SmartDashboard.putBoolean("Switch DROITE", this.interrupteurDroit.get());
     	if(this.interrupteurGauche.get() && this.interrupteurDroit.get()) position = 2;
+    	else if(!this.interrupteurGauche.get() && !this.interrupteurDroit.get()) position = 2;
     	else if(this.interrupteurGauche.get()) position = 1;
     	else if(this.interrupteurDroit.get()) position = 3;
+    	System.out.println("Position trouvee " + position);
+    	SmartDashboard.putNumber("Position depart autonome", position);
 		return position;
     }
     

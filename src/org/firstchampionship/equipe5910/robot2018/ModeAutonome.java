@@ -15,6 +15,7 @@ import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto3GGG;
 import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ModeAutonome {
 
@@ -68,8 +69,11 @@ public class ModeAutonome {
 	
 	public CommandGroup obtenirTrajet(int depart, LecteurAttributionsAutonomes.Attribution attribution)
 	{
-		this.depart = depart;
+		this.depart = depart - 1;
 		this.attribution = attribution;
-		return this.grille[depart][attribution.premier.ordinal()][attribution.second.ordinal()][attribution.troisieme.ordinal()];
+		String log = "obtenirTrajet(" + this.depart + ", " + attribution.premier.ordinal() + "" + attribution.second.ordinal() + "" + attribution.troisieme.ordinal() + ")";
+		System.out.println(log);
+		//SmartDashboard.putString("Choix commande", log);
+		return this.grille[this.depart][attribution.premier.ordinal()][attribution.second.ordinal()][attribution.troisieme.ordinal()];
 	}
 }

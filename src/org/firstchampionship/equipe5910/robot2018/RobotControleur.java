@@ -64,20 +64,22 @@ public class RobotControleur extends IterativeRobot {
 		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(1000);
 		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
 		
-		SelecteurPositionAutonome selecteurPosition = new SelecteurPositionAutonome();
+		selecteurPosition = new SelecteurPositionAutonome();
 		LecteurAttributionsAutonomes.Attribution attributionCotes = this.lecteurAttributionsAutonomes.lire();
 		int positionDepart = selecteurPosition.lireChoix();
 		ModeAutonome controleurTrajet = new ModeAutonome();
 		CommandGroup trajet = controleurTrajet.obtenirTrajet(positionDepart, attributionCotes);
 		trajet.start();
 	}
+	SelecteurPositionAutonome selecteurPosition;
 
 	@Override
 	public void autonomousPeriodic() {
 		// System.out.println("autonomousPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
-		
+		//this.selecteurPosition.lireChoix();
+		//Robot.roues.conduire(0, 0); // garder pour tests
 		//Robot.roues.setDistancePid(SmartDashboard.getNumber("Dist_Kp", RobotMap.Roues.DISTANCE_KP), SmartDashboard.getNumber("Dist_Ki", RobotMap.Roues.DISTANCE_KI));
 		//Robot.roues.setDistanceConsigne(SmartDashboard.getNumber("DistanceSP", 0.0));
 		//Robot.roues.setGyroPid(SmartDashboard.getNumber("Gyro_Kp", RobotMap.Roues.GYRO_KP_AVANCER_ANGLE), SmartDashboard.getNumber("Gyro_Ki",  RobotMap.Roues.GYRO_KI));
