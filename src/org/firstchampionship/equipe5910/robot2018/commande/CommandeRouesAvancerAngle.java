@@ -36,7 +36,7 @@ public class CommandeRouesAvancerAngle extends Command{
 	protected void execute() {
 		
 		
-		if (distanceVoulue - Robot.roues.getDistanceGauche() <= 500)
+		if (Math.abs(distanceVoulue - Robot.roues.getDistanceGauche()) <= 500)
 		{
 			if (PIDFirstLoop)
 			{
@@ -49,7 +49,14 @@ public class CommandeRouesAvancerAngle extends Command{
 		}
 		else
 		{
-			Robot.roues.conduireDroitGyroSeul(0.75);
+			if (distanceVoulue > 0)
+			{
+				Robot.roues.conduireDroitGyroSeul(0.75);
+			}
+			else
+			{
+				Robot.roues.conduireDroitGyroSeul(-0.75);
+			}
 		}
 		//System.out.println("CommandeRouesAvancer.execute()");
 		//Robot.roues.avancer(vitesse); 
@@ -59,7 +66,17 @@ public class CommandeRouesAvancerAngle extends Command{
 	
 	@Override
 	protected boolean isFinished() {
-		boolean estFini = Robot.roues.getDistanceGauche() >= (this.distanceVoulue);
+		boolean estFini;
+		
+		if (distanceVoulue >= 0)
+		{
+			estFini = Robot.roues.getDistanceGauche() >= (this.distanceVoulue);
+		}
+		else
+		{
+			estFini = Robot.roues.getDistanceGauche() <= (this.distanceVoulue);
+		}
+		
 		System.out.println("Distance parcourue " + (Robot.roues.getDistanceGauche() - this.positionInitiale));
 		System.out.println("isFinished() " + estFini);
 		return estFini;

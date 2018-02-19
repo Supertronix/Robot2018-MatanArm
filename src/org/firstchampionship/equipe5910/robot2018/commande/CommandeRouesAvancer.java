@@ -10,27 +10,28 @@ public class CommandeRouesAvancer extends Command{
 	protected double distanceVoulue;
 	protected double positionInitiale = 0;
 	protected boolean PIDFirstLoop = true;
-	protected InterpreteurMouvement verificateurImmobilite;
+	//protected InterpreteurMouvement verificateurImmobilite;
 	
 	public CommandeRouesAvancer(double distanceVoulue)
 	{
 		requires(Robot.roues);		
 		this.distanceVoulue = distanceVoulue;
-		verificateurImmobilite = new InterpreteurMouvement();
+		//verificateurImmobilite = new InterpreteurMouvement();
 	}
 
 	public void setPauseToleree(double pauseToleree)
 	{
-		this.verificateurImmobilite.setPauseToleree(pauseToleree);
+		//this.verificateurImmobilite.setPauseToleree(pauseToleree);
 	}
 	
 	@Override
 	protected void initialize() {
 		if (Math.abs(distanceVoulue) < 500)
-			Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_AVANCER * 25, RobotMap.Roues.GYRO_KI_AVANCER);
+			Robot.roues.setDistancePid(RobotMap.Roues.DISTANCE_KP * 5, RobotMap.Roues.DISTANCE_KI);
 		else
-			Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_AVANCER, RobotMap.Roues.GYRO_KI_AVANCER);
+			Robot.roues.setDistancePid(RobotMap.Roues.DISTANCE_KP, RobotMap.Roues.DISTANCE_KI);
 		
+		Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_AVANCER, RobotMap.Roues.GYRO_KI_AVANCER);
 		Robot.roues.zeroSensors();
 		Robot.roues.setGyroConsigne(0);
 		System.out.println("CommandeRouesAvancer.initialize()");
@@ -72,7 +73,7 @@ public class CommandeRouesAvancer extends Command{
 		//Robot.roues.avancer(Robot.roues.getVitesseSelonEncodeurDroitStabilise()); 
 		// System.out.println("selon pid vitesse = "  + Robot.roues.getVitesseSelonEncodeurDroitStabilise());
 		
-		this.verificateurImmobilite.mesurer();
+		//this.verificateurImmobilite.mesurer();
 	}
 	
 	protected boolean estArrive = false;
@@ -87,8 +88,9 @@ public class CommandeRouesAvancer extends Command{
 		{
 			estArrive = Robot.roues.getDistanceGauche() <= (this.distanceVoulue);
 		}
-		System.out.println("estArrive " + estArrive + " est immobile " + this.verificateurImmobilite.estImmobile());
-		return estArrive || this.verificateurImmobilite.estImmobile();
+		//System.out.println("estArrive " + estArrive + " est immobile " + this.verificateurImmobilite.estImmobile());
+		//return estArrive || this.verificateurImmobilite.estImmobile();
+		return estArrive;
 	}
 	
 	@Override

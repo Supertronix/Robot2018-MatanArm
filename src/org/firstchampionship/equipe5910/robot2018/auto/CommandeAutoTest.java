@@ -52,7 +52,7 @@ public CommandeAutoTest() {
 	addSequential(new CommandeChariotActiverCentre());
 	*/
 	
-	/* DROITE VERS SCALE DROITE */
+	/* DROITE VERS SCALE DROITE
 	addSequential(new CommandeRouesAvancer(5000));
 	addParallel(new CommandeChariotActiverHautAvant());
 	addParallel(new CommandeBrasAllonger());
@@ -70,7 +70,7 @@ public CommandeAutoTest() {
 	addSequential(new CommandePinceFermer());
 	//addSequential(new CommandeChariotActiverMilieuArriere());
 	
-	/**/
+	*/
 	
 	/* GAUCHE VERS SCALE GAUCHE
 	addSequential(new CommandeRouesAvancer(5000));
