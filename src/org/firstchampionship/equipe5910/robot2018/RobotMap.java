@@ -15,7 +15,7 @@ public interface RobotMap
 		public static final boolean CHARIOT_SENSOR_ENCODEUR_INVERSION = true;
 		
 		public static final double CHARIOT_PID_KP = 1;
-		public static final int CHARIOT_POSITION_BAS= 1000;
+		public static final int CHARIOT_POSITION_BAS= 1250;
 		public static final int CHARIOT_POSITION_MILIEU = 21000; //18000 = milieu
 		public static final int CHARIOT_POSITION_HAUT = 37200;
 		public static final int CHARIOT_POSITION_LIMITE_OUVERTURE_PINCE = 24435;

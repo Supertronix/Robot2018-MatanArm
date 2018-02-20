@@ -4,6 +4,7 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasAllonger;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasRetrecir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverBasArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHome;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePause;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
@@ -32,9 +33,17 @@ public class TrajetAuto3DDD extends CommandGroup{
 		addSequential(new CommandeRouesTourner(16.5));
 		addSequential(new CommandeChariotActiverBasArriere());
 		addSequential(new CommandePinceOuvrir());
-		addSequential(new CommandeRouesAvancer(-1400));
+		addSequential(new CommandeRouesAvancer(-1500));
 		addSequential(new CommandePinceFermer());
-		//addSequential(new CommandeChariotActiverMilieuArriere());
+		addSequential(new CommandePause(0.200));
+		addSequential(new CommandeChariotActiverMilieuArriere());
+		addSequential(new CommandePause(0.600));
+		addSequential(new CommandeRouesAvancer(-350));
+		addSequential(new CommandePinceOuvrir());
+		addSequential(new CommandePause(0.450));
+		addSequential(new CommandePinceFermer());
+		
+		//addSequential(new CommandeChariotActiverHome());
 	}
 	
 	protected void initialize(){
