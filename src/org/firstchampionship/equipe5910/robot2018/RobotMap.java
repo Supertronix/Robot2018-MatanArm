@@ -161,4 +161,10 @@ public interface RobotMap
 		public static final int INTERRUPTEUR_GAUCHE = 14;
 		public static final int INTERRUPTEUR_DROIT = 15;
 	}
+	
+	public interface InterpreteurMouvement
+	{
+		public static int PAUSE_TOLEREE = 2000;
+		public static double DISTANCE_NULLE = 100; // TODO peut-etre un ratio sur la distance desiree !
+	}
 }
