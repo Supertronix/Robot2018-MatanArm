@@ -35,7 +35,7 @@ public class LecteurAttributionsAutonomes {
 		
 		if(message.length() > 0)
 		{
-			this.attribution = new Attribution()
+			this.attribution = new Attribution();
 			this.attribution.premier = convertirLettreEnCote(message.charAt(0));
 			this.attribution.second = convertirLettreEnCote(message.charAt(1));
 			this.attribution.troisieme = convertirLettreEnCote(message.charAt(2));
