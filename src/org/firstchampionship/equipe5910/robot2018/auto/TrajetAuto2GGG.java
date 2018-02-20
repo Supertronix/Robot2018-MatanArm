@@ -15,12 +15,13 @@ public class TrajetAuto2GGG extends CommandGroup{
 	public TrajetAuto2GGG()
 	{
 		addParallel(new CommandeChariotActiverMilieuAvant());
-		addSequential(new CommandeRouesAvancerAngle(2000, -35));
-		addSequential(new CommandeRouesAvancerAngle(750, 40));
+		addSequential(new CommandeRouesAvancerAngle(2250, -40));
+		addSequential(new CommandeRouesAvancerAngle(650, 50));
 		addSequential(new CommandePinceOuvrir());
 		addSequential(new CommandePause(0.350));
 		addSequential(new CommandePinceFermer());
-		addSequential(new CommandeChariotActiverHome());	
+		addSequential(new CommandeChariotActiverHome());
+		
 	}
 	
 	protected void initialize(){

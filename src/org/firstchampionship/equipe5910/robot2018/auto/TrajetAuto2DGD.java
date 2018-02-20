@@ -15,8 +15,8 @@ public class TrajetAuto2DGD extends CommandGroup{
 	public TrajetAuto2DGD()
 	{
 		addParallel(new CommandeChariotActiverMilieuAvant());
-		addSequential(new CommandeRouesAvancerAngle(2250, 35));
-		addSequential(new CommandeRouesAvancerAngle(725, -40));
+		addSequential(new CommandeRouesAvancerAngle(2000, 35));
+		addSequential(new CommandeRouesAvancerAngle(800, -45));
 		addSequential(new CommandePinceOuvrir());
 		addSequential(new CommandePause(0.350));
 		addSequential(new CommandePinceFermer());

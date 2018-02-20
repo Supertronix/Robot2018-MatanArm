@@ -19,7 +19,7 @@ public class TrajetAuto3GGG extends CommandGroup{
 	{
 		addSequential(new CommandeRouesAvancer(5350));
 		addSequential(new CommandeRouesTourner(-90));
-		addSequential(new CommandeRouesAvancer(4700));
+		addSequential(new CommandeRouesAvancer(4850));
 		addParallel(new CommandeChariotActiverHautAvant());
 		addParallel(new CommandeBrasAllonger());
 		addSequential(new CommandeRouesTourner(90));
