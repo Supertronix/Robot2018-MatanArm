@@ -14,6 +14,7 @@ public class RouesTankDrive extends Roues{
 	public RouesTankDrive(){
 		super();
 		tankDrive = new DifferentialDrive(roueGauche, roueDroite);
+		tankDrive.setSafetyEnabled(false);
 		/*SmartDashboard.putNumber("encodeurChangementVitesse", 1500);
 		SmartDashboard.putNumber("tempsChangementVitesse", 250);
 		delaiDepuisChangementVitesse = System.currentTimeMillis();*/

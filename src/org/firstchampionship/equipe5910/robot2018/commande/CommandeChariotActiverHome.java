@@ -6,11 +6,11 @@ import org.firstchampionship.equipe5910.robot2018.RobotMap.Chariot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CommandeChariotActiverCentre extends Command{
+public class CommandeChariotActiverHome extends Command{
 	
 	boolean estFini = false;
 	
-	public CommandeChariotActiverCentre(){
+	public CommandeChariotActiverHome(){
 		requires(Robot.chariot);
 	}
 	
@@ -23,7 +23,8 @@ public class CommandeChariotActiverCentre extends Command{
 	protected void execute() {
 		System.out.println("CommandeChariotActiverCentre");
 		Robot.chariot.allerPosition(Chariot.POSITION.BAS);
-		Robot.bras.allerPosition(Bras.POSITION.MILIEU);
+		Robot.bras.allerPosition(Bras.POSITION.HOME);
+		Robot.bras.retrecir();
 		estFini = true;
 	}
 

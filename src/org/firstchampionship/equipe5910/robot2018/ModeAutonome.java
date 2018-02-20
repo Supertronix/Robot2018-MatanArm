@@ -12,6 +12,7 @@ import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto3DDD;
 import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto3DGD;
 import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto3GDG;
 import org.firstchampionship.equipe5910.robot2018.auto.TrajetAuto3GGG;
+import org.firstchampionship.equipe5910.robot2018.auto.TrajetAutoAvancerSeulement;
 import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -22,13 +23,14 @@ public class ModeAutonome {
 	public static int POSITION_DEPART_1 = 0;
 	public static int POSITION_DEPART_2 = 1;
 	public static int POSITION_DEPART_3 = 2;
+	public static int POSITION_DEPART_INCONNU = 3;
 	public static int GAUCHE = 0;
 	public static int DROIT = 1;
 	
 	protected LecteurAttributionsAutonomes.Attribution attribution;
 	protected int depart;
 	
-	protected CommandGroup[][][][] grille = new CommandGroup[3][2][2][2];
+	protected CommandGroup[][][][] grille = new CommandGroup[4][2][2][2];
 	
 	
 	public ModeAutonome()
@@ -48,7 +50,11 @@ public class ModeAutonome {
 		this.grille[POSITION_DEPART_3][DROIT][GAUCHE][DROIT] = new TrajetAuto3DGD();
 		this.grille[POSITION_DEPART_3][GAUCHE][DROIT][GAUCHE] = new TrajetAuto3GDG();
 		this.grille[POSITION_DEPART_3][GAUCHE][GAUCHE][GAUCHE] = new TrajetAuto3GGG();
-
+		
+		this.grille[POSITION_DEPART_INCONNU][DROIT][DROIT][DROIT] = new TrajetAutoAvancerSeulement();
+		this.grille[POSITION_DEPART_INCONNU][DROIT][GAUCHE][DROIT] = new TrajetAutoAvancerSeulement();
+		this.grille[POSITION_DEPART_INCONNU][GAUCHE][DROIT][GAUCHE] = new TrajetAutoAvancerSeulement();
+		this.grille[POSITION_DEPART_INCONNU][GAUCHE][GAUCHE][GAUCHE] = new TrajetAutoAvancerSeulement();
 		
 		// Combinaisons non utilisees - contiennent des commandes par defaut
 		this.grille[POSITION_DEPART_1][DROIT][DROIT][GAUCHE] = new CommandGroup();
@@ -65,6 +71,11 @@ public class ModeAutonome {
 		this.grille[POSITION_DEPART_3][DROIT][GAUCHE][GAUCHE] = new CommandGroup();
 		this.grille[POSITION_DEPART_3][GAUCHE][DROIT][DROIT] = new CommandGroup();
 		this.grille[POSITION_DEPART_3][GAUCHE][GAUCHE][DROIT] = new CommandGroup();
+		
+		this.grille[POSITION_DEPART_INCONNU][DROIT][DROIT][GAUCHE] = new CommandGroup();
+		this.grille[POSITION_DEPART_INCONNU][DROIT][GAUCHE][GAUCHE] = new CommandGroup();
+		this.grille[POSITION_DEPART_INCONNU][GAUCHE][DROIT][DROIT] = new CommandGroup();
+		this.grille[POSITION_DEPART_INCONNU][GAUCHE][GAUCHE][DROIT] = new CommandGroup();
 	}
 	
 	public CommandGroup obtenirTrajet(int depart, LecteurAttributionsAutonomes.Attribution attribution)

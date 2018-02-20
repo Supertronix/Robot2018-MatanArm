@@ -20,8 +20,9 @@ public class CommandeChariotActiverBasArriere extends Command{
 	@Override
 	protected void execute() {
 		//Robot.chariot.positionnerBasArriere();
-		Robot.bras.allerPosition(Bras.POSITION.ARRIERE);
+		Robot.bras.allerPosition(Bras.POSITION.ARRIERE_BAS);
 		Robot.chariot.allerPosition(Chariot.POSITION.BAS);
+		Robot.bras.retrecir();
 	}
 
 	@Override

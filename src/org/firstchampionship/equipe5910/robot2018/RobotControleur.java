@@ -2,6 +2,7 @@ package org.firstchampionship.equipe5910.robot2018;
 
 import org.firstchampionship.equipe5910.robot2018.RobotMap.Bras.POSITION;
 import org.firstchampionship.equipe5910.robot2018.auto.CommandeAutoTest;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancerAngle;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesTourner;
@@ -10,7 +11,10 @@ import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
 import org.firstchampionship.equipe5910.robot2018.interaction.SelecteurPositionAutonome;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,14 +33,16 @@ public class RobotControleur extends IterativeRobot {
 	//DigitalInput encodeurDroitA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_A);
 	//DigitalInput encodeurDroitB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_B);
 	LecteurAttributionsAutonomes lecteurAttributionsAutonomes;	
-	
+	SelecteurPositionAutonome selecteurPosition;
+
 	@Override
 	public void robotInit() {
 		System.out.println("robotInit()");
 		Robot.construire();
 		manetteConducteur = new ManetteConducteur();
 		manetteOperateur = new ManetteOperateur();
-		//TimeUnit.SECONDS.sleep(10);		
+		//TimeUnit.SECONDS.sleep(10);
+		
 		this.lecteurAttributionsAutonomes = new LecteurAttributionsAutonomes();
 		//this.lecteurAttributionsAutonomes.vider();
 	}
@@ -51,27 +57,15 @@ public class RobotControleur extends IterativeRobot {
 		SmartDashboard.putNumber("GyroSP", 0.0);
 		
 		Robot.roues.setGyroConsigne(0.0);
+		if (selecteurPosition == null)
+			selecteurPosition = new SelecteurPositionAutonome();
 		
-		/*CommandeRouesTourner commandeTourner = new CommandeRouesTourner(-90);
-		commandeTourner.start();*/
-		
-		//CommandeRouesAvancer commandeAvancer = new CommandeRouesAvancer(500);
-		//commandeAvancer.start();
-		
-		//CommandeAutoTest commandeAuto = new CommandeAutoTest();
-		//commandeAuto.start();
-		
-		//CommandeRouesAvancer commandeRouesAvancer = new CommandeRouesAvancer(1000);
-		//commandeRouesAvancer.start();	 // devrait avancer de 10 millimetres
-		
-		selecteurPosition = new SelecteurPositionAutonome();
 		LecteurAttributionsAutonomes.Attribution attributionCotes = this.lecteurAttributionsAutonomes.lire();
 		int positionDepart = selecteurPosition.lireChoix();
 		ModeAutonome controleurTrajet = new ModeAutonome();
 		CommandGroup trajet = controleurTrajet.obtenirTrajet(positionDepart, attributionCotes);
 		trajet.start();
 	}
-	SelecteurPositionAutonome selecteurPosition;
 
 	@Override
 	public void autonomousPeriodic() {
@@ -102,7 +96,6 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void teleopInit() {		
 		System.out.println("teleopInit()");
-		//Robot.bras.allerPosition(POSITION.MILIEU);
 		Robot.pince.fermer();
 	}
 
@@ -113,6 +106,8 @@ public class RobotControleur extends IterativeRobot {
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
 		
 		Robot.roues.conduire(-manetteConducteur.getY1(), -manetteConducteur.getY2());
+		
+		// BRAS
 		if (Math.abs(manetteConducteur.getAxeMonte()) >= 0.1)
 		{
 			Robot.bras.ajusterPID(manetteConducteur.getAxeMonte());
@@ -121,16 +116,35 @@ public class RobotControleur extends IterativeRobot {
 		{
 			Robot.bras.ajusterPID(-manetteConducteur.getAxeDescend());
 		}
+		
+		// CHARIOT	
 		if (Math.abs(manetteOperateur.getY1()) >= 0.1)
 		{
-			Robot.chariot.ajusterPID(manetteOperateur.getY1());
+			if (Timer.getMatchTime() > 30)
+			{
+				Robot.chariot.ajusterPID(manetteOperateur.getY1() / 5);
+			}
+			else
+			{
+				Robot.chariot.ajusterPID(manetteOperateur.getY1());
+			}
 		}
-		
+		if (Robot.bras.isInExtendedLimits() && Robot.chariot.getPosition() < RobotMap.Chariot.CHARIOT_POSITION_LIMITE_OUVERTURE_PINCE)
+		{
+			CommandePinceFermer fermerPince = new CommandePinceFermer();
+			fermerPince.start();
+		}
+		/* L'operateur ne veut plus le controle du bras
 		if (Math.abs(manetteOperateur.getX1()) >= 0.1)
 		{
 			Robot.bras.ajusterPID(manetteOperateur.getX1());
-		}
+		}*/
+		
 		SmartDashboard.putNumber("Angle_bras", Robot.bras.getPosition());
+		SmartDashboard.putNumber("Position_Chariot", Robot.chariot.getPosition());
+	}
+	@Override
+	public void disabledInit() {
 	}
 	
 	@Override

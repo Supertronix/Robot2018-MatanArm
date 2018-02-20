@@ -3,7 +3,7 @@ package org.firstchampionship.equipe5910.robot2018.auto;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasAllonger;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasRetrecir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverBasArriere;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverCentre;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHome;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePause;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
@@ -28,7 +28,7 @@ public class TrajetAuto3DDD extends CommandGroup{
 		addSequential(new CommandePause(0.450));
 		addSequential(new CommandePinceFermer());
 		addParallel(new CommandeBrasRetrecir());
-		addParallel(new CommandeChariotActiverCentre());
+		addParallel(new CommandeChariotActiverHome());
 		addSequential(new CommandeRouesTourner(16.5));
 		addSequential(new CommandeChariotActiverBasArriere());
 		addSequential(new CommandePinceOuvrir());

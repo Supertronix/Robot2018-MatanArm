@@ -14,7 +14,10 @@ public class CommandeBrasAllonger extends Command {
 	@Override
 	protected void initialize() {
 		System.out.println("CommandeBrasAllonger");
-		Robot.bras.allonger();
+		if (Robot.bras.isInExtendedLimits())
+		{
+			Robot.bras.allonger();
+		}	
 	}
 	
 	@Override

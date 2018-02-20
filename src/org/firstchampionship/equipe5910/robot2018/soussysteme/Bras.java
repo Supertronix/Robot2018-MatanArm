@@ -44,7 +44,7 @@ public class Bras extends Subsystem implements RobotMap.Bras
 		
 		this.selecteurExtension = new DoubleSolenoid(BRAS_RETRECI, BRAS_ALLONGE);
 		this.retrecir();
-		allerPosition(RobotMap.Bras.POSITION.MILIEU);
+		allerPosition(RobotMap.Bras.POSITION.HOME);
 		SmartDashboard.putNumber("BrasKP", BRAS_PID_KP);
 		SmartDashboard.putNumber("BrasKI", BRAS_PID_KI);
 	}
@@ -58,7 +58,7 @@ public class Bras extends Subsystem implements RobotMap.Bras
 	{
 		this.selecteurExtension.set(DoubleSolenoid.Value.kReverse);		
 	}
-	
+ 
 	public double getPosition()
 	{
 		return brasMoteurPrincipal.getSensorCollection().getAnalogIn();
@@ -67,20 +67,26 @@ public class Bras extends Subsystem implements RobotMap.Bras
 	{
 		
 		 switch (pos) {
-		 case AVANT:
-			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_AVANT);
+		 case AVANT_BAS:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_AVANT_BAS);
 			 break;
-		 case MILIEU:
-			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_MILIEU);
+		 case HOME:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_HOME);
 			 break; 
-		 case ARRIERE:
-			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_ARRIERE);
+		 case ARRIERE_BAS:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_ARRIERE_BAS);
 			 break; 
-		 case AVANT_ANGLE:
-			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_AVANT_ANGLE);
+		 case AVANT_HAUT:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_AVANT_HAUT);
 			 break; 
-		 case ARRIERE_ANGLE:
-			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_ARRIERE_ANGLE);
+		 case ARRIERE_HAUT:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_ARRIERE_HAUT);
+			 break; 
+		 case AVANT_MILIEU:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_AVANT_MILIEU);
+			 break; 
+		 case ARRIERE_MILIEU:
+			 brasMoteurPrincipal.set(ControlMode.Position, Bras.BRAS_POSITION_ARRIERE_MILIEU);
 			 break; 
 		default:
 			break;
@@ -97,11 +103,30 @@ public class Bras extends Subsystem implements RobotMap.Bras
 	
 	public void ajusterPID(double value)
 	{	
-		value = Calculateur.clamp(brasMoteurPrincipal.getClosedLoopTarget(0) + value *4, RobotMap.Bras.BRAS_LIMITE_ARRIERE, RobotMap.Bras.BRAS_LIMITE_AVANT);
+		value = clampedPosition(brasMoteurPrincipal.getClosedLoopTarget(0) + value *4);
+		//value = Calculateur.clamp(brasMoteurPrincipal.getClosedLoopTarget(0) + value *4, RobotMap.Bras.BRAS_LIMITE_ARRIERE, RobotMap.Bras.BRAS_LIMITE_AVANT);
 		brasMoteurPrincipal.set(ControlMode.Position, value);
 		
 		brasMoteurPrincipal.config_kP(0, SmartDashboard.getNumber("BrasKP", BRAS_PID_KP), Constants.kTimeoutMs); //config_kP(int slotIdx, double value, int timeoutMs) 
 		brasMoteurPrincipal.config_kI(0, SmartDashboard.getNumber("BrasKI", BRAS_PID_KP), Constants.kTimeoutMs);		
+	}
+	
+	public double clampedPosition(double value)
+	{
+		if (this.selecteurExtension.get() == DoubleSolenoid.Value.kForward) // ALLONGE
+		{
+			return Calculateur.clamp(value, BRAS_LIMITE_ARRIERE_ALLONGE, BRAS_LIMITE_AVANT_ALLONGE);
+		}
+		else // RETRECI
+		{
+			return Calculateur.clamp(value, BRAS_LIMITE_ARRIERE, BRAS_LIMITE_AVANT);
+		}
+	}
+	
+	public boolean isInExtendedLimits()
+	{
+		double actualPosition = this.getPosition();
+		return (actualPosition > 394 && actualPosition < 672);
 	}
 	
 	@Override

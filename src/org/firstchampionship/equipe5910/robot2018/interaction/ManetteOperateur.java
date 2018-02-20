@@ -3,7 +3,7 @@ package org.firstchampionship.equipe5910.robot2018.interaction;
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverBasArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverBasAvant;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverCentre;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHome;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuArriere;
@@ -46,7 +46,7 @@ public class ManetteOperateur implements RobotMap.ManetteOperateur{
 		milieuArriere.whenPressed(new CommandeChariotActiverMilieuArriere());
 		basAvant.whenPressed(new CommandeChariotActiverBasAvant());
 		basArriere.whenPressed(new CommandeChariotActiverBasArriere());
-		centre.whenPressed(new CommandeChariotActiverCentre());
+		centre.whenPressed(new CommandeChariotActiverHome());
 		ouvrir.whenPressed(new CommandePinceOuvrir());
 		ouvrir.whenReleased(new CommandePinceFermer());
 		

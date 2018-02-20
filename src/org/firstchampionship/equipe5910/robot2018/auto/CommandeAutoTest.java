@@ -3,7 +3,7 @@ package org.firstchampionship.equipe5910.robot2018.auto;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasAllonger;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasRetrecir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverBasArriere;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverCentre;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHome;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuAvant;

@@ -1,6 +1,6 @@
 package org.firstchampionship.equipe5910.robot2018.auto;
 
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverCentre;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHome;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePause;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
@@ -22,7 +22,7 @@ public class TrajetAuto3DGD extends CommandGroup{
 		addSequential(new CommandePinceOuvrir());
 		addSequential(new CommandePause(0.350));
 		addSequential(new CommandePinceFermer());
-		addSequential(new CommandeChariotActiverCentre());
+		addSequential(new CommandeChariotActiverHome());
 	}
 	
 	protected void initialize(){

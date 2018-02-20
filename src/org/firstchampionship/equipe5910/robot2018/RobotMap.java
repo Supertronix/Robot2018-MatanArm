@@ -17,7 +17,8 @@ public interface RobotMap
 		public static final double CHARIOT_PID_KP = 1;
 		public static final int CHARIOT_POSITION_BAS= 1000;
 		public static final int CHARIOT_POSITION_MILIEU = 21000; //18000 = milieu
-		public static final int CHARIOT_POSITION_HAUT = 36000;
+		public static final int CHARIOT_POSITION_HAUT = 37200;
+		public static final int CHARIOT_POSITION_LIMITE_OUVERTURE_PINCE = 24435;
 		
 		public enum POSITION {
 	        BAS,
@@ -44,22 +45,31 @@ public interface RobotMap
 		
 		public static final int BRAS_LIMITE_AVANT = 873;
 		public static final int BRAS_LIMITE_ARRIERE = 222;
+		public static final int BRAS_LIMITE_AVANT_ALLONGE = 672;
+		public static final int BRAS_LIMITE_ARRIERE_ALLONGE = 394;
 		
 		public static final double BRAS_PID_KP = 8;
 		public static final double BRAS_PID_KI = 0.00015;
 		
-		public static final int BRAS_POSITION_ARRIERE = 222;
-		public static final int BRAS_POSITION_MILIEU = 527;
-		public static final int BRAS_POSITION_AVANT = 873;
-		public static final int BRAS_POSITION_AVANT_ANGLE = 647;
-		public static final int BRAS_POSITION_ARRIERE_ANGLE = 407;
+		public static final int BRAS_POSITION_HOME = 527;
 		
+		public static final int BRAS_POSITION_ARRIERE_BAS = 222;
+		public static final int BRAS_POSITION_AVANT_BAS = 873;
+		
+		public static final int BRAS_POSITION_ARRIERE_MILIEU = 260;
+		public static final int BRAS_POSITION_AVANT_MILIEU = 820;
+		
+		public static final int BRAS_POSITION_AVANT_HAUT = 647;
+		public static final int BRAS_POSITION_ARRIERE_HAUT = 407;
+				
 		public enum POSITION {
-	        ARRIERE,
-			MILIEU,
-	        AVANT,
-	        AVANT_ANGLE,
-	        ARRIERE_ANGLE,
+	        ARRIERE_BAS,
+			HOME,
+	        AVANT_BAS,
+	        AVANT_HAUT,
+	        ARRIERE_HAUT,
+	        AVANT_MILIEU,
+	        ARRIERE_MILIEU,
 	    }
 
 	}

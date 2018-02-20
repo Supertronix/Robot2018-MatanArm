@@ -20,8 +20,9 @@ public class CommandeChariotActiverMilieuArriere extends Command{
 	@Override
 	protected void execute() {
 		//Robot.chariot.positionnerMilieuArriere();
-		Robot.bras.allerPosition(Bras.POSITION.ARRIERE);
+		Robot.bras.allerPosition(Bras.POSITION.ARRIERE_MILIEU);
 		Robot.chariot.allerPosition(Chariot.POSITION.MILIEU);
+		Robot.bras.retrecir();
 	}
 
 	@Override

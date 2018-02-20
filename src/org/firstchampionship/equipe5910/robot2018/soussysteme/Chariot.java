@@ -17,7 +17,7 @@ public class Chariot extends Subsystem implements RobotMap.Chariot
 {
 	protected TalonSRX chariotMoteurPrincipal = new TalonSRX(CHARIOT_MOTEUR_PRINCIPAL);
 	protected TalonSRX chariotMoteurEsclave = new TalonSRX(CHARIOT_MOTEUR_ESCLAVE);
-
+	
 	public Chariot()
 	{
 		SmartDashboard.putNumber("Chariot_SP", 0);
@@ -34,38 +34,6 @@ public class Chariot extends Subsystem implements RobotMap.Chariot
 		chariotMoteurEsclave.setNeutralMode(NeutralMode.Brake);
 		chariotMoteurEsclave.set(ControlMode.Follower, chariotMoteurPrincipal.getDeviceID());
 		chariotMoteurEsclave.setInverted(RobotMap.Chariot.CHARIOT_MOTEUR_ESCLAVE_INVERSION);
-	}
-	
-	public void positionnerHautAvant(){
-		System.out.println("Chariot => positionnerHautAvant");
-	}
-	
-	public void positionnerHautArriere(){
-		System.out.println("Chariot => positionnerHautArriere");
-	}
-	
-	public void positionnerMilieuAvant(){
-		System.out.println("Chariot => positionnerMilieuAvant");
-	}
-	
-	public void positionnerMilieuArriere(){
-		System.out.println("Chariot => positionnerMilieuArriere");
-	}
-	
-	public void positionnerBasAvant(){
-		System.out.println("Chariot => positionnerBasAvant");
-	}
-	
-	public void positionnerBasArriere(){
-		System.out.println("Chariot => positionnerBasArriere");
-	}
-	
-	public void positionnerCentre(){
-		System.out.println("Chariot => positionnerCentre");
-	}
-	
-	public void Ouvrir(){
-		System.out.println("Chariot => Ouvrir");
 	}
 	
 	public void allerPosition(RobotMap.Chariot.POSITION pos)
@@ -110,6 +78,11 @@ public class Chariot extends Subsystem implements RobotMap.Chariot
 	{	
 		value = Calculateur.clamp(chariotMoteurPrincipal.getClosedLoopTarget(0) + value *500, RobotMap.Chariot.CHARIOT_POSITION_BAS, RobotMap.Chariot.CHARIOT_POSITION_HAUT);
 		chariotMoteurPrincipal.set(ControlMode.Position, value);
+	}
+	
+	public double getPosition()
+	{	
+		return chariotMoteurPrincipal.getSensorCollection().getQuadraturePosition();
 	}
 	
 	@Override
