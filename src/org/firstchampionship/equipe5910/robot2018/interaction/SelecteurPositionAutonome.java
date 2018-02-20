@@ -3,20 +3,26 @@ package org.firstchampionship.equipe5910.robot2018.interaction;
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SelecteurPositionAutonome implements RobotMap.SelecteurPositionAutonome{
 
-    protected DigitalInput interrupteurGauche = new DigitalInput(INTERRUPTEUR_GAUCHE);
-    protected DigitalInput interrupteurDroit = new DigitalInput(INTERRUPTEUR_DROIT);
+    protected DigitalInput interrupteurGauche = null;
+    protected DigitalInput interrupteurDroit = null;
 
     protected int position = 0;
     
-    public SelecteurPositionAutonome()
+    private SelecteurPositionAutonome()
     {
-    	
+        this.interrupteurGauche = new DigitalInput(INTERRUPTEUR_GAUCHE);
+        this.interrupteurDroit = new DigitalInput(INTERRUPTEUR_DROIT);
+    }
+    
+    static protected SelecteurPositionAutonome instance = null;
+    static public SelecteurPositionAutonome getInstance()
+    {
+    	if(null == instance) instance = new SelecteurPositionAutonome();
+    	return instance;
     }
     
     public int lireChoix()
@@ -34,13 +40,5 @@ public class SelecteurPositionAutonome implements RobotMap.SelecteurPositionAuto
     	System.out.println("Position trouvee " + position);
     	SmartDashboard.putNumber("Position depart autonome", position);
 		return position;
-    }
-    
-	public void afficherChoix() 
-	{
-		String trajetChoisi = "no Command selected";
-		SmartDashboard.putNumber("TRAJET CHOISI", position);
-		Timer.delay(0.2);
-	}
-	
+    }	
 }

@@ -63,8 +63,7 @@ public class RobotControleur extends IterativeRobot {
 		///////////////////////////////// CHOIX TRAJET ////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////
 		
-		if (selecteurPosition == null)
-			selecteurPosition = new SelecteurPositionAutonome();
+		this.selecteurPosition = SelecteurPositionAutonome.getInstance();
 		this.attributionCotes = this.lecteurAttributionsAutonomes.lire();
 		if(null != this.attributionCotes)
 		{
