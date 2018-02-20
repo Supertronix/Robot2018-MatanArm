@@ -100,7 +100,7 @@ public class RobotControleur extends IterativeRobot {
 		}*/
 		
 		
-		while(null == this.attributionCotes)
+		if(null == this.attributionCotes)
 		{
 			this.attributionCotes = this.lecteurAttributionsAutonomes.lire();
 			if(null != this.attributionCotes)
