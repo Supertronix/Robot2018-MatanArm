@@ -162,6 +162,11 @@ public interface RobotMap
 		public static final int INTERRUPTEUR_DROIT = 15;
 	}
 	
+	public interface SelecteurNombreCube
+	{
+		public static final int ACTIVATION_DEUX_CUBES = 16;
+	}
+	
 	public interface InterpreteurMouvement
 	{
 		public static int PAUSE_TOLEREE = 2000;

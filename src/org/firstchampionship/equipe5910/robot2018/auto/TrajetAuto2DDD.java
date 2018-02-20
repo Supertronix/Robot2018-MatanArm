@@ -6,7 +6,6 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandePause;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceOuvrir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancerAngle;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesTourner;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

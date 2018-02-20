@@ -8,7 +8,6 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceOuvrir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancerAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TrajetAuto2GDG extends CommandGroup{
 	

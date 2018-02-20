@@ -7,6 +7,7 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceOuvrir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesTourner;
+import org.firstchampionship.equipe5910.robot2018.interaction.SelecteurNombreCubes;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,6 +24,11 @@ public class TrajetAuto3DGD extends CommandGroup{
 		addSequential(new CommandePause(0.350));
 		addSequential(new CommandePinceFermer());
 		addSequential(new CommandeChariotActiverHome());
+		
+		if(SelecteurNombreCubes.getInstance().viseDeuxCube())
+		{
+			
+		}		
 	}
 	
 	protected void initialize(){

@@ -21,7 +21,6 @@ public class TrajetAuto2GGG extends CommandGroup{
 		addSequential(new CommandePause(0.350));
 		addSequential(new CommandePinceFermer());
 		addSequential(new CommandeChariotActiverHome());
-		
 	}
 	
 	protected void initialize(){

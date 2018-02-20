@@ -6,16 +6,15 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActive
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHome;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautAvant;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePause;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceOuvrir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancerAngle;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesTourner;
+import org.firstchampionship.equipe5910.robot2018.interaction.SelecteurNombreCubes;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TrajetAuto1GGG extends CommandGroup{
 	
@@ -31,6 +30,11 @@ public class TrajetAuto1GGG extends CommandGroup{
 		addSequential(new CommandePinceFermer());
 		addSequential(new CommandeBrasRetrecir());
 		addSequential(new CommandeChariotActiverHome());
+		
+		if(SelecteurNombreCubes.getInstance().viseDeuxCube())
+		{
+			
+		}		
 		
 		addSequential(new CommandeRouesTourner(-16.5));
 		addSequential(new CommandeChariotActiverBasArriere());

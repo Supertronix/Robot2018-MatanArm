@@ -14,6 +14,11 @@ public class SelecteurPositionAutonome implements RobotMap.SelecteurPositionAuto
 
     protected int position = 0;
     
+    public SelecteurPositionAutonome()
+    {
+    	
+    }
+    
     public int lireChoix()
     {
     	System.out.println("Interrupteur GAUCHE " + this.interrupteurGauche.get());
