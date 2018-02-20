@@ -24,7 +24,7 @@ public class LecteurAttributionsAutonomes {
 		return null;
 	}
 	
-	Attribution attribution = new Attribution();
+	protected Attribution attribution = null;
 
 	public Attribution lire()
 	{
@@ -35,13 +35,14 @@ public class LecteurAttributionsAutonomes {
 		
 		if(message.length() > 0)
 		{
-			attribution.premier = convertirLettreEnCote(message.charAt(0));
-			attribution.second = convertirLettreEnCote(message.charAt(1));
-			attribution.troisieme = convertirLettreEnCote(message.charAt(2));
+			this.attribution = new Attribution()
+			this.attribution.premier = convertirLettreEnCote(message.charAt(0));
+			this.attribution.second = convertirLettreEnCote(message.charAt(1));
+			this.attribution.troisieme = convertirLettreEnCote(message.charAt(2));
 			
-			System.out.println("premier : " + attribution.premier);
-			System.out.println("second : " + attribution.second);
-			System.out.println("troisieme : " + attribution.troisieme);			
+			System.out.println("Premier cote : " + this.attribution.premier);
+			System.out.println("Second cote: " + this.attribution.second);
+			System.out.println("Troisieme cote : " + this.attribution.troisieme);			
 		}
 		return attribution;
 	}

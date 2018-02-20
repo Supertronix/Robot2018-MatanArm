@@ -28,13 +28,6 @@ public class RobotControleur extends IterativeRobot {
        Robot.roues.zeroSensors();
 	 }
 	 
-	//DigitalInput encodeurGaucheA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_A);
-	//DigitalInput encodeurGaucheB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_GAUCHE_B);
-	//DigitalInput encodeurDroitA = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_A);
-	//DigitalInput encodeurDroitB = new DigitalInput(RobotMap.Roues.ENCODEUR_CONDUITE_DROITE_B);
-	LecteurAttributionsAutonomes lecteurAttributionsAutonomes;	
-	SelecteurPositionAutonome selecteurPosition;
-
 	@Override
 	public void robotInit() {
 		System.out.println("robotInit()");
@@ -47,24 +40,39 @@ public class RobotControleur extends IterativeRobot {
 		//this.lecteurAttributionsAutonomes.vider();
 	}
 
+	protected LecteurAttributionsAutonomes lecteurAttributionsAutonomes = null;	
+	protected SelecteurPositionAutonome selecteurPosition = null;
+	protected LecteurAttributionsAutonomes.Attribution attributionCotes = null;
+	protected CommandGroup trajet = null;
+	
 	@Override
 	public void autonomousInit() {
 		System.out.println("autonomousInit()");
 		Robot.roues.activerVitesseBasse();
 		Robot.roues.zeroSensors();
+		
+		///////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////// GYRO ///////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////
 		SmartDashboard.putNumber("Gyro_Kp_TOURNER", RobotMap.Roues.GYRO_KP_ROTATEONLY);
 		SmartDashboard.putNumber("Gyro_Ki_TOURNER", RobotMap.Roues.GYRO_KI_ROTATEONLY);
-		SmartDashboard.putNumber("GyroSP", 0.0);
-		
+		SmartDashboard.putNumber("GyroSP", 0.0);		
 		Robot.roues.setGyroConsigne(0.0);
+		
+		///////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////// CHOIX TRAJET ////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////
+		
 		if (selecteurPosition == null)
 			selecteurPosition = new SelecteurPositionAutonome();
-		
-		LecteurAttributionsAutonomes.Attribution attributionCotes = this.lecteurAttributionsAutonomes.lire();
-		int positionDepart = selecteurPosition.lireChoix();
-		ModeAutonome controleurTrajet = new ModeAutonome();
-		CommandGroup trajet = controleurTrajet.obtenirTrajet(positionDepart, attributionCotes);
-		trajet.start();
+		this.attributionCotes = this.lecteurAttributionsAutonomes.lire();
+		if(null != this.attributionCotes)
+		{
+			ModeAutonome controleurTrajet = new ModeAutonome();
+			int positionDepart = selecteurPosition.lireChoix();
+			this.trajet = controleurTrajet.obtenirTrajet(positionDepart, attributionCotes);
+			if(this.trajet != null) this.trajet.start();	
+		}
 	}
 
 	@Override
@@ -91,6 +99,18 @@ public class RobotControleur extends IterativeRobot {
 			Robot.roues.setDistanceConsigne(0.0);
 		}*/
 		
+		
+		while(null == this.attributionCotes)
+		{
+			this.attributionCotes = this.lecteurAttributionsAutonomes.lire();
+			if(null != this.attributionCotes)
+			{
+				ModeAutonome controleurTrajet = new ModeAutonome();
+				int positionDepart = selecteurPosition.lireChoix();
+				this.trajet = controleurTrajet.obtenirTrajet(positionDepart, attributionCotes);
+				if(this.trajet != null) this.trajet.start();	
+			}
+		}
 	}
 
 	@Override
