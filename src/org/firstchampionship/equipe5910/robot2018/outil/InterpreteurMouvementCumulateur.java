@@ -25,16 +25,16 @@ public class InterpreteurMouvementCumulateur implements RobotMap.InterpreteurMou
 		for(int position = 0; position < this.iterationsImmobile; position++)
 		{
 			this.dernieresPositions.addLast(new Double(-1000000));
-		}		
+		}
 		System.out.println("Taille buffer des positions " + this.iterationsImmobile);
 	}
 
 	public void mesurer()
 	{
 		this.iteration++;
+		this.distanceAncienne = this.dernieresPositions.removeFirst();
 		this.distanceActuelle = Robot.roues.getDistanceGauche();
 		this.dernieresPositions.addLast(new Double(distanceActuelle));
-		this.distanceAncienne = this.dernieresPositions.removeFirst();
 		System.out.println("mesurer() - distanceActuelle " + distanceActuelle + " distanceAncienne " + distanceAncienne);			
 	}
 	
@@ -68,12 +68,16 @@ public class InterpreteurMouvementCumulateur implements RobotMap.InterpreteurMou
 			if(fin >= taille) fin = 0;
 		}
 		
-		int ancienDebut;
+		protected int ancienDebut;
+		protected double ancienneValeur;
 		public double removeFirst()
 		{
 			ancienDebut = debut++;
+			ancienneValeur = this.listePositions[ancienDebut]; this.listePositions[ancienDebut] = -1;
 			if(debut >= taille) debut = 0;
-			return this.listePositions[ancienDebut];
+			
+			//return this.listePositions[ancienDebut];
+			return ancienneValeur;
 		}
 		
 		public void afficher()
