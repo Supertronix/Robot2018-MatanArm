@@ -6,7 +6,7 @@ import org.firstchampionship.equipe5910.robot2018.RobotMap;
 
 public class InterpreteurMouvementBaseSurPositions implements RobotMap.InterpreteurMouvement{
 
-	protected double pauseToleree = PAUSE_TOLEREE; // en millisecondes
+	protected double pauseToleree = INTERVALLE_IMMOBILITE; // en millisecondes
 	protected int iterationsImmobile = 1;
 	// protected Timer horloge = null;// TODO version avec timer
 	protected DernieresPositions dernieresPositions;
