@@ -13,9 +13,7 @@ public class CommandePinceOuvrir extends Command{
 	}
 	
 	@Override
-	protected void initialize() {
-		System.out.println("CommandePinceOuvrir");
-		
+	protected void initialize() {		
 	}
 	
 	@Override

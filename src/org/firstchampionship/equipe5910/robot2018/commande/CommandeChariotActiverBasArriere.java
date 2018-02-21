@@ -14,12 +14,11 @@ public class CommandeChariotActiverBasArriere extends Command{
 	
 	@Override
 	protected void initialize() {
-		System.out.println("CommandeChariotActiverBasArriere");
+		//System.out.println("CommandeChariotActiverBasArriere");
 	}
 	
 	@Override
 	protected void execute() {
-		//Robot.chariot.positionnerBasArriere();
 		Robot.bras.allerPosition(Bras.POSITION.ARRIERE_BAS);
 		Robot.chariot.allerPosition(Chariot.POSITION.BAS);
 		Robot.bras.retrecir();

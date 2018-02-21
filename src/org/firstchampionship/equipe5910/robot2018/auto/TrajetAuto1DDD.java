@@ -32,22 +32,20 @@ public class TrajetAuto1DDD extends CommandGroup{
 		
 		if(SelecteurNombreCubes.getInstance().viseDeuxCube())
 		{
-			
+			addSequential(new CommandeRouesTourner(6));
+			addSequential(new CommandeChariotActiverBasArriere());
+			addSequential(new CommandePinceOuvrir());
+			addSequential(new CommandeRouesAvancer(-1400));
+			addSequential(new CommandePinceFermer());
+			addSequential(new CommandePause(0.350));
+			addSequential(new CommandeChariotActiverMilieuArriere());
+			addSequential(new CommandePause(0.700));
+			addSequential(new CommandeRouesAvancer(-200));
+			addSequential(new CommandePinceOuvrir());
+			addSequential(new CommandePause(0.450));
+			addSequential(new CommandePinceFermer());
 		}
-			
-		addSequential(new CommandeRouesTourner(6));
-		addSequential(new CommandeChariotActiverBasArriere());
-		addSequential(new CommandePinceOuvrir());
-		addSequential(new CommandeRouesAvancer(-1400));
-		addSequential(new CommandePinceFermer());
-		addSequential(new CommandePause(0.350));
-		addSequential(new CommandeChariotActiverMilieuArriere());
-		addSequential(new CommandePause(0.700));
-		addSequential(new CommandeRouesAvancer(-200));
-		addSequential(new CommandePinceOuvrir());
-		addSequential(new CommandePause(0.450));
-		addSequential(new CommandePinceFermer());
-		
+
 		//addSequential(new CommandeChariotActiverHome());
 	}
 	

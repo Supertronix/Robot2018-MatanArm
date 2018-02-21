@@ -24,6 +24,7 @@ public class InterpreteurMouvement implements RobotMap.InterpreteurMouvement{
 		this.tempsDebut = this.tempsActuel = System.currentTimeMillis();
 		this.iterationsImmobile = (int) (pauseToleree * 50 / 1000);
 		this.deltaSeuil = DISTANCE_NULLE / this.iterationsImmobile;
+		
 	}
 	
 	public void setPauseToleree(double pauseToleree)

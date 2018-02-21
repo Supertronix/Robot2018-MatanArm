@@ -14,7 +14,7 @@ public class CommandeChariotActiverMilieuArriere extends Command{
 	
 	@Override
 	protected void initialize() {
-		System.out.println("CommandeChariotActiverMilieuArriere");
+		//System.out.println("CommandeChariotActiverMilieuArriere");
 	}
 	
 	@Override

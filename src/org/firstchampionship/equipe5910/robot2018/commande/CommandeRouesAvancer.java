@@ -34,12 +34,9 @@ public class CommandeRouesAvancer extends Command{
 		Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_AVANCER, RobotMap.Roues.GYRO_KI_AVANCER);
 		Robot.roues.zeroSensors();
 		Robot.roues.setGyroConsigne(0);
-		System.out.println("CommandeRouesAvancer.initialize()");
-		//this.positionInitiale = Robot.roues.getDistanceGauche();
-		System.out.println("Position initiale " + positionInitiale);
 		
-		// Robot.roues.avancer(vitesse); 
-		// Robot.roues.informerEncodeurDroitDeLaCible(distanceVoulue);
+		System.out.println("CommandeRouesAvancer.initialize()");
+		System.out.println("Position initiale " + positionInitiale);
 	}
 	
 	@Override
@@ -68,11 +65,6 @@ public class CommandeRouesAvancer extends Command{
 			}
 				
 		}
-		//System.out.println("CommandeRouesAvancer.execute()");
-		//Robot.roues.avancer(vitesse); 
-		//Robot.roues.avancer(Robot.roues.getVitesseSelonEncodeurDroitStabilise()); 
-		// System.out.println("selon pid vitesse = "  + Robot.roues.getVitesseSelonEncodeurDroitStabilise());
-		
 		//this.verificateurImmobilite.mesurer();
 	}
 	

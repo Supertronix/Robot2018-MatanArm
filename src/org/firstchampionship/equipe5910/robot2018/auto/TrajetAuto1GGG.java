@@ -33,21 +33,20 @@ public class TrajetAuto1GGG extends CommandGroup{
 		
 		if(SelecteurNombreCubes.getInstance().viseDeuxCube())
 		{
-			
+			addSequential(new CommandeRouesTourner(-16.5));
+			addSequential(new CommandeChariotActiverBasArriere());
+			addSequential(new CommandePinceOuvrir());
+			addSequential(new CommandeRouesAvancer(-1400));
+			addSequential(new CommandePinceFermer());
+			addSequential(new CommandePause(0.200));
+			addSequential(new CommandeChariotActiverMilieuArriere());
+			addSequential(new CommandePause(0.600));
+			addSequential(new CommandeRouesAvancer(-200));
+			addSequential(new CommandePinceOuvrir());
+			addSequential(new CommandePause(0.450));
+			addSequential(new CommandePinceFermer());
 		}		
 		
-		addSequential(new CommandeRouesTourner(-16.5));
-		addSequential(new CommandeChariotActiverBasArriere());
-		addSequential(new CommandePinceOuvrir());
-		addSequential(new CommandeRouesAvancer(-1400));
-		addSequential(new CommandePinceFermer());
-		addSequential(new CommandePause(0.200));
-		addSequential(new CommandeChariotActiverMilieuArriere());
-		addSequential(new CommandePause(0.600));
-		addSequential(new CommandeRouesAvancer(-200));
-		addSequential(new CommandePinceOuvrir());
-		addSequential(new CommandePause(0.450));
-		addSequential(new CommandePinceFermer());
 		
 	}
 	

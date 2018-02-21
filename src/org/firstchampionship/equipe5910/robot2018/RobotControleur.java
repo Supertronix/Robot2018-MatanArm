@@ -44,7 +44,7 @@ public class RobotControleur extends IterativeRobot {
 	protected SelecteurPositionAutonome selecteurPosition = null;
 	protected LecteurAttributionsAutonomes.Attribution attributionCotes = null;
 	protected CommandGroup trajet = null;
-	
+	protected ModeAutonome controleurTrajet = null;
 	@Override
 	public void autonomousInit() {
 		System.out.println("autonomousInit()");
@@ -67,7 +67,7 @@ public class RobotControleur extends IterativeRobot {
 		this.attributionCotes = this.lecteurAttributionsAutonomes.lire();
 		if(null != this.attributionCotes)
 		{
-			ModeAutonome controleurTrajet = new ModeAutonome();
+			controleurTrajet = new ModeAutonome();
 			int positionDepart = selecteurPosition.lireChoix();
 			this.trajet = controleurTrajet.obtenirTrajet(positionDepart, attributionCotes);
 			if(this.trajet != null) this.trajet.start();	
@@ -113,7 +113,10 @@ public class RobotControleur extends IterativeRobot {
 	}
 
 	@Override
-	public void teleopInit() {		
+	public void teleopInit() {	
+		controleurTrajet.cancel();
+		controleurTrajet = null;
+		
 		System.out.println("teleopInit()");
 		Robot.pince.fermer();
 	}

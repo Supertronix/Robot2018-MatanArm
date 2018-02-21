@@ -21,7 +21,7 @@ public class CommandeChariotActiverHome extends Command{
 	
 	@Override
 	protected void execute() {
-		System.out.println("CommandeChariotActiverCentre");
+		//System.out.println("CommandeChariotActiverCentre");
 		Robot.chariot.allerPosition(Chariot.POSITION.BAS);
 		Robot.bras.allerPosition(Bras.POSITION.HOME);
 		Robot.bras.retrecir();

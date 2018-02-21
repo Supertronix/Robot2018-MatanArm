@@ -31,6 +31,7 @@ public class ModeAutonome {
 	protected int depart;
 	
 	protected CommandGroup[][][][] grille = new CommandGroup[4][2][2][2];
+	protected CommandGroup commandeActive = null;
 	
 	
 	public ModeAutonome()
@@ -78,6 +79,14 @@ public class ModeAutonome {
 		this.grille[POSITION_DEPART_INCONNU][GAUCHE][GAUCHE][DROIT] = new CommandGroup();
 	}
 	
+	public void cancel()
+	{
+		if (commandeActive != null)
+		{
+			commandeActive.cancel();
+		}
+	}
+	
 	public CommandGroup obtenirTrajet(int depart, LecteurAttributionsAutonomes.Attribution attribution)
 	{
 		this.depart = depart - 1;
@@ -85,6 +94,7 @@ public class ModeAutonome {
 		String log = "obtenirTrajet(" + this.depart + ", " + attribution.premier.ordinal() + "" + attribution.second.ordinal() + "" + attribution.troisieme.ordinal() + ")";
 		System.out.println(log);
 		//SmartDashboard.putString("Choix commande", log);
-		return this.grille[this.depart][attribution.premier.ordinal()][attribution.second.ordinal()][attribution.troisieme.ordinal()];
+		commandeActive = this.grille[this.depart][attribution.premier.ordinal()][attribution.second.ordinal()][attribution.troisieme.ordinal()];
+		return commandeActive;
 	}
 }

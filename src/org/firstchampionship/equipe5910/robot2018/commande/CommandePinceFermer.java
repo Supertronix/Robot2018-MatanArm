@@ -13,7 +13,6 @@ public class CommandePinceFermer extends Command{
 	
 	@Override
 	protected void initialize() {
-		System.out.println("CommandePinceFermer");
 	}
 	
 	@Override
