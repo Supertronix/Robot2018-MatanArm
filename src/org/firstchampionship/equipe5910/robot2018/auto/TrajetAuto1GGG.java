@@ -5,6 +5,7 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasRetrecir;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverBasArriere;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHome;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuArriere;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverMilieuAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeChariotActiverHautAvant;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePause;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
@@ -20,19 +21,35 @@ public class TrajetAuto1GGG extends CommandGroup{
 	
 	public TrajetAuto1GGG()
 	{
-		addSequential(new CommandeRouesAvancer(5000));
-		addParallel(new CommandeChariotActiverHautAvant());
-		addParallel(new CommandeBrasAllonger());
-		addSequential(new CommandeRouesAvancerAngle(1300, 45));
-		addSequential(new CommandeRouesAvancerAngle(800, -30));
-		addSequential(new CommandePinceOuvrir());
-		addSequential(new CommandePause(0.450));
-		addSequential(new CommandePinceFermer());
-		addSequential(new CommandeBrasRetrecir());
-		addSequential(new CommandeChariotActiverHome());
 		
-		if(SelecteurNombreCubes.getInstance().viseDeuxCube())
+		if(!SelecteurNombreCubes.getInstance().viseDeuxCube()) // 1 CUBE
 		{
+			// SWITCH GAUCHE
+			addParallel(new CommandeChariotActiverMilieuAvant());
+			addSequential(new CommandeRouesAvancer(3600));
+			addSequential(new CommandeRouesTourner(90));
+			addSequential(new CommandeRouesAvancer(175));
+			addSequential(new CommandePinceOuvrir());
+			addSequential(new CommandePause(0.350));
+			addSequential(new CommandePinceFermer());
+			addSequential(new CommandeChariotActiverHome());
+		}
+		else // 2 CUBES
+		{
+			// SCALE GAUCHE
+			addSequential(new CommandeRouesAvancer(5000));
+			addParallel(new CommandeChariotActiverHautAvant());
+			addParallel(new CommandeBrasAllonger());
+			addSequential(new CommandeRouesAvancerAngle(1300, 45));
+			addSequential(new CommandeRouesAvancerAngle(800, -30));
+			addSequential(new CommandePinceOuvrir());
+			addSequential(new CommandePause(0.450));
+			addSequential(new CommandePinceFermer());
+			addSequential(new CommandeBrasRetrecir());
+			addSequential(new CommandeChariotActiverHome());
+			
+			
+			// SWITCH GAUCHE
 			addSequential(new CommandeRouesTourner(-16.5));
 			addSequential(new CommandeChariotActiverBasArriere());
 			addSequential(new CommandePinceOuvrir());

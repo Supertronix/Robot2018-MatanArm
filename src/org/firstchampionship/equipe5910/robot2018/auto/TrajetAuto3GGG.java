@@ -18,20 +18,26 @@ public class TrajetAuto3GGG extends CommandGroup{
 	
 	public TrajetAuto3GGG()
 	{
-		addSequential(new CommandeRouesAvancer(5350));
-		addSequential(new CommandeRouesTourner(-90));
-		addSequential(new CommandeRouesAvancer(4850));
-		addParallel(new CommandeChariotActiverHautAvant());
-		addParallel(new CommandeBrasAllonger());
-		addSequential(new CommandeRouesTourner(90));
-		addSequential(new CommandeRouesAvancer(1250));
-		addSequential(new CommandePinceOuvrir());
-		addSequential(new CommandePause(0.450));
-		addSequential(new CommandePinceFermer());
-		addParallel(new CommandeBrasRetrecir());
-		
-		if(SelecteurNombreCubes.getInstance().viseDeuxCube())
+		if(!SelecteurNombreCubes.getInstance().viseDeuxCube()) // 1 CUBE
 		{
+			addSequential(new CommandeRouesAvancer(5350));
+		}
+		else // 2 CUBES
+		{
+			// SCALE GAUCHE
+			addSequential(new CommandeRouesAvancer(5350));
+			addSequential(new CommandeRouesTourner(-90));
+			addSequential(new CommandeRouesAvancer(4850));
+			addParallel(new CommandeChariotActiverHautAvant());
+			addParallel(new CommandeBrasAllonger());
+			addSequential(new CommandeRouesTourner(90));
+			addSequential(new CommandeRouesAvancer(1250));
+			addSequential(new CommandePinceOuvrir());
+			addSequential(new CommandePause(0.450));
+			addSequential(new CommandePinceFermer());
+			addParallel(new CommandeBrasRetrecir());
+			
+			// SWITCH GAUCHE
 			addSequential(new CommandeRouesTourner(-3));
 			addSequential(new CommandeChariotActiverBasArriere());
 			addSequential(new CommandePinceOuvrir());

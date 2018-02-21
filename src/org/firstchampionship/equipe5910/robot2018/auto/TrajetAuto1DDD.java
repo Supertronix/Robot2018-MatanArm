@@ -18,20 +18,27 @@ public class TrajetAuto1DDD extends CommandGroup{
 	
 	public TrajetAuto1DDD()
 	{
-		addSequential(new CommandeRouesAvancer(5350));
-		addSequential(new CommandeRouesTourner(90));
-		addSequential(new CommandeRouesAvancer(4850));
-		addParallel(new CommandeChariotActiverHautAvant());
-		addParallel(new CommandeBrasAllonger());
-		addSequential(new CommandeRouesTourner(-90));
-		addSequential(new CommandeRouesAvancer(1200));
-		addSequential(new CommandePinceOuvrir());
-		addSequential(new CommandePause(0.450));
-		addSequential(new CommandePinceFermer());
-		addSequential(new CommandeBrasRetrecir());
-		
-		if(SelecteurNombreCubes.getInstance().viseDeuxCube())
+		if(!SelecteurNombreCubes.getInstance().viseDeuxCube()) // 1 CUBE
 		{
+			// TRAVERSER LA LIGNE
+			addSequential(new CommandeRouesAvancer(5350)); 
+		}
+		else // 2 CUBES
+		{
+			// SCALE DROITE
+			addSequential(new CommandeRouesAvancer(5350));
+			addSequential(new CommandeRouesTourner(90));
+			addSequential(new CommandeRouesAvancer(4850));
+			addParallel(new CommandeChariotActiverHautAvant());
+			addParallel(new CommandeBrasAllonger());
+			addSequential(new CommandeRouesTourner(-90));
+			addSequential(new CommandeRouesAvancer(1200));
+			addSequential(new CommandePinceOuvrir());
+			addSequential(new CommandePause(0.450));
+			addSequential(new CommandePinceFermer());
+			addSequential(new CommandeBrasRetrecir());
+			
+			// SWITCH DROITE
 			addSequential(new CommandeRouesTourner(6));
 			addSequential(new CommandeChariotActiverBasArriere());
 			addSequential(new CommandePinceOuvrir());

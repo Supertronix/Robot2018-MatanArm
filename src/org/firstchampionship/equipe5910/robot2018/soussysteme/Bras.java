@@ -107,8 +107,13 @@ public class Bras extends Subsystem implements RobotMap.Bras
 		//value = Calculateur.clamp(brasMoteurPrincipal.getClosedLoopTarget(0) + value *4, RobotMap.Bras.BRAS_LIMITE_ARRIERE, RobotMap.Bras.BRAS_LIMITE_AVANT);
 		brasMoteurPrincipal.set(ControlMode.Position, value);
 		
-		brasMoteurPrincipal.config_kP(0, SmartDashboard.getNumber("BrasKP", BRAS_PID_KP), Constants.kTimeoutMs); //config_kP(int slotIdx, double value, int timeoutMs) 
-		brasMoteurPrincipal.config_kI(0, SmartDashboard.getNumber("BrasKI", BRAS_PID_KP), Constants.kTimeoutMs);		
+		//brasMoteurPrincipal.config_kP(0, SmartDashboard.getNumber("BrasKP", BRAS_PID_KP), Constants.kTimeoutMs); //config_kP(int slotIdx, double value, int timeoutMs) 
+		//brasMoteurPrincipal.config_kI(0, SmartDashboard.getNumber("BrasKI", BRAS_PID_KP), Constants.kTimeoutMs);		
+	}
+	
+	public void setPositionPIDmanuel(double value)
+	{	
+		brasMoteurPrincipal.set(ControlMode.Position, clampedPosition(value));
 	}
 	
 	public double clampedPosition(double value)

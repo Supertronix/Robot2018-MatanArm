@@ -2,7 +2,7 @@ package org.firstchampionship.equipe5910.robot2018.commande;
 
 import org.firstchampionship.equipe5910.robot2018.Robot;
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
-import org.firstchampionship.equipe5910.robot2018.outil.InterpreteurMouvement;
+//import org.firstchampionship.equipe5910.robot2018.outil.InterpreteurMouvement;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class CommandeRouesAvancer extends Command{
@@ -10,7 +10,7 @@ public class CommandeRouesAvancer extends Command{
 	protected double distanceVoulue;
 	protected double positionInitiale = 0;
 	protected boolean PIDFirstLoop = true;
-	protected InterpreteurMouvement verificateurImmobilite;
+	//protected InterpreteurMouvement verificateurImmobilite;
 	
 	public CommandeRouesAvancer(double distanceVoulue)
 	{
@@ -27,7 +27,7 @@ public class CommandeRouesAvancer extends Command{
 	
 	@Override
 	protected void initialize() {
-		verificateurImmobilite = new InterpreteurMouvement();
+		//verificateurImmobilite = new InterpreteurMouvement();
 		if (Math.abs(distanceVoulue) < 500)
 			Robot.roues.setDistancePid(RobotMap.Roues.DISTANCE_KP * 5, RobotMap.Roues.DISTANCE_KI);
 		else
@@ -67,7 +67,7 @@ public class CommandeRouesAvancer extends Command{
 			}
 				
 		}
-		this.verificateurImmobilite.mesurer();
+		//this.verificateurImmobilite.mesurer();
 	}
 	
 	protected boolean estArrive = false;
@@ -82,16 +82,16 @@ public class CommandeRouesAvancer extends Command{
 		{
 			estArrive = Robot.roues.getDistanceGauche() <= (this.distanceVoulue);
 		}
-		System.out.println("estArrive " + estArrive + " est immobile " + this.verificateurImmobilite.estImmobile());
-		return estArrive || this.verificateurImmobilite.estImmobile();
-		//return estArrive;
+		//System.out.println("estArrive " + estArrive + " est immobile " + this.verificateurImmobilite.estImmobile());
+		//return estArrive || this.verificateurImmobilite.estImmobile();
+		return estArrive;
 	}
 	
 	@Override
 	protected void end() {
 		System.out.println("CommandeRouesAvancer.end()");
 		Robot.roues.disablePIDs();
-		Robot.roues.arreter();
+		//Robot.roues.arreter();
 	}
 	
 

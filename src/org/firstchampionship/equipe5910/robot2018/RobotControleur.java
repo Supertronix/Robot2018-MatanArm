@@ -23,10 +23,12 @@ public class RobotControleur extends IterativeRobot {
 	
 	protected ManetteOperateur manetteOperateur;
 	protected ManetteConducteur manetteConducteur;
-	
+
 	 public void zeroAllSensors() {
        Robot.roues.zeroSensors();
 	 }
+	
+	 static public boolean estAutonome = false;
 	 
 	@Override
 	public void robotInit() {
@@ -47,6 +49,7 @@ public class RobotControleur extends IterativeRobot {
 	protected ModeAutonome controleurTrajet = null;
 	@Override
 	public void autonomousInit() {
+		RobotControleur.estAutonome = true;
 		System.out.println("autonomousInit()");
 		Robot.roues.activerVitesseBasse();
 		Robot.roues.zeroSensors();
@@ -114,9 +117,13 @@ public class RobotControleur extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {	
-		controleurTrajet.cancel();
-		controleurTrajet = null;
-		
+		RobotControleur.estAutonome = false;
+		if (controleurTrajet != null)
+		{
+			controleurTrajet.cancel();
+			controleurTrajet = null;
+		}
+			
 		System.out.println("teleopInit()");
 		Robot.pince.fermer();
 	}
