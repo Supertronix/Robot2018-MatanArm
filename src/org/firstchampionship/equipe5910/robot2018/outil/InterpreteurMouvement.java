@@ -14,7 +14,6 @@ public class InterpreteurMouvement implements RobotMap.InterpreteurMouvement{
 	public InterpreteurMouvement()
 	{
 		this.initialiser();
-		
 	}
 	
 	public void initialiser()
