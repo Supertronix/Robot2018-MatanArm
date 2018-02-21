@@ -2,6 +2,8 @@ package org.firstchampionship.equipe5910.robot2018.commande;
 
 import org.firstchampionship.equipe5910.robot2018.Robot;
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
+import org.firstchampionship.equipe5910.robot2018.outil.InterpreteurMouvementCumulateur;
+
 //import org.firstchampionship.equipe5910.robot2018.outil.InterpreteurMouvement;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,24 +12,17 @@ public class CommandeRouesAvancer extends Command{
 	protected double distanceVoulue;
 	protected double positionInitiale = 0;
 	protected boolean PIDFirstLoop = true;
-	//protected InterpreteurMouvement verificateurImmobilite;
+	protected InterpreteurMouvementCumulateur verificateurImmobilite;
 	
 	public CommandeRouesAvancer(double distanceVoulue)
 	{
 		requires(Robot.roues);		
 		this.distanceVoulue = distanceVoulue;
 	}
-
-	/*
-	// si on veut rendre la commande versatile
-	public void setPauseToleree(double pauseToleree)
-	{
-		this.verificateurImmobilite.setPauseToleree(pauseToleree);
-	}*/
 	
 	@Override
 	protected void initialize() {
-		//verificateurImmobilite = new InterpreteurMouvement();
+		verificateurImmobilite = new InterpreteurMouvementCumulateur();
 		if (Math.abs(distanceVoulue) < 500)
 			Robot.roues.setDistancePid(RobotMap.Roues.DISTANCE_KP * 5, RobotMap.Roues.DISTANCE_KI);
 		else
@@ -67,7 +62,7 @@ public class CommandeRouesAvancer extends Command{
 			}
 				
 		}
-		//this.verificateurImmobilite.mesurer();
+		this.verificateurImmobilite.mesurer();
 	}
 	
 	protected boolean estArrive = false;
@@ -83,8 +78,8 @@ public class CommandeRouesAvancer extends Command{
 			estArrive = Robot.roues.getDistanceGauche() <= (this.distanceVoulue);
 		}
 		//System.out.println("estArrive " + estArrive + " est immobile " + this.verificateurImmobilite.estImmobile());
-		//return estArrive || this.verificateurImmobilite.estImmobile();
-		return estArrive;
+		return estArrive || this.verificateurImmobilite.estImmobile();
+		//return estArrive;
 	}
 	
 	@Override

@@ -51,7 +51,7 @@ public class TrajetAuto1DGD extends CommandGroup{
 			addSequential(new CommandeChariotActiverHome());
 			
 			// SCALE GAUCHE
-			addSequential(new CommandeRouesTourner(-16.5));
+			addSequential(new CommandeRouesTourner(-18));
 			addSequential(new CommandeChariotActiverBasArriere());
 			addSequential(new CommandePinceOuvrir());
 			addSequential(new CommandeRouesAvancer(-1400));
@@ -60,12 +60,13 @@ public class TrajetAuto1DGD extends CommandGroup{
 			addParallel(new CommandeBrasAllonger());
 			addParallel(new CommandeChariotActiverHautAvant());
 			addSequential(new CommandeRouesAvancer(1400));
-			addSequential(new CommandeRouesTourner(16.5));
+			//addSequential(new CommandeRouesTourner(16.5));
+			addSequential(new CommandePause(0.300));
 			addSequential(new CommandePinceOuvrir());
-			addSequential(new CommandePause(0.450));
+			/*addSequential(new CommandePause(0.450));
 			addSequential(new CommandePinceFermer());
 			addSequential(new CommandeBrasRetrecir());
-			addSequential(new CommandeChariotActiverHome());
+			addSequential(new CommandeChariotActiverHome());*/
 			
 		}
 		

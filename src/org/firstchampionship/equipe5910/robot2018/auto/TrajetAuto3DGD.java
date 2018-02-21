@@ -48,13 +48,13 @@ public class TrajetAuto3DGD extends CommandGroup{
 			addParallel(new CommandeBrasRetrecir());
 			
 			// 2eme CUBE
-			
 			addSequential(new CommandeRouesTourner(-3));
 			addSequential(new CommandeChariotActiverBasArriere());
 			addSequential(new CommandePinceOuvrir());
 			addSequential(new CommandeRouesAvancer(-1500));
+			addSequential(new CommandePause(0.250));
 			addSequential(new CommandePinceFermer());
-			addSequential(new CommandePause(0.350));
+			addSequential(new CommandePause(0.200));
 			addParallel(new CommandeBrasAllonger());
 			addParallel(new CommandeChariotActiverHautAvant());
 			addSequential(new CommandeRouesAvancer(1500));

@@ -53,7 +53,7 @@ public class TrajetAuto3DDD extends CommandGroup{
 			addSequential(new CommandeRouesTourner(16.5));
 			addSequential(new CommandeChariotActiverBasArriere());
 			addSequential(new CommandePinceOuvrir());
-			addSequential(new CommandeRouesAvancer(-1500));
+			addSequential(new CommandeRouesAvancer(-1450));
 			addSequential(new CommandePinceFermer());
 			addSequential(new CommandePause(0.200));
 			addSequential(new CommandeChariotActiverMilieuArriere());
