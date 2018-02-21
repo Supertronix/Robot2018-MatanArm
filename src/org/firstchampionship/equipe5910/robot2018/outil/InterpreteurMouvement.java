@@ -27,11 +27,11 @@ public class InterpreteurMouvement implements RobotMap.InterpreteurMouvement{
 	public void mesurer()
 	{
 		this.tempsActuel = System.currentTimeMillis();		
-		this.distanceActuelle = Robot.roues.getDistanceGauche();
 		
 		if((this.tempsActuel - this.tempsDernier) > INTERVALLE_IMMOBILITE)
 		{
 			// verifier
+			this.distanceActuelle = Robot.roues.getDistanceGauche();
 			this.estImmobile = (Math.abs(this.distanceActuelle - this.distanceDernier) < DISTANCE_NULLE);
 			
 			// reinitialiser
