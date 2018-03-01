@@ -36,15 +36,14 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		System.out.println("robotInit()");
-		/*
-		Robot.construire();
+		AnimateurLed.getInstance().indiquerAlliance(AnimateurLed.ALLIANCE_ROUGE);
 		manetteConducteur = new ManetteConducteur();
 		manetteOperateur = new ManetteOperateur();
+		Robot.construire();
 		//TimeUnit.SECONDS.sleep(10);
 		
 		this.lecteurAttributionsAutonomes = new LecteurAttributionsAutonomes();
 		//this.lecteurAttributionsAutonomes.vider();
-		 */
 	}
 
 	protected LecteurAttributionsAutonomes lecteurAttributionsAutonomes = null;	
@@ -56,7 +55,6 @@ public class RobotControleur extends IterativeRobot {
 	public void autonomousInit() {
 		System.out.println("autonomousInit()");
 		RobotControleur.estAutonome = true;
-		/*
 		Robot.roues.activerVitesseBasse();
 		Robot.roues.zeroSensors();
 		
@@ -81,14 +79,13 @@ public class RobotControleur extends IterativeRobot {
 			this.trajet = controleurTrajet.obtenirTrajet(positionDepart, attributionCotes);
 			if(this.trajet != null) this.trajet.start();	
 		}
-		*/
 	}
 
 	@Override
 	public void autonomousPeriodic() {
 		System.out.println("autonomousPeriodic()");
-		Robot.roues.conduire(0, 0); // garder pour tests
-		/*
+		//Robot.roues.conduire(0, 0); // garder pour tests
+		AnimateurLed.getInstance().indiquerNiveau((short)Robot.chariot.getPosition());
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
 		//this.selecteurPosition.lireChoix();
@@ -120,13 +117,11 @@ public class RobotControleur extends IterativeRobot {
 				if(this.trajet != null) this.trajet.start();	
 			}
 		}
-		*/
 	}
 
 	@Override
 	public void teleopInit() {	
 		RobotControleur.estAutonome = false;
-		/*
 		if (controleurTrajet != null)
 		{
 			controleurTrajet.cancel();
@@ -135,7 +130,6 @@ public class RobotControleur extends IterativeRobot {
 			
 		System.out.println("teleopInit()");
 		Robot.pince.fermer();
-		*/
 	}
 
 	
@@ -143,7 +137,6 @@ public class RobotControleur extends IterativeRobot {
 	public void teleopPeriodic() {		
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
-		/*
 		Robot.roues.conduire(-manetteConducteur.getY1(), -manetteConducteur.getY2());
 		
 		// BRAS
@@ -181,7 +174,6 @@ public class RobotControleur extends IterativeRobot {
 		
 		SmartDashboard.putNumber("Angle_bras", Robot.bras.getPosition());
 		SmartDashboard.putNumber("Position_Chariot", Robot.chariot.getPosition());
-		*/
 	}
 	@Override
 	public void disabledInit() {
@@ -197,7 +189,6 @@ public class RobotControleur extends IterativeRobot {
 		System.out.println("testPeriodic()");
 		// http://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/command/Scheduler.html
 		Scheduler.getInstance().run(); // pour faire marcher les commandes
-		AnimateurLed.getInstance().indiquerAlliance(AnimateurLed.ALLIANCE_ROUGE);
 	    Timer.delay(1);
 	}
 

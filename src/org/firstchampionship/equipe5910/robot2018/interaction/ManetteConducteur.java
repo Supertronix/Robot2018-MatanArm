@@ -28,7 +28,6 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 	
 	public ManetteConducteur(){
 		this.manettePrincipale = new Joystick(MANETTE_CONDUCTEUR);
-		
 		this.selecteurVitesseElevee = new JoystickButton(manettePrincipale, BOUTON_HAUTE_VITESSE);
 		this.selecteurVitesseElevee.whenPressed(new CommandeRouesActiverVitesseElevee());
 		this.selecteurVitesseBasse = new JoystickButton(manettePrincipale, BOUTON_BASSE_VITESSE);
@@ -43,7 +42,6 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 		//this.selecteurPinceOuverte.whenPressed(new CommandePinceOuvrir());
 		//this.selecteurPinceFermee = new JoystickButton(this.manettePrincipale, BOUTON_RETOUR);
 		//this.selecteurPinceFermee.whenPressed(new CommandePinceFermer());
-		
 		this.selecteurSpectacleFlash = new JoystickButton(this.manettePrincipale, BOUTON_DROIT);
 		this.selecteurSpectacleFlash.whenPressed(new CommandeLedActiverFlash());
 		this.selecteurSpectacleFlash.whenReleased(new CommandeLedEteindreFlash());

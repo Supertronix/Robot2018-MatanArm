@@ -11,7 +11,10 @@ public class AnimateurLed {
 	public static byte[] ALLIANCE_ROUGE = new byte[1];
 	public static byte[] ALLIANCE_BLEUE = new byte[1];
 	protected static byte[] MESSAGE_TELEOP = new byte[1];
+	protected static byte[] MESSAGE_AUTONOME = new byte[1];
 	protected static byte[] MESSAGE_FLASH = new byte[1];
+	protected static byte[] MESSAGE_NIVEAU = new byte[1];
+	public static byte[] niveauChariot = new byte[1];
 	
 	private AnimateurLed()
 	{
@@ -19,7 +22,9 @@ public class AnimateurLed {
 		ALLIANCE_ROUGE[0] = 'R';
 		ALLIANCE_BLEUE[0] = 'B';
 		MESSAGE_TELEOP[0] = 'T';
+		MESSAGE_AUTONOME[0] = 'A';
 		MESSAGE_FLASH[0] = 'F';
+		MESSAGE_NIVEAU[0] = 'N';
 	}
 	static protected AnimateurLed instance = null;
 	static public AnimateurLed getInstance()
@@ -32,9 +37,10 @@ public class AnimateurLed {
 	{
 	    lienLed.transaction(alliance, 1,vide,0);
 	}
-	public void indiquerNiveau(int niveau)
+	public void indiquerNiveau(short niveau)
 	{
-		
+		niveauChariot[0] = (byte)niveau;
+	    lienLed.transaction(niveauChariot, 1,vide,0);		
 	}
 	public void lancerSpectacleFlash()
 	{
@@ -46,7 +52,7 @@ public class AnimateurLed {
 	}
 	public void lancerSpectacleAutonome()
 	{
-		
+	    lienLed.transaction(MESSAGE_AUTONOME, 1,vide,0);		
 	}
 	public void lancerSpectacleTeleop()
 	{
@@ -54,6 +60,7 @@ public class AnimateurLed {
 	}
 	public void lancerSpectacleNiveau()
 	{
+	    lienLed.transaction(MESSAGE_NIVEAU, 1,vide,0);
 	}
 
 }
