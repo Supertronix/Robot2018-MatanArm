@@ -55,6 +55,7 @@ public class RobotControleur extends IterativeRobot {
 	public void autonomousInit() {
 		System.out.println("autonomousInit()");
 		RobotControleur.estAutonome = true;
+		AnimateurLed.getInstance().lancerSpectacleAutonome();
 		Robot.roues.activerVitesseBasse();
 		Robot.roues.zeroSensors();
 		
@@ -122,6 +123,7 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void teleopInit() {	
 		RobotControleur.estAutonome = false;
+		AnimateurLed.getInstance().lancerSpectacleTeleop();
 		if (controleurTrajet != null)
 		{
 			controleurTrajet.cancel();
