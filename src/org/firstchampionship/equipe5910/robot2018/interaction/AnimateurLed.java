@@ -10,13 +10,16 @@ public class AnimateurLed {
 
 	public static byte[] ALLIANCE_ROUGE = new byte[1];
 	public static byte[] ALLIANCE_BLEUE = new byte[1];
-
+	protected static byte[] MESSAGE_TELEOP = new byte[1];
+	protected static byte[] MESSAGE_FLASH = new byte[1];
 	
 	private AnimateurLed()
 	{
 		lienLed = new I2C(I2C.Port.kOnboard,4);
 		ALLIANCE_ROUGE[0] = 'R';
 		ALLIANCE_BLEUE[0] = 'B';
+		MESSAGE_TELEOP[0] = 'T';
+		MESSAGE_FLASH[0] = 'F';
 	}
 	static protected AnimateurLed instance = null;
 	static public AnimateurLed getInstance()
@@ -35,7 +38,11 @@ public class AnimateurLed {
 	}
 	public void lancerSpectacleFlash()
 	{
-		
+	    lienLed.transaction(MESSAGE_FLASH, 1,vide,0);
+	}
+	public void arreterSpectacleFlash()
+	{
+		this.lancerSpectacleTeleop();
 	}
 	public void lancerSpectacleAutonome()
 	{
@@ -43,7 +50,7 @@ public class AnimateurLed {
 	}
 	public void lancerSpectacleTeleop()
 	{
-		
+	    lienLed.transaction(MESSAGE_TELEOP, 1,vide,0);				
 	}
 	public void lancerSpectacleNiveau()
 	{

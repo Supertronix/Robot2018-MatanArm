@@ -3,6 +3,8 @@ package org.firstchampionship.equipe5910.robot2018.interaction;
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasAllonger;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasRetrecir;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeLedActiverFlash;
+import org.firstchampionship.equipe5910.robot2018.commande.CommandeLedEteindreFlash;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseBasse;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseElevee;
 
@@ -21,6 +23,8 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 	protected JoystickButton selecteurPinceFermee;
 	protected JoystickButton selecteurBrasAllonge;
 	protected JoystickButton selecteurBrasRetreci;
+
+	protected JoystickButton selecteurSpectacleFlash;
 	
 	public ManetteConducteur(){
 		this.manettePrincipale = new Joystick(MANETTE_CONDUCTEUR);
@@ -40,6 +44,9 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 		//this.selecteurPinceFermee = new JoystickButton(this.manettePrincipale, BOUTON_RETOUR);
 		//this.selecteurPinceFermee.whenPressed(new CommandePinceFermer());
 		
+		this.selecteurSpectacleFlash = new JoystickButton(this.manettePrincipale, BOUTON_DROIT);
+		this.selecteurSpectacleFlash.whenPressed(new CommandeLedActiverFlash());
+		this.selecteurSpectacleFlash.whenReleased(new CommandeLedEteindreFlash());
 	}
 	
 	public double getAvancer(){
