@@ -10,6 +10,7 @@ import org.firstchampionship.equipe5910.robot2018.interaction.AnimateurLed;
 import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
+import org.firstchampionship.equipe5910.robot2018.interaction.SelecteurAlliance;
 import org.firstchampionship.equipe5910.robot2018.interaction.SelecteurPositionAutonome;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -36,7 +37,10 @@ public class RobotControleur extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		System.out.println("robotInit()");
-		AnimateurLed.getInstance().indiquerAlliance(AnimateurLed.ALLIANCE_ROUGE);
+		if(SelecteurAlliance.getInstance().estDansAllianceRouge())
+			AnimateurLed.getInstance().indiquerAlliance(AnimateurLed.ALLIANCE_ROUGE);
+		else
+			AnimateurLed.getInstance().indiquerAlliance(AnimateurLed.ALLIANCE_BLEUE);
 		manetteConducteur = new ManetteConducteur();
 		manetteOperateur = new ManetteOperateur();
 		Robot.construire();
