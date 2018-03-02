@@ -22,10 +22,15 @@ public class AnimateurLed {
 	
 	protected DigitalOutput indicateurAlliance;
 	protected DigitalOutput indicateurFlash;
+	protected DigitalOutput indicateurMode;
 	//protected AnalogOutput indicateurChariot;
+	
+	public static final boolean MODE_AUTONOME = false;
+	public static final boolean MODE_TELEOP = true;
 	
 	public static int INDICATEUR_ALLIANCE = 0;
 	public static int INDICATEUR_FLASH = 1;
+	public static int INDICATEUR_MODE = 2;
 	public static int INDICATEUR_CHARIOT = 0;
 	
 	public static boolean MESSAGE_FLASH = true;	
@@ -37,6 +42,7 @@ public class AnimateurLed {
 	{
 		this.indicateurAlliance = new DigitalOutput(INDICATEUR_ALLIANCE);
 		this.indicateurFlash = new DigitalOutput(INDICATEUR_FLASH);
+		this.indicateurMode = new DigitalOutput(INDICATEUR_MODE);
 		//this.indicateurChariot = new AnalogOutput(INDICATEUR_CHARIOT);
 	}
 	static protected AnimateurLed instance = null;
@@ -68,15 +74,17 @@ public class AnimateurLed {
 		System.out.println("arreterSpectacleFlash()");
 		this.indicateurFlash.set(false);
 	}
-	/*
 	public void lancerSpectacleAutonome()
 	{
-		// deduit cote Arduino selon position chariot
+		// TODO deduit cote Arduino selon position chariot
+		this.indicateurMode.set(MODE_AUTONOME);
 	}
 	public void lancerSpectacleTeleop()
 	{
-		// deduit cote Arduino selon temps 15 secondes depuis passage mode autonome
+		this.indicateurMode.set(MODE_TELEOP);
+		// TODO deduit cote Arduino selon temps 15 secondes depuis passage mode autonome
 	}
+	/*
 	public void lancerSpectacleNiveau()
 	{
 		// deduit cote Arduino selon position chariot + temps
