@@ -147,15 +147,27 @@ public class RobotControleur extends IterativeRobot {
 		}
 		
 		// CHARIOT	
-		if (Math.abs(manetteOperateur.getY1()) >= 0.1)
+		//if (Math.abs(manetteOperateur.getY1()) >= 0.1)
+		if (manetteOperateur.getBoutonChariotHaut())
 		{
 			if (Timer.getMatchTime() > 30)
 			{
-				Robot.chariot.ajusterPID(manetteOperateur.getY1() / 5);
+				Robot.chariot.ajusterPID(0.2);
 			}
 			else
 			{
-				Robot.chariot.ajusterPID(manetteOperateur.getY1());
+				Robot.chariot.ajusterPID(1);
+			}
+		}
+		else if (manetteOperateur.getBoutonChariotBas())
+		{
+			if (Timer.getMatchTime() > 30)
+			{
+				Robot.chariot.ajusterPID(-0.2);
+			}
+			else
+			{
+				Robot.chariot.ajusterPID(-1);
 			}
 		}
 		if (Robot.bras.isInExtendedLimits() && Robot.chariot.getPosition() < RobotMap.Chariot.CHARIOT_POSITION_LIMITE_OUVERTURE_PINCE)

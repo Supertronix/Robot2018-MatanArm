@@ -57,7 +57,17 @@ public class ManetteOperateur implements RobotMap.ManetteOperateur{
 	}
 	// Offset chariot
 	public double getY1(){
-		return manetteOperateur.getRawAxis(1);
+		return manetteOperateur.getRawAxis(1);	
+	}
+	
+	public boolean getBoutonChariotHaut()
+	{
+		return manetteOperateur.getRawButton(RobotMap.ManetteOperateur.BOUTON_CHARIOT_HAUT);
+	}
+	
+	public boolean getBoutonChariotBas()
+	{
+		return manetteOperateur.getRawButton(RobotMap.ManetteOperateur.BOUTON_CHARIOT_BAS);	
 	}
 	
 	

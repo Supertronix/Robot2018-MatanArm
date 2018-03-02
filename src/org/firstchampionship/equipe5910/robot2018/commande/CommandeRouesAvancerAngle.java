@@ -2,6 +2,7 @@ package org.firstchampionship.equipe5910.robot2018.commande;
 
 import org.firstchampionship.equipe5910.robot2018.Robot;
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
+import org.firstchampionship.equipe5910.robot2018.outil.InterpreteurMouvementCumulateur;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -12,6 +13,9 @@ public class CommandeRouesAvancerAngle extends Command{
 	protected double vitesse = 0.1; // test primitif
 	protected boolean PIDFirstLoop = true;
 	protected double angleVoulue;
+	
+	protected InterpreteurMouvementCumulateur verificateurImmobilite;
+	
 	public CommandeRouesAvancerAngle(double distanceVoulue, double angle)
 	{
 		requires(Robot.roues);		
@@ -21,6 +25,7 @@ public class CommandeRouesAvancerAngle extends Command{
 
 	@Override
 	protected void initialize() {
+		verificateurImmobilite = new InterpreteurMouvementCumulateur();
 		Robot.roues.setGyroPid(RobotMap.Roues.GYRO_KP_AVANCER_ANGLE, RobotMap.Roues.GYRO_KI_AVANCER_ANGLE);
 		Robot.roues.zeroSensors();
 		Robot.roues.setGyroConsigne(angleVoulue);
@@ -58,6 +63,7 @@ public class CommandeRouesAvancerAngle extends Command{
 				Robot.roues.conduireDroitGyroSeul(-0.75);
 			}
 		}
+		this.verificateurImmobilite.mesurer();
 		//System.out.println("CommandeRouesAvancer.execute()");
 		//Robot.roues.avancer(vitesse); 
 		//Robot.roues.avancer(Robot.roues.getVitesseSelonEncodeurDroitStabilise()); 
@@ -79,7 +85,8 @@ public class CommandeRouesAvancerAngle extends Command{
 		
 		System.out.println("Distance parcourue " + (Robot.roues.getDistanceGauche() - this.positionInitiale));
 		System.out.println("isFinished() " + estFini);
-		return estFini;
+		return estFini || this.verificateurImmobilite.estImmobile();
+		//return estFini;
 	}
 	
 	@Override
