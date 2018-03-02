@@ -22,7 +22,6 @@ public class CommandeChariotActiverHautAvant extends Command{
 	protected void execute() {
 		Robot.bras.allerPosition(Bras.POSITION.AVANT_HAUT);
 		Robot.chariot.allerPosition(Chariot.POSITION.HAUT);
-		AnimateurLed.getInstance().lancerSpectacleNiveau();
 	}
 
 	@Override

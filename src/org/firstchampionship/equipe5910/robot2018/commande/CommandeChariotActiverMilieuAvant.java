@@ -24,7 +24,6 @@ public class CommandeChariotActiverMilieuAvant extends Command{
 		Robot.bras.allerPosition(Bras.POSITION.AVANT_MILIEU);
 		Robot.chariot.allerPosition(Chariot.POSITION.MILIEU);
 		Robot.bras.retrecir();
-		AnimateurLed.getInstance().lancerSpectacleNiveau();
 	}
 
 	@Override

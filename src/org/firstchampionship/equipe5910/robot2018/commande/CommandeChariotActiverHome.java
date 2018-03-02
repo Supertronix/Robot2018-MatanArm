@@ -26,7 +26,6 @@ public class CommandeChariotActiverHome extends Command{
 		Robot.chariot.allerPosition(Chariot.POSITION.BAS);
 		Robot.bras.allerPosition(Bras.POSITION.HOME);
 		Robot.bras.retrecir();
-		AnimateurLed.getInstance().lancerSpectacleNiveau();
 		estFini = true;
 	}
 

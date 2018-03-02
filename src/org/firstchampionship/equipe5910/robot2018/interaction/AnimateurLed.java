@@ -1,30 +1,43 @@
 package org.firstchampionship.equipe5910.robot2018.interaction;
 
-import edu.wpi.first.wpilibj.I2C;
+import org.firstchampionship.equipe5910.robot2018.outil.Calculateur;
+
+import edu.wpi.first.wpilibj.AnalogOutput;
+import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.command.Command;
 
 public class AnimateurLed {
 	
-	protected I2C lienLed;
-	protected byte[] message = new byte[1];
-	protected byte[] vide = new byte[1];
-
-	public static byte[] ALLIANCE_ROUGE = new byte[1];
-	public static byte[] ALLIANCE_BLEUE = new byte[1];
-	protected static byte[] MESSAGE_TELEOP = new byte[1];
-	protected static byte[] MESSAGE_AUTONOME = new byte[1];
-	protected static byte[] MESSAGE_FLASH = new byte[1];
-	protected static byte[] MESSAGE_NIVEAU = new byte[1];
-	public static byte[] niveauChariot = new byte[1];
+	public static class LecteurAttributionAlliance
+	{
+		public static final boolean ALLIANCE_ROUGE = true;
+		public static final boolean ALLIANCE_BLEUE = false;
+		public static boolean lire()
+		{
+			//System.out.println("Alliance " + DriverStation.getInstance().getAlliance().name());
+			return (DriverStation.getInstance().getAlliance().name().compareTo("Red") == 0); 
+		}		
+	}
+	
+	protected DigitalOutput indicateurAlliance;
+	protected DigitalOutput indicateurFlash;
+	//protected AnalogOutput indicateurChariot;
+	
+	public static int INDICATEUR_ALLIANCE = 0;
+	public static int INDICATEUR_FLASH = 1;
+	public static int INDICATEUR_CHARIOT = 0;
+	
+	public static boolean MESSAGE_FLASH = true;	
+	//public static boolean MESSAGE_AUTONOME = true;
+	//public static boolean MESSAGE_TELEOP = false;
+	//public static boolean MESSAGE_NIVEAU = true;
 	
 	private AnimateurLed()
 	{
-		lienLed = new I2C(I2C.Port.kOnboard,4);
-		ALLIANCE_ROUGE[0] = 'R';
-		ALLIANCE_BLEUE[0] = 'B';
-		MESSAGE_TELEOP[0] = 'T';
-		MESSAGE_AUTONOME[0] = 'A';
-		MESSAGE_FLASH[0] = 'F';
-		MESSAGE_NIVEAU[0] = 'N';
+		this.indicateurAlliance = new DigitalOutput(INDICATEUR_ALLIANCE);
+		this.indicateurFlash = new DigitalOutput(INDICATEUR_FLASH);
+		//this.indicateurChariot = new AnalogOutput(INDICATEUR_CHARIOT);
 	}
 	static protected AnimateurLed instance = null;
 	static public AnimateurLed getInstance()
@@ -32,35 +45,78 @@ public class AnimateurLed {
 		if(instance == null) instance = new AnimateurLed();
 		return instance;
 	}
-	
-	public void indiquerAlliance(byte[] alliance)
+	public void indiquerAlliance()
 	{
-	    lienLed.transaction(alliance, 1,vide,0);
+		this.indicateurAlliance.set(LecteurAttributionAlliance.lire());
+	}
+	public void indiquerAlliance(boolean alliance)
+	{
+		this.indicateurAlliance.set(alliance);
 	}
 	public void indiquerNiveau(short niveau)
 	{
-		niveauChariot[0] = (byte)niveau;
-	    lienLed.transaction(niveauChariot, 1,vide,0);		
+		//this.indicateurChariot.setVoltage(Calculateur.clamp(niveau*0.05, 0,5));
 	}
 	public void lancerSpectacleFlash()
 	{
-	    lienLed.transaction(MESSAGE_FLASH, 1,vide,0);
+		this.indicateurFlash.set(true);
 	}
 	public void arreterSpectacleFlash()
 	{
-		this.lancerSpectacleTeleop();
+		this.indicateurFlash.set(false);
 	}
+	/*
 	public void lancerSpectacleAutonome()
 	{
-	    lienLed.transaction(MESSAGE_AUTONOME, 1,vide,0);		
+		// deduit cote Arduino selon position chariot
 	}
 	public void lancerSpectacleTeleop()
 	{
-	    lienLed.transaction(MESSAGE_TELEOP, 1,vide,0);				
+		// deduit cote Arduino selon temps 15 secondes depuis passage mode autonome
 	}
 	public void lancerSpectacleNiveau()
 	{
-	    lienLed.transaction(MESSAGE_NIVEAU, 1,vide,0);
+		// deduit cote Arduino selon position chariot + temps
+	}*/	
+	
+	//////////////////////////////////////////////////////
+	
+	
+	static public class CommandeLedActiverFlash extends Command {
+		
+		@Override
+		protected void initialize() {
+			System.out.println("CommandeLedActiverFlash.initialize()");
+		}
+		
+		@Override
+		protected void execute() {
+			AnimateurLed.getInstance().lancerSpectacleFlash();
+		}
+		
+		@Override
+		protected boolean isFinished() {
+			return true;
+		}
 	}
 
+	static public class CommandeLedEteindreFlash extends Command {
+		
+		@Override
+		protected void initialize() {
+			System.out.println("CommandeLedEteindreFlash.initialize()");
+		}
+		
+		@Override
+		protected void execute() {
+			AnimateurLed.getInstance().arreterSpectacleFlash();	
+		}
+		
+		@Override
+		protected boolean isFinished() {
+			return true;
+		}
+	}
+	
+	
 }

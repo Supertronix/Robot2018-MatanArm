@@ -3,8 +3,6 @@ package org.firstchampionship.equipe5910.robot2018.interaction;
 import org.firstchampionship.equipe5910.robot2018.RobotMap;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasAllonger;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeBrasRetrecir;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeLedActiverFlash;
-import org.firstchampionship.equipe5910.robot2018.commande.CommandeLedEteindreFlash;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseBasse;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesActiverVitesseElevee;
 
@@ -12,7 +10,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class ManetteConducteur implements RobotMap.ManetteConducteur{
-	
 	protected Joystick manettePrincipale;
 	
 	protected JoystickButton selecteurVitesseElevee;
@@ -45,8 +42,8 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 		//this.selecteurPinceFermee.whenPressed(new CommandePinceFermer());
 */		
 		this.selecteurSpectacleFlash = new JoystickButton(this.manettePrincipale, BOUTON_DROIT);
-		this.selecteurSpectacleFlash.whenPressed(new CommandeLedActiverFlash());
-		this.selecteurSpectacleFlash.whenReleased(new CommandeLedEteindreFlash());
+		this.selecteurSpectacleFlash.whenPressed(new AnimateurLed.CommandeLedActiverFlash());
+		this.selecteurSpectacleFlash.whenReleased(new AnimateurLed.CommandeLedEteindreFlash());
 	}
 	
 	public double getAvancer(){

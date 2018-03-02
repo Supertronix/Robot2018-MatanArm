@@ -23,7 +23,6 @@ public class CommandeChariotActiverBasArriere extends Command{
 		Robot.bras.allerPosition(Bras.POSITION.ARRIERE_BAS);
 		Robot.chariot.allerPosition(Chariot.POSITION.BAS);
 		Robot.bras.retrecir();
-		AnimateurLed.getInstance().lancerSpectacleNiveau();
 	}
 
 	@Override
