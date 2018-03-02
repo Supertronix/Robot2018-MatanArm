@@ -21,6 +21,8 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 	protected JoystickButton selecteurPinceFermee;
 	protected JoystickButton selecteurBrasAllonge;
 	protected JoystickButton selecteurBrasRetreci;
+
+	private JoystickButton selecteurSpectacleFlash;
 	
 	public ManetteConducteur(){
 		this.manettePrincipale = new Joystick(MANETTE_CONDUCTEUR);
