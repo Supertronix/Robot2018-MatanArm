@@ -51,6 +51,7 @@ public class AnimateurLed {
 	}
 	public void indiquerAlliance(boolean alliance)
 	{
+		System.out.println("Messager alliance " + alliance);
 		this.indicateurAlliance.set(alliance);
 	}
 	public void indiquerNiveau(short niveau)
@@ -59,10 +60,12 @@ public class AnimateurLed {
 	}
 	public void lancerSpectacleFlash()
 	{
+		System.out.println("lancerSpectacleFlash()");
 		this.indicateurFlash.set(true);
 	}
 	public void arreterSpectacleFlash()
 	{
+		System.out.println("arreterSpectacleFlash()");
 		this.indicateurFlash.set(false);
 	}
 	/*
