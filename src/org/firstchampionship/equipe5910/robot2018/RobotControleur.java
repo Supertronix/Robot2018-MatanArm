@@ -6,6 +6,7 @@ import org.firstchampionship.equipe5910.robot2018.commande.CommandePinceFermer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancer;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesAvancerAngle;
 import org.firstchampionship.equipe5910.robot2018.commande.CommandeRouesTourner;
+import org.firstchampionship.equipe5910.robot2018.interaction.AnimateurLed;
 import org.firstchampionship.equipe5910.robot2018.interaction.LecteurAttributionsAutonomes;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteConducteur;
 import org.firstchampionship.equipe5910.robot2018.interaction.ManetteOperateur;
@@ -40,6 +41,7 @@ public class RobotControleur extends IterativeRobot {
 		
 		this.lecteurAttributionsAutonomes = new LecteurAttributionsAutonomes();
 		//this.lecteurAttributionsAutonomes.vider();
+		AnimateurLed.getInstance().indiquerAlliance(AnimateurLed.LecteurAttributionAlliance.lire());
 	}
 
 	protected LecteurAttributionsAutonomes lecteurAttributionsAutonomes = null;	
