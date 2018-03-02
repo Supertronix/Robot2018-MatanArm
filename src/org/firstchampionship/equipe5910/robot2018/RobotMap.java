@@ -146,12 +146,12 @@ public interface RobotMap
 	public interface ManetteOperateur
 	{
 		public static final int MANETTE_OPERATEUR = 1;
-		public static final int BOUTON_HAUT_AVANT = 3; 
-		public static final int BOUTON_HAUT_ARRIERE = 4;
-		public static final int BOUTON_MILIEU_AVANT = 6;
-		public static final int BOUTON_MILIEU_ARRIERE = 7;
-		public static final int BOUTON_BAS_AVANT= 8;
-		public static final int BOUTON_BAS_ARRIERE= 5;
+		public static final int BOUTON_HAUT_AVANT = 4; 
+		public static final int BOUTON_HAUT_ARRIERE = 3;
+		public static final int BOUTON_MILIEU_AVANT = 7;
+		public static final int BOUTON_MILIEU_ARRIERE = 6;
+		public static final int BOUTON_BAS_AVANT= 5;
+		public static final int BOUTON_BAS_ARRIERE= 8;
 		public static final int BOUTON_CENTRE= 10;
 		public static final int BOUTON_OUVRIR= 9;
 		
