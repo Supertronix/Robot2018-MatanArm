@@ -40,6 +40,11 @@ public class ManetteConducteur implements RobotMap.ManetteConducteur{
 		//this.selecteurPinceFermee = new JoystickButton(this.manettePrincipale, BOUTON_RETOUR);
 		//this.selecteurPinceFermee.whenPressed(new CommandePinceFermer());
 		
+		this.selecteurSpectacleFlash = new JoystickButton(this.manettePrincipale, BOUTON_DROIT);
+		this.selecteurSpectacleFlash.whenPressed(new AnimateurLed.CommandeLedActiverFlash());
+		this.selecteurSpectacleFlash.whenReleased(new AnimateurLed.CommandeLedEteindreFlash());
+		
+		
 	}
 	
 	public double getAvancer(){
